@@ -24,9 +24,12 @@ OBJ=$(patsubst %.cpp,$(OBJDIR)/%.o,$(SRC))
 # Dependencies
 DEP=$(wildcard *.h)
 
-$(LIBNAME): $(OBJ)
+$(LIBNAME): $(OBJDIR) $(OBJ)
 	rm -f $(LIBNAME)
 	$(AR) $(ARARGS) $(LIBNAME) $(OBJ)
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
 $(OBJDIR)/%.o: %.cpp $(DEP)
 	rm -f $@
