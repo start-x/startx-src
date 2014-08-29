@@ -13,7 +13,3 @@ sensors::~sensors()
 	cout << "Termination sensors" << endl;
 }
 
-char sensor_ox()
-{
-	return 'a';
-}
