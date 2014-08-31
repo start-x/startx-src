@@ -55,7 +55,7 @@ public:
 	/**
 	 *	Get current state from OVR
 	 */
-	void getXYZ();
+	void getXYZW(float * x, float * y, float * z, float * w);
 
 	/**
 	 *	Print all the information about this class

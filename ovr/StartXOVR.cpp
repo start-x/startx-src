@@ -65,15 +65,31 @@ bool StartXOVR::startSensor()
 	return false;
 }
 
-void StartXOVR::getXYZ()
+void StartXOVR::getXYZW(float * x, float * y, float * z, float * w)
 {
 	// Query the HMD for the sensor state at a given time. "0.0" means "most recent time".
 	ovrSensorState ss = ovrHmd_GetSensorState(this->hmd, 0.0);
 	if (ss.StatusFlags & (ovrStatus_OrientationTracked | ovrStatus_PositionTracked))
 	{
 		ovrPosef pose = ss.Predicted.Pose;
-		//...
+
+		ovrQuatf orientation = pose.Orientation;
+    	ovrVector3f position = pose.Position;
+
+		*x = orientation.x;
+		*y = orientation.y;
+		*z = orientation.z;
+		*w = orientation.w;
+		
+		std::cout << "x = " << x << ", y = " << y << ", z = " << z << ", w = " << w << std::endl;
+
+		return;
 	}
+
+	*x = 0.0;
+	*y = 0.0;
+	*z = 0.0;
+	*w = 0.0;
 }
 
 std::ostream& operator<<(std::ostream& os, const StartXOVR& sxovr)

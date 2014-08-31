@@ -8,6 +8,10 @@ bool test_StartXOVR()
 	StartXOVR sxovr;
 	sxovr.initOVR();
 	sxovr.startSensor();
+
+	float x, y, z, w;
+	sxovr.getXYZW(&x, &y, &z, &w);
+	
 	cout << sxovr;
 
 	return false;
