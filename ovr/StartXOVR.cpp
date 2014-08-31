@@ -16,7 +16,10 @@ StartXOVR::~StartXOVR()
 		std::cout << "Destroying StartXOVR" << std::endl;
 
 	if(!ovrInitiated)
+	{
+		ovrHmd_Destroy(this->hmd);
 		ovr_Shutdown();
+	}
 }
 
 bool StartXOVR::initOVR()
@@ -69,7 +72,13 @@ void StartXOVR::getXYZW(float * x, float * y, float * z, float * w)
 {
 	// Query the HMD for the sensor state at a given time. "0.0" means "most recent time".
 	ovrSensorState ss = ovrHmd_GetSensorState(this->hmd, 0.0);
-	if (ss.StatusFlags & (ovrStatus_OrientationTracked | ovrStatus_PositionTracked))
+
+	int attempts = 10000;
+
+	while(attempts && !(ss.StatusFlags & (ovrStatus_OrientationTracked | ovrStatus_PositionTracked)))
+		attempts--;
+
+	if(attempts)
 	{
 		ovrPosef pose = ss.Predicted.Pose;
 
@@ -81,7 +90,7 @@ void StartXOVR::getXYZW(float * x, float * y, float * z, float * w)
 		*z = orientation.z;
 		*w = orientation.w;
 		
-		std::cout << "x = " << x << ", y = " << y << ", z = " << z << ", w = " << w << std::endl;
+		//std::cout << "x = " << x << ", y = " << y << ", z = " << z << ", w = " << w << std::endl;
 
 		return;
 	}
