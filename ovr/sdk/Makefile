@@ -56,7 +56,7 @@ endif
 ####### Paths
 
 LIBOVRPATH    = .
-3RDPARTYPATH  = ../third_party
+3RDPARTYPATH  = third_party
 INCPATH       = -I. -I.. -I$(LIBOVRPATH)/include -I$(LIBOVRPATH)/src
 OBJPATH       = ./obj/linux/$(RELEASETYPE)/$(SYSARCH)
 CXXBUILD      = $(CXX) -c $(CXXFLAGS) $(INCPATH) -o $(OBJPATH)/

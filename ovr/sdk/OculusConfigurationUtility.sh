@@ -19,9 +19,9 @@
 
 MACHINE_TYPE=`uname -m`
 if [ ${MACHINE_TYPE} == 'x86_64' ]; then
-  ./Tools/OculusConfigUtil/OculusConfigUtil_x86_64
+  ./tools/OculusConfigUtil/OculusConfigUtil_x86_64
 elif [ ${MACHINE_TYPE} == 'i686' ]; then
-  ./Tools/OculusConfigUtil/OculusConfigUtil_i386
+  ./tools/OculusConfigUtil/OculusConfigUtil_i386
 else
   echo "The Oculus Configuration Utility does not currently support this platform."
 fi
