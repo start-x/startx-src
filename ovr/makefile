@@ -10,7 +10,7 @@ ARARGS=cvq
 
 # Compiler
 CC=g++
-CFLAGS=-lGL -ludev -lXrandr
+CFLAGS=-lGL -ludev -lXrandr -lX11 -lpthread
 
 # Include dir
 INCDIR=-I. -Isdk/src
