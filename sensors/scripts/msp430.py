@@ -6,7 +6,6 @@
 
     A Interface with the hardware
 """
-
 try:
         # Terminal Class
     from serial.tools.miniterm import Miniterm
@@ -38,18 +37,18 @@ def randomstring():
     return ''.join(random.choice(chars) for _ in range(20))
 
 def available_ports():
-    """ looking for available ports """
-    port_available = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
+    # looking for available ports
+    PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
     try:
         for port, desc, hwid in sorted(comports()):
-            if port not in port_available:
-                port_available.append(port)
+            if port not in port:
+                PORTS_AVAILABLE.append(port)
     except Exception as error:
         raise error
-    if len(port_available) == 0:
-        port_available = None
+    if len(PORTS_AVAILABLE) == 0:
+        PORTS_AVAILABLE = None
 
-    return ports
+    return PORTS_AVAILABLE
 
 class MSP(Miniterm):
 
@@ -87,14 +86,14 @@ if __name__ == '__main__':
 
     # list available ports
     print 'Available ports:'
-    ports = available_ports()
-    for i in ports:
+    PORTS_AVAILABLE = available_ports()
+    for i in PORTS_AVAILABLE:
         print '>>> %s' % i
     print '---'
 
     # choose a port
-    if len(ports) == 1:
-        msp430 = MSP(ports[0], 4800)
+    if len(PORTS_AVAILABLE) == 1:
+        msp430 = MSP(PORTS_AVAILABLE[0], 4800)
 
     # make 10 reads from adc
     print '\nRaw data \n----------'
