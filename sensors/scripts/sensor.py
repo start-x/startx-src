@@ -35,12 +35,13 @@ class Passive(Sensor):
 
     """docstring for Passive"""
 
-    def __init__(self):
+    def __init__(self, terminal):
         super(Passive, self).__init__()
+        self.serial = terminal
 
     def read(self):
         """ Return actual data from sensor """
-
+        self.data = self.serial.readline()
         return self.data
 
 
