@@ -24,7 +24,27 @@ except Exception as error:
     raise error
 
 import sensor
+from mock import MagicMock
+import string, random
 
+def randomstring():
+    """ rewriting method """
+    chars = string.ascii_uppercase + string.digits
+    return ''.join(random.choice(chars) for _ in range(20))
+
+def available_ports():
+    # looking for available ports
+    PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
+    try:
+        for port, desc, hwid in sorted(comports()):
+            if port not in port:
+                PORTS_AVAILABLE.append(port)
+    except Exception as error:
+        raise error
+    if len(PORTS_AVAILABLE) == 0:
+        PORTS_AVAILABLE = None
+
+    return PORTS_AVAILABLE
 
 class MSP(Miniterm):
 
@@ -38,8 +58,12 @@ class MSP(Miniterm):
     alive = False
 
     def __init__(self, tty, baud=9600):
-        super(MSP, self).__init__(tty, baud, 'N',
-            False, False, False, CONVERT_CRLF, 0)
+        if tty != None:
+            super(MSP, self).__init__(tty, baud, 'N',
+                False, False, False, CONVERT_CRLF, 0)
+        else:
+            self.serial = MagicMock()
+            self.serial.readline = randomstring
         self.port = tty
         self.adc = sensor.Passive(self.serial)
         self.pwm = sensor.Active(self.serial)
@@ -55,16 +79,10 @@ class MSP(Miniterm):
         self.serial.close()
 
 if __name__ == '__main__':
-    # looking for available ports
-    PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
-    try:
-        for port, desc, hwid in sorted(comports()):
-            if port not in port:
-                PORTS_AVAILABLE.append(port)
-    except Exception as error:
-        raise error
+
     # list available ports
     print 'Available ports:'
+    PORTS_AVAILABLE = available_ports()
     for i in PORTS_AVAILABLE:
         print '>>> %s' % i
     print '---'
