@@ -19,6 +19,7 @@ class Sensor(object):
 
     def __init__(self):
         super(Sensor, self).__init__()
+        self.enable()
 
     def enable(self):
         """ Enable the sensor """
@@ -38,6 +39,8 @@ class Passive(Sensor):
     def __init__(self, terminal):
         super(Passive, self).__init__()
         self.serial = terminal
+        self.data = self.serial.readline()
+        self.data = self.data.split('\n')[0]
 
     def read(self):
         """ Return actual data from sensor """
@@ -53,6 +56,8 @@ class Active(Sensor):
     def __init__(self,terminal):
         super(Active, self).__init__()
         self.serial = terminal
+        self.data = self.serial.readline()
+        self.data = self.data.split('\n')[0]
 
     def _send_data(self, command):
         """ Send some data to sensor """

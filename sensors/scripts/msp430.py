@@ -30,7 +30,7 @@ class MSP(Miniterm):
 
     """docstring for MSP
 
-    Dowith the ideia that all the interface happens
+    Done with the ideia that all the interface happens
     by UART
 
     """
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
     # make 10 reads from adc
     print '\nRaw data \n----------'
-    for x in xrange(1, 10):
+    for x in xrange(1, 11):
         print x, msp430.adc.read()
 
     # define a new reading method
@@ -88,12 +88,12 @@ if __name__ == '__main__':
 
     # make 10 reads from adc using the new method
     print '\nProcessed data \n----------'
-    for x in xrange(1, 10):
+    for x in xrange(1, 11):
         print x, msp430.adc.read()
 
     # example of using a active sensor
     print '\nActive sensor\'s data \n----------'
-    for x in xrange(1, 10):
+    for x in xrange(1, 11):
         print x, msp430.pwm.read('r')
 
     # closes msp430 dependecies
