@@ -72,5 +72,13 @@ class Active(Sensor):
         return self.data
 
 if __name__ == '__main__':
-    k = Active()
-    print k.read()
+    import serial
+    from glob import glob
+    PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
+    print PORTS_AVAILABLE
+    ser = serial.Serial(PORTS_AVAILABLE[0],4800)
+    act = Active(ser)
+    print act.read('r')
+    passive = Passive(ser)
+    print passive.read()
+    ser.close()
