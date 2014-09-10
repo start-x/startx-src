@@ -42,6 +42,7 @@ class Passive(Sensor):
     def read(self):
         """ Return actual data from sensor """
         self.data = self.serial.readline()
+        self.data = self.data.split('\n')[0]
         return self.data
 
 
@@ -49,13 +50,15 @@ class Active(Sensor):
 
     """docstring for Active"""
 
-    def __init__(self):
+    def __init__(self,terminal):
         super(Active, self).__init__()
+        self.serial = terminal
 
-    def _send_data(self, data):
+    def _send_data(self, command):
         """ Send some data to sensor """
-
-        pass
+        self.serial.write(command)
+        self.data = self.serial.readline()
+        self.data = self.data.split('\n')[0]
 
     def read(self, command='r'):
         """ Return actual data from sensor """

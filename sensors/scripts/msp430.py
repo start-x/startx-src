@@ -42,6 +42,7 @@ class MSP(Miniterm):
             False, False, False, CONVERT_CRLF, 0)
         self.port = tty
         self.adc = sensor.Passive(self.serial)
+        self.pwm = sensor.Active(self.serial)
         self.enable()
 
     def enable(self):
@@ -66,13 +67,14 @@ if __name__ == '__main__':
     print 'Available ports:'
     for i in PORTS_AVAILABLE:
         print '>>> %s' % i
-    print '---\n'
+    print '---'
 
     # choose a port
     if len(PORTS_AVAILABLE) == 1:
         msp430 = MSP(PORTS_AVAILABLE[0], 4800)
 
     # make 10 reads from adc
+    print '\nRaw data \n----------'
     for x in xrange(1, 10):
         print x, msp430.adc.read()
 
@@ -85,8 +87,14 @@ if __name__ == '__main__':
     msp430.adc.read = thridfirst
 
     # make 10 reads from adc using the new method
+    print '\nProcessed data \n----------'
     for x in xrange(1, 10):
         print x, msp430.adc.read()
+
+    # example of using a active sensor
+    print '\nActive sensor\'s data \n----------'
+    for x in xrange(1, 10):
+        print x, msp430.pwm.read('r')
 
     # closes msp430 dependecies
     msp430.desable()
