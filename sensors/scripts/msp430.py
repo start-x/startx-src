@@ -78,11 +78,11 @@ class MSP(Miniterm):
         if tty != None:
             try:
                 super(MSP, self).__init__(tty, baud, 'N',
-                False, False, False, CONVERT_CRLF, 0)
+                False, False)
             except SerialException:
                 print ROOT_MESSAGE
                 exit(-1)
-            
+            self.serial.setTimeout(1)
         else:
             self.serial = MagicMock()
             self.serial.readline = randomstring
