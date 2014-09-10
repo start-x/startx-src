@@ -1,0 +1,6 @@
+Write here all the builds that there were made 
+
+9 Sep 2014: First Linux build without OVR integration
+  - it contains a simple tree, a rusty bicycle and a truck
+9 Sep 2014: First Linux build with OVR integration
+  - it contains a simple tree, a rusty bicycle and a truck

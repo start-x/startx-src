@@ -12,3 +12,4 @@ sensors::~sensors()
 {
 	cout << "Termination sensors" << endl;
 }
+
