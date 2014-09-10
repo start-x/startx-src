@@ -10,6 +10,7 @@ try:
         # Terminal Class
     from serial.tools.miniterm import Miniterm
     from serial.tools.miniterm import CONVERT_CRLF
+    from serial.serialutil import SerialException
     # Terminal macros
     from serial.tools.list_ports import comports
 except Exception as error:
@@ -30,6 +31,18 @@ except Exception as error:
 import sensor
 from mock import MagicMock
 import string, random
+
+ROOT_MESSAGE = """
+  .-------------------------------.
+ ( You need Super Cow Powers here. )
+  '-------------------------------'
+         \   ^__^
+          \  (oo)\_______
+             (__)\       )\/\\
+                 ||----w |
+                 ||     ||
+
+"""
 
 def randomstring():
     """ rewriting method """
@@ -63,8 +76,13 @@ class MSP(Miniterm):
 
     def __init__(self, tty, baud=9600):
         if tty != None:
-            super(MSP, self).__init__(tty, baud, 'N',
+            try:
+                super(MSP, self).__init__(tty, baud, 'N',
                 False, False, False, CONVERT_CRLF, 0)
+            except SerialException:
+                print ROOT_MESSAGE
+                exit(-1)
+            
         else:
             self.serial = MagicMock()
             self.serial.readline = randomstring
@@ -87,9 +105,13 @@ if __name__ == '__main__':
     # list available ports
     print 'Available ports:'
     PORTS_AVAILABLE = available_ports()
-    for i in PORTS_AVAILABLE:
-        print '>>> %s' % i
-    print '---'
+    try:
+        for i in PORTS_AVAILABLE:
+            print '>>> %s' % i
+        print '---'
+    except TypeError, error:
+        print "None device connected"
+        exit()
 
     # choose a port
     if len(PORTS_AVAILABLE) == 1:
