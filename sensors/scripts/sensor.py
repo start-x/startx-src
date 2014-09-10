@@ -32,6 +32,20 @@ class Passive(Sensor):
         return self.data
 
 
+class Active(Sensor):
+
+    """docstring for Active"""
+
+    def __init__(self):
+        super(Active, self).__init__()
+
+    def _sendData(self, data):
+        pass
+
+    def read(self, command='r'):
+        self._sendData(command)
+        return self.data
+
 if __name__ == '__main__':
-    k = Passive()
+    k = Active()
     print k.read()
