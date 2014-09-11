@@ -1,5 +1,5 @@
 # Libname
-LIBNAME=sensors.a
+LIBNAME=device.a
 
 # Archiver
 AR=ar
