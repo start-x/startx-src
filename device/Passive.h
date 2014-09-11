@@ -3,19 +3,22 @@
 
 #include <Device.h>
 
+/**
+ *	Represents all devices which will be serving as data sources
+ */
 class Passive : public Device
 {
 public:
 
 	/**
-	 *	Writes a char at a device and returns 0 in case of success or != 0 otherwise
+	 *	Reads specific char at from a device and returns 0 in case of success or != 0 otherwise
 	 */
 	virtual int getData(char &data) = 0;
 
 	/**
-	 *	Read the data from a device to buffer
+	 *	Flush the old data and get the new one
 	 */
-	int readData(void * buffer);
+	static int flush();
 };
 
 #endif

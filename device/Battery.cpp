@@ -2,6 +2,6 @@
 
 int Battery::getData(char &data)
 {
-	readData(&data);
+	data = buffer[BATTERY];
 	return 0;
 }

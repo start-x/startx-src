@@ -1,6 +1,3 @@
 #include <Device.h>
 
-void Device::setType(deviceType type)
-{
-	this->type = type;
-}
+char Device::buffer[256];

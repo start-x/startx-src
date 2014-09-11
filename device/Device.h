@@ -3,17 +3,17 @@
 
 typedef enum _deviceType
 {
-	BREAK,
-	OXIMETRY,
-	DIRECTION,
-	SPEED
+	BATTERY 	= 0,
+	OXIMETRY 	= 1,
+	SPEED 		= 2,
+	DIRECTION 	= 3,
+	BREAK 		= 4
 } deviceType;
 
 class Device
 {
 protected:
-	void setType(deviceType type);
-	deviceType type;
+	static char buffer[256];
 };
 
 #endif
