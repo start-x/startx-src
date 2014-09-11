@@ -1,13 +1,13 @@
-#include <StartXOVR.h>
+#include <Ovr.h>
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
 
 using namespace std;
 
-void test_StartXOVR()
+void test_Ovr()
 {
-	StartXOVR sxovr;
+	Ovr sxovr;
 	float x, y, z, w;
 
 	sxovr.initOVR();
@@ -46,7 +46,7 @@ void test_StartXOVR()
 
 int main()
 {
-	test_StartXOVR();
+	test_Ovr();
 	cout << "Testing ovr" << endl;
 	return 0;
 }

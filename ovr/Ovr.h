@@ -1,5 +1,5 @@
-#ifndef STARTXOVR_H
-#define STARTXOVR_H
+#ifndef OVR_H
+#define OVR_H
 
 #ifndef DEBUG
 	#define DEBUG 1
@@ -12,7 +12,7 @@
  *	Try to put everything related to OVR in this class
  *	This way, other parts of StartX project will only need to call this class
  */
-class StartXOVR
+class Ovr
 {
 public:
 	// ******************* Attributes *********************************
@@ -35,12 +35,12 @@ public:
 	/**
 	 *	Some useful initialization process
 	 */
-	StartXOVR();
+	Ovr();
 
 	/**
 	 *	Destroys any previous OVR objects create by initOVR
 	 */
-	~StartXOVR();
+	~Ovr();
 
 	/**
 	 *	Creates a OVR device
@@ -48,19 +48,21 @@ public:
 	bool initOVR();
 
 	/**
+	 *	Print all the information about this class
+	 */
+	friend std::ostream& operator<<(std::ostream&, const Ovr&);
+
+	/**
 	 *	Start the HMD so the next step begins the tracking
 	 */
 	bool startSensor();
+
+	// ********************* Methods declared in UML *************************
 
 	/**
 	 *	Get current state from OVR
 	 */
 	void getXYZW(float * x, float * y, float * z, float * w);
-
-	/**
-	 *	Print all the information about this class
-	 */
-	friend std::ostream& operator<<(std::ostream&, const StartXOVR&);
 };
 
 #endif

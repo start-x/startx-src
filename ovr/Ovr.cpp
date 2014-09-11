@@ -1,19 +1,19 @@
-#include <StartXOVR.h>
+#include <Ovr.h>
 #include <iostream>
 #include <stdlib.h>
 
-StartXOVR::StartXOVR()
+Ovr::Ovr()
 {
 	if(DEBUG)
-		std::cout << "Initializing StartXOVR" << std::endl;
+		std::cout << "Initializing Ovr" << std::endl;
 
 	ovrInitiated = false;
 }
 
-StartXOVR::~StartXOVR()
+Ovr::~Ovr()
 {
 	if(DEBUG)
-		std::cout << "Destroying StartXOVR" << std::endl;
+		std::cout << "Destroying Ovr" << std::endl;
 
 	if(!ovrInitiated)
 	{
@@ -22,7 +22,7 @@ StartXOVR::~StartXOVR()
 	}
 }
 
-bool StartXOVR::initOVR()
+bool Ovr::initOVR()
 {
 	// Initializes LibOVR.
 	ovr_Initialize();
@@ -53,7 +53,7 @@ bool StartXOVR::initOVR()
 	return this->ovrInitiated;
 }
 
-bool StartXOVR::startSensor()
+bool Ovr::startSensor()
 {
 	// Start the sensor which provides the Rift’s pose and motion.
 	bool success =  ovrHmd_StartSensor(this->hmd, ovrSensorCap_Orientation | ovrSensorCap_YawCorrection |
@@ -68,7 +68,7 @@ bool StartXOVR::startSensor()
 	return false;
 }
 
-void StartXOVR::getXYZW(float * x, float * y, float * z, float * w)
+void Ovr::getXYZW(float * x, float * y, float * z, float * w)
 {
 	// Query the HMD for the sensor state at a given time. "0.0" means "most recent time".
 	ovrSensorState ss = ovrHmd_GetSensorState(this->hmd, 0.0);
@@ -101,9 +101,9 @@ void StartXOVR::getXYZW(float * x, float * y, float * z, float * w)
 	*w = 0.0;
 }
 
-std::ostream& operator<<(std::ostream& os, const StartXOVR& sxovr)
+std::ostream& operator<<(std::ostream& os, const Ovr& sxovr)
 {
-	os << "***** StartXOVR ******" << std::endl;
+	os << "***** Ovr ******" << std::endl;
 	os << "\tovrInitiated: " << (sxovr.ovrInitiated ? "true" : "false")  << std::endl;
 
 	if(sxovr.ovrInitiated)
@@ -153,6 +153,6 @@ std::ostream& operator<<(std::ostream& os, const StartXOVR& sxovr)
 	os << "\tDisplayDeviceName: " << sxovr.hmdDesc.DisplayDeviceName << std::endl;
 	os << "\tDisplayId: " << sxovr.hmdDesc.DisplayId << std::endl;
 
-	os << "*** END-StartXOVR ****" << std::endl;
+	os << "*** END-Ovr ****" << std::endl;
 	return os;
 }
