@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding: utf-8
 
 """
@@ -7,12 +6,10 @@
     A Interface with the hardware
 """
 try:
-        # Terminal Class
+    # Terminal Class
     from serial.tools.miniterm import Miniterm
     from serial.tools.miniterm import CONVERT_CRLF
     from serial.serialutil import SerialException
-    # Terminal macros
-    from serial.tools.list_ports import comports
 except Exception as error:
     try:
         import serial
@@ -22,46 +19,11 @@ except Exception as error:
     if float(serial.VERSION) < 2.6:
         print 'Upgrade Pyserial'
     raise error
-try:
-    from glob import glob
-except Exception as error:
-    print 'Install glob'
-    raise error
 
 import device as sensor
 from mock import MagicMock
 import string, random
-
-ROOT_MESSAGE = """
-  .-------------------------------.
- ( You need Super Cow Powers here. )
-  '-------------------------------'
-         \   ^__^
-          \  (oo)\_______
-             (__)\       )\/\\
-                 ||----w |
-                 ||     ||
-
-"""
-
-def randomstring():
-    """ rewriting method """
-    chars = string.ascii_uppercase + string.digits
-    return ''.join(random.choice(chars) for _ in range(20))
-
-def available_ports():
-    # looking for available ports
-    PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
-    try:
-        for port, desc, hwid in sorted(comports()):
-            if port not in port:
-                PORTS_AVAILABLE.append(port)
-    except Exception as error:
-        raise error
-    if len(PORTS_AVAILABLE) == 0:
-        PORTS_AVAILABLE = None
-
-    return PORTS_AVAILABLE
+import util
 
 class MSP(Miniterm):
 
@@ -80,13 +42,14 @@ class MSP(Miniterm):
                 super(MSP, self).__init__(tty, baud, 'N',
                 False, False)
             except SerialException:
-                print ROOT_MESSAGE
+                print util.ROOT_MESSAGE
                 exit(-1)
             self.serial.setTimeout(1)
         else:
-            #FIXME
+            #FIXME: remove the code bellow in production environment
             self.serial = MagicMock()
-            self.serial.readline = randomstring
+            self.serial.readline = util.randomstring
+            #raise Exception  
         self.port = tty
         self.adc = sensor.Passive(self.serial)
         self.pwm = sensor.Active(self.serial)
@@ -105,7 +68,7 @@ if __name__ == '__main__':
 
     # list available ports
     print 'Available ports:'
-    PORTS_AVAILABLE = available_ports()
+    PORTS_AVAILABLE = util.available_ports()
     try:
         for i in PORTS_AVAILABLE:
             print '>>> %s' % i
