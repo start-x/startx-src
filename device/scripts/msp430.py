@@ -28,7 +28,7 @@ except Exception as error:
     print 'Install glob'
     raise error
 
-import sensor
+import device as sensor
 from mock import MagicMock
 import string, random
 
@@ -84,6 +84,7 @@ class MSP(Miniterm):
                 exit(-1)
             self.serial.setTimeout(1)
         else:
+            #FIXME
             self.serial = MagicMock()
             self.serial.readline = randomstring
         self.port = tty
@@ -120,7 +121,7 @@ if __name__ == '__main__':
     # make 10 reads from adc
     print '\nRaw data \n----------'
     for x in xrange(1, 11):
-        print x, msp430.adc.read()
+        print x, msp430.adc.read_data('t')
 
     # define a new reading method
     def thridfirst():
@@ -133,12 +134,12 @@ if __name__ == '__main__':
     # make 10 reads from adc using the new method
     print '\nProcessed data \n----------'
     for x in xrange(1, 11):
-        print x, msp430.adc.read()
+        print x, msp430.adc.flush()
 
     # example of using a active sensor
     print '\nActive sensor\'s data \n----------'
     for x in xrange(1, 11):
-        print x, msp430.pwm.read('r')
+        print x, msp430.pwm.write_data('r','t')
 
     # closes msp430 dependecies
     msp430.desable()
