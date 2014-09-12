@@ -11,11 +11,11 @@ Ovr::Ovr()
 }
 
 Ovr::~Ovr()
-{
+{ 
 	if(DEBUG)
 		std::cout << "Destroying Ovr" << std::endl;
 
-	if(!ovrInitiated)
+	if(ovrInitiated)
 	{
 		ovrHmd_Destroy(this->hmd);
 		ovr_Shutdown();

@@ -12,7 +12,7 @@
  *	Try to put everything related to OVR in this class
  *	This way, other parts of StartX project will only need to call this class
  */
-class Ovr
+class Ovr 
 {
 public:
 	// ******************* Attributes *********************************

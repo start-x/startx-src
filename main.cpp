@@ -1,7 +1,7 @@
-#include <bikex.h>
+#include <Bikex.h>
 
 int main()
 {
-	bikex b;
+	Bikex b;
 	return 0;
 }

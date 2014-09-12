@@ -3,11 +3,17 @@ PROJ=bikex
 
 # Where's my src and build folder
 # xml hash eval file_handler
-MODULES				= bikex.a breaks.a ovr.a sensors.a unity.a
+MODULES				= bikex.a device.a ovr.a unity.a
 BUILD_DIR			= build
+
+# OVR library
+OVRLIB=ovr/sdk/lib/linux/Release/x86_64/libovr.a
 
 # Include module headers
 MODULES_INC			= $(patsubst %.a, -I%, $(MODULES))
+
+#Include ovr sdk
+INCDIR = -Iovr/sdk/src
 
 # Build file
 BUILD = $(BUILD_DIR)/$(PROJ)
@@ -17,14 +23,19 @@ MAIN=main.cpp
 
 # Compiler
 CC=g++
-CFLAGS=
+CFLAGS=-lGL -ludev -lXrandr -lX11 -lpthread  
+CFLAGSDEBUG=-g
 
 # Targets $(call FILTER_OUT,lex, $(FILES))
 compile: $(MODULES)
-	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) -I$(BUILD_DIR) $(MODULES_INC) $(CFLAGS)
+	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) $(OVRLIB) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS)
 
 $(MODULES):
 	cd $(basename $@) && make && cp $@ ../$(BUILD_DIR)/
+
+debug:$(MODULES)
+	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) $(OVRLIB) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS) $(CFLAGSDEBUG)
+
 
 clean:	
 	rm -f $(BUILD_DIR)/*

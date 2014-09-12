@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void test_initAllPassiveDevices()
+void test_initAllPassiveDevices() 
 {
 	Battery b;
 	Oximetry o;
@@ -36,6 +36,7 @@ void test_initAllActiveDevices()
 	Break b;
 	char data = 'a';
 	b.setData(data);
+	Active::flush();
 }
 
 int main()

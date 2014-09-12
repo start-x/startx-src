@@ -10,13 +10,15 @@ CC=g++
 CFLAGS=
 
 # Include dir
-INCDIR=.
+INCDIR=-I.
+INCDIRTESTS=-I. -I..
 
 # Obj dir
 OBJDIR=obj
 
 # Sources
 SRC=$(wildcard *.cpp)
+SRCTESTS=tests/tests.cpp
 
 # Objects
 OBJ=$(patsubst %.cpp,$(OBJDIR)/%.o,$(SRC))
@@ -33,7 +35,12 @@ $(OBJDIR):
 
 $(OBJDIR)/%.o: %.cpp $(DEP)
 	rm -f $@
-	$(CC) -c -o $@ $< $(CFLAGS) -I$(INCDIR)
+	$(CC) -c -o $@ $< $(CFLAGS) $(INCDIR)
+
+.PHONY: tests
+
+tests: $(LIBNAME)
+	$(CC) -o $@/$@.out $(SRCTESTS) $(LIBNAME) $(INCDIRTESTS)
 
 clean:
 	rm -f $(OBJDIR)/*.o

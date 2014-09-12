@@ -10,7 +10,7 @@ void test_Ovr()
 	Ovr sxovr;
 	float x, y, z, w;
 
-	sxovr.initOVR();
+	sxovr.initOVR(); 
 	sxovr.startSensor();
 	sxovr.getXYZW(&x, &y, &z, &w);
 	cout << sxovr;
