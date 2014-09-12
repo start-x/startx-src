@@ -8,7 +8,6 @@
 try:
     # Terminal Class
     from serial.tools.miniterm import Miniterm
-    from serial.tools.miniterm import CONVERT_CRLF
     from serial.serialutil import SerialException
 except Exception as error:
     try:
@@ -22,8 +21,8 @@ except Exception as error:
 
 import device as sensor
 from mock import MagicMock
-import string, random
 import util
+
 
 class MSP(Miniterm):
 
@@ -37,19 +36,20 @@ class MSP(Miniterm):
     alive = False
 
     def __init__(self, tty, baud=9600):
-        if tty != None:
+        if tty is not None:
             try:
                 super(MSP, self).__init__(tty, baud, 'N',
-                False, False)
+                  False, False)
             except SerialException:
                 print util.ROOT_MESSAGE
                 exit(-1)
             self.serial.setTimeout(1)
         else:
-            #FIXME: remove the code bellow in production environment
+            """FIXME: remove the code bellow in 
+            production environment"""
             self.serial = MagicMock()
             self.serial.readline = util.randomstring
-            #raise Exception  
+            # raise Exception  
         self.port = tty
         self.adc = sensor.Passive(self.serial)
         self.pwm = sensor.Active(self.serial)
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     # example of using a active sensor
     print '\nActive sensor\'s data \n----------'
     for x in xrange(1, 11):
-        print x, msp430.pwm.write_data('r','t')
+        print x, msp430.pwm.write_data('r', 't')
 
     # closes msp430 dependecies
     msp430.desable()

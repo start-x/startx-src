@@ -53,11 +53,12 @@ class Active(Device):
         self.serial.write(command)
         self.serial.write(data)
 
+
 class Passive(Device):
 
     """docstring for Active"""
 
-    def __init__(self,terminal):
+    def __init__(self, terminal):
         super(Passive, self).__init__(terminal)
         self.data = self.serial.readline()
         self.data = self.data.split('\n')[0]
@@ -74,9 +75,9 @@ if __name__ == '__main__':
     from glob import glob
     PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
     print PORTS_AVAILABLE
-    ser = serial.Serial(PORTS_AVAILABLE[0],4800)
+    ser = serial.Serial(PORTS_AVAILABLE[0], 4800)
     act = Active(ser)
-    print act.write_data('r','t')
+    print act.write_data('r', 't')
     passive = Passive(ser)
     print passive.read_data('g')
     ser.close()
