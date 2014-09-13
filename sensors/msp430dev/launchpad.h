@@ -55,9 +55,9 @@ void dco1mhz();
 void hserial();
 
 //le um char da uart
-char rcserial();
+char getchar();
 
-void wcserial(char caracter);
+int putchar(int caracter);
 
 void wsserial(char *st);
 
