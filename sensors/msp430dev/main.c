@@ -14,13 +14,13 @@ int main()
 	
 	for(;;)
 	{
-		if (rcserial()=='R')
+		if (getchar()=='R')
 		{
 			ligled(VERM);
 			dly_coxa(3);
 			wsserial("Ligado\n");
 		}
-		else if(rcserial()=='r')
+		else if(getchar()=='r')
 		{
 			desled(VERM);
 			dly_coxa(3);
