@@ -99,14 +99,16 @@ void hserial()
 }
 
 //le um char da uart
-char rcserial()
+char getchar()
 {
 	return UCA0RXBUF;
 }
 
-void wcserial(char caracter)
+int putchar(int caracter)
 {
 	UCA0TXBUF = caracter;
+	
+	return 0;
 }
 
 void wsserial(char *st)
@@ -115,7 +117,7 @@ void wsserial(char *st)
 	
 	for(cont=0; cont<len; cont++)
 		{
-			wcserial(st[cont]);
+			putchar(st[cont]);
 			dly_coxa(1);
 		}
 }
