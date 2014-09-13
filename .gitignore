@@ -20,3 +20,15 @@
 *.exe
 *.out
 *.app
+
+#vim/vi temp
+.swp
+.swo
+~
+
+#Documents
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+doc/html/*

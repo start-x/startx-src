@@ -2,20 +2,37 @@
 #include<string.h>
 #include "launchpad.h"
 
-// Desabilita WDT
+/**
+ * @brief Desable Watchdog
+ * @details Call to desable the Whatchdog
+ */
 void desabWDT()
 {
 	WDTCTL = WDTPW|WDTHOLD;
 }
 
 // habilita botão sem interrupção
+/**
+ * @brief Enable the button
+ * @details Enable the button without the interruption support
+ */
 void botao()
 {
 	P1DIR &= ~BOTAO;
 	P1OUT |= BOTAO;
 	P1REN |= BOTAO;	
 }
+
+
 // habilitar led n
+/**
+ * @brief Enable LED
+ * @details Enable LED *n*, making this port a output port
+ * 
+ * @param numled LED to be enabled. Can assume the values:
+ * 	+	LED1
+ * 	+	LED2
+ */
 void hled(unsigned char numled)
 {
 	//numled é LED1 ou LED2
@@ -86,6 +103,21 @@ void dco1mhz()
 	DCOCTL = CALDCO_1MHZ;
 }
 
+/**
+ * @brief Configure UART
+ * @details Configure UART with 9600 baud rate
+ * \f$UCA0BR_{value}= \frac{Frequency}{Rate_{desired}} \f$
+ * 
+ * To a Baud Rate = 9600 and 1MHz as clock we have:
+ * \f$\frac{1\cdot 10^6}{9600} = 104,166 \f$
+ * 
+ * So:
+ * + UCA0BR1 = 0;
+ * + UCA0BR0 = 104;
+ * + Error = 1.6%
+ * 
+ * [Source](http://www.win.tue.nl/~johanl/educ/RTcourse/MSP430%20UART.pdf)
+ */
 void hserial()
 {
 	P1SEL |= PIN_TX + PIN_RX ;                     // P1.1 = RXD, P1.2=TXD

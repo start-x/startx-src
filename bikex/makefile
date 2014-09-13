@@ -10,9 +10,9 @@ CC=g++
 CFLAGS=
 
 # Include dir
-INCDIR=.
+INCDIR=-I. -I../ovr/sdk/src
 
-MODULES = breaks.a ovr.a sensors.a unity.a
+MODULES = device.a ovr.a unity.a
 MODULES_INC = $(patsubst %.a, -I../%, $(MODULES))
 
 # Obj dir
@@ -36,7 +36,7 @@ $(OBJDIR):
 
 $(OBJDIR)/%.o: %.cpp $(DEP)
 	rm -f $@
-	$(CC) -c -o $@ $< $(CFLAGS) -I$(INCDIR) $(MODULES_INC)
+	$(CC) -c -o $@ $< $(CFLAGS) $(INCDIR) $(MODULES_INC)
 
 clean:
 	rm -f $(OBJDIR)/*.o
