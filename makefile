@@ -42,5 +42,6 @@ clean:
 	rm -f $(patsubst %, $(BUILD_DIR)/%, $(MODULES))
 	rm -f $(patsubst %.a, %/*.a, $(MODULES))
 
+.PHONY: doc
 doc:
 	doxygen Doxyfile.conf -u
