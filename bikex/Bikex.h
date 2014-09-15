@@ -9,14 +9,70 @@
 #include <Unity.h>
 #include <Ovr.h>
 
+typedef struct _position
+{
+	double x, y, z;
+} xyz;
+
 class Bikex
 {
 public:
 
 	/**
+	 *	Time difference, it meas the time window until the next frame
+	 *	it's very useful to determine the next position by the speed
+	 *	dt is in seconds (will be very small)
+	 */
+	float dt;
+
+	/**
 	 *	How many frames per second
 	 */
 	int FRAME_RATE;
+
+	/**
+	 *	Current player's position
+	 */
+	xyz currPosition;
+
+	/**
+	 *	Current player's rotation
+	 */
+	xyz currRotation;
+
+	/**
+	 *	Current battery status
+	 */
+	char currBattery;
+
+	/**
+	 *	Current player's heart beat rate
+	 */
+	char currHearBeat;
+
+	/**
+	 *	Current player's distance already biked, in meters
+	 */
+	int currDistance;
+
+	/**
+	 *	Current player's speed (intensity of going forward)
+	 */
+	char currSpeed;
+
+	/**
+	 *	Current player's direction, if turning to the right or to the left, to the left
+	 */
+	char currDirection;
+
+	/**
+	 *	Current player's angle referred to the origin point [0, 0]
+	 *	it's going to be helpful when the player is making a curve
+	 *	speed and direction will vary depending on wich angle the player is
+	 *	turning to
+	 *	The angle is in degress: from 0 to 360
+	 */
+	float currAngle;
 
 	/**
 	 *	Our own reference to Unity
@@ -95,6 +151,10 @@ public:
 	 *	it should return time in u_seconds to wait for the next frame to be built
 	 */
 	float calcFPS(int dt);
+
+	/**
+	 *	Writes 
+	 */
 };
 
 #endif

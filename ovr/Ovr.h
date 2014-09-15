@@ -62,7 +62,7 @@ public:
 	/**
 	 *	Get current state from OVR
 	 */
-	void getXYZW(float * x, float * y, float * z, float * w);
+	void getXYZW(double * x, double * y, double * z, double * w);
 };
 
 #endif

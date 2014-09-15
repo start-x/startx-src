@@ -68,7 +68,7 @@ bool Ovr::startSensor()
 	return false;
 }
 
-void Ovr::getXYZW(float * x, float * y, float * z, float * w)
+void Ovr::getXYZW(double * x, double * y, double * z, double * w)
 {
 	// Query the HMD for the sensor state at a given time. "0.0" means "most recent time".
 	ovrSensorState ss = ovrHmd_GetSensorState(this->hmd, 0.0);
@@ -85,10 +85,10 @@ void Ovr::getXYZW(float * x, float * y, float * z, float * w)
 		ovrQuatf orientation = pose.Orientation;
     	ovrVector3f position = pose.Position;
 
-		*x = orientation.x;
-		*y = orientation.y;
-		*z = orientation.z;
-		*w = orientation.w;
+		*x = (double)orientation.x;
+		*y = (double)orientation.y;
+		*z = (double)orientation.z;
+		*w = (double)orientation.w;
 		
 		//std::cout << "x = " << x << ", y = " << y << ", z = " << z << ", w = " << w << std::endl;
 
