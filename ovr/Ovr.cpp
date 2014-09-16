@@ -1,13 +1,23 @@
-#include <Ovr.h>
 #include <iostream>
+#include <fstream>
 #include <stdlib.h>
+#include <stdio.h>
+#include <Ovr.h>
+
+#define MOCK_SIZE 1000
+
+/**
+ *	Data source in case we need to mock Ovr values
+ */
+static char * mockData = NULL;
 
 Ovr::Ovr()
 {
 	if(DEBUG)
 		std::cout << "Initializing Ovr" << std::endl;
 
-	ovrInitiated = false;
+	this->ovrInitiated = false;
+	this->mock = false;
 }
 
 Ovr::~Ovr()
@@ -19,6 +29,11 @@ Ovr::~Ovr()
 	{
 		ovrHmd_Destroy(this->hmd);
 		ovr_Shutdown();
+	}
+
+	if(mock)
+	{
+		delete[] mockData;
 	}
 }
 
@@ -41,6 +56,7 @@ bool Ovr::initOVR()
 	std::cout << "No OVR detected!!!" << std::endl;
 	std::cout << "Creating a Debug version of DK1" << std::endl;
 	this->hmd = ovrHmd_CreateDebug(ovrHmd_DK1);
+	mock = true;
 
 	if(!this->hmd)
 	{
@@ -50,6 +66,24 @@ bool Ovr::initOVR()
 
 	ovrHmd_GetDesc(this->hmd, &this->hmdDesc);
 	this->ovrInitiated = true;
+
+	// If we got here, let's build mockData, dataset to be used as Ovr readings
+	ifstream file ("files/ovr_mock.txt", ios::in | ios::binary | ios::ate);
+	if(file.is_open())
+	{
+		streampos size = file.tellg();
+		mockData = new char[size];
+		file.seekg(0, ios::beg);
+		file.read(mockData, size);
+		file.close();
+	}
+	else
+	{
+		cout << "Failed to load Ovr mockData" << endl;
+		mockData = new char[1];
+		*mockData = '0';
+	}
+
 	return this->ovrInitiated;
 }
 
@@ -70,6 +104,29 @@ bool Ovr::startSensor()
 
 void Ovr::getXYZW(double * x, double * y, double * z, double * w)
 {
+	static int mockIndex = 0;
+	static char * mockPtr = NULL;
+	// If mock is true, means it's time to mock data
+	if(mock)
+	{
+		if(!mockData)
+		{
+			cout << "No mockData" << endl;
+			*x = 0.0;
+			*y = 0.0;
+			*z = 0.0;
+			*w = 0.0;
+			return;
+		}
+
+		if(mockIndex >= MOCK_SIZE)
+			mockIndex = 0;
+
+		mockPtr = mockData + mockIndex++;
+		sscanf(mockPtr, "%f %f %f %f", x, y, z, w);
+		mockPtr++; // skip line break
+		return;
+	}
 	// Query the HMD for the sensor state at a given time. "0.0" means "most recent time".
 	ovrSensorState ss = ovrHmd_GetSensorState(this->hmd, 0.0);
 

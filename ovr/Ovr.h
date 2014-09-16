@@ -17,6 +17,11 @@ class Ovr
 public:
 	// ******************* Attributes *********************************
 	/**
+	 *	Defines wheather Ovr will mock values
+	 */
+	bool mock;
+
+	/**
 	 *	Flag to inform the class when to create and destroy OVR devices
 	 */
 	bool ovrInitiated;

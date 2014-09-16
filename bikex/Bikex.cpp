@@ -12,7 +12,6 @@
 
 using namespace std;
 
-
 Bikex::Bikex()
 {
 	cout << "Initiating Bikex" << endl;
@@ -99,6 +98,7 @@ void Bikex::play()
 		// Calculate and set player's position and rotation based on sensors readings
 		this->calculatePlayerPosition();
 		this->calculatePlayerRotation();
+		this->setBreakIntensity();
 
 		// Before rendering frame, write to all devices
 		this->writeDevices();
@@ -107,7 +107,11 @@ void Bikex::play()
 		unity.render();
 
 		/*
-		However if you use this fps value directly and just display it to the screen, you'll find it's rather irratic. The amount of time it takes to complete a frame will typically vary a bit from frame to frame, and this will make it hard to read and not so useful. To get around this, you can filter your result a bit taking a bunch of samples and averaging the result.
+		However if you use this fps value directly and just display it to the screen, 
+		you'll find it's rather irratic. The amount of time it takes to complete a frame 
+		will typically vary a bit from frame to frame, and this will make it hard to read 
+		and not so useful. To get around this, you can filter your result a bit taking a 
+		bunch of samples and averaging the result.
 
 
 
