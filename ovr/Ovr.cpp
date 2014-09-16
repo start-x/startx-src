@@ -4,12 +4,11 @@
 #include <stdio.h>
 #include <Ovr.h>
 
-#define MOCK_SIZE 1000
-
 /**
  *	Data source in case we need to mock Ovr values
  */
 static char * mockData = NULL;
+static int MOCK_SIZE = 0;
 
 Ovr::Ovr()
 {
@@ -37,7 +36,7 @@ Ovr::~Ovr()
 	}
 }
 
-bool Ovr::initOVR()
+bool Ovr::init()
 {
 	// Initializes LibOVR.
 	ovr_Initialize();
@@ -68,18 +67,20 @@ bool Ovr::initOVR()
 	this->ovrInitiated = true;
 
 	// If we got here, let's build mockData, dataset to be used as Ovr readings
-	ifstream file ("files/ovr_mock.txt", ios::in | ios::binary | ios::ate);
+	std::ifstream file ("files/ovr_mock.txt", std::ios::in | std::ios::binary | std::ios::ate);
 	if(file.is_open())
 	{
-		streampos size = file.tellg();
+		std::streampos size = file.tellg();
 		mockData = new char[size];
-		file.seekg(0, ios::beg);
+		MOCK_SIZE = size;
+		file.seekg(0, std::ios::beg);
 		file.read(mockData, size);
 		file.close();
+		std::cout << "Ovr mockData loaded: " << size << " bytes long" << std::endl;
 	}
 	else
 	{
-		cout << "Failed to load Ovr mockData" << endl;
+		std::cout << "Failed to load Ovr mockData" << std::endl;
 		mockData = new char[1];
 		*mockData = '0';
 	}
@@ -105,13 +106,12 @@ bool Ovr::startSensor()
 void Ovr::getXYZW(double * x, double * y, double * z, double * w)
 {
 	static int mockIndex = 0;
-	static char * mockPtr = NULL;
 	// If mock is true, means it's time to mock data
 	if(mock)
 	{
 		if(!mockData)
 		{
-			cout << "No mockData" << endl;
+			std::cout << "No mockData" << std::endl;
 			*x = 0.0;
 			*y = 0.0;
 			*z = 0.0;
@@ -122,9 +122,10 @@ void Ovr::getXYZW(double * x, double * y, double * z, double * w)
 		if(mockIndex >= MOCK_SIZE)
 			mockIndex = 0;
 
-		mockPtr = mockData + mockIndex++;
-		sscanf(mockPtr, "%f %f %f %f", x, y, z, w);
-		mockPtr++; // skip line break
+		sscanf(&mockData[mockIndex], "%lf %lf %lf %lf", x, y, z, w);
+		//std::cout << "Reading mockData" << std::endl;
+		while(mockData[mockIndex] != '\n' && mockIndex++ < MOCK_SIZE); // skip line break
+		mockIndex++;
 		return;
 	}
 	// Query the HMD for the sensor state at a given time. "0.0" means "most recent time".

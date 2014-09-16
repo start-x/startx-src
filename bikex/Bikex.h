@@ -28,7 +28,7 @@ public:
 	/**
 	 *	How many frames per second
 	 */
-	int FRAME_RATE;
+	float FRAME_RATE;
 
 	/**
 	 *	Current player's position
@@ -77,40 +77,50 @@ public:
 	/**
 	 *	Our own reference to Unity
 	 */
-	Unity unity;
+	Unity * unity;
 
 	/**
 	 *	Our own reference to Ovr
 	 */
-	Ovr ovr;
+	Ovr * ovr;
 
 	/**
 	 *	Our own reference to Battery
 	 */
-	Battery battery;
+	Battery * battery;
 
 	/**
 	 *	Our own reference to Break
 	 */
-	Break _break;
+	Break * _break;
 
 	/**
 	 *	Our own reference to Direction
 	 */
-	Direction direction;
+	Direction * direction;
 
 	/**
 	 *	Our own reference to Oximetry
 	 */
-	Oximetry oximetry;
+	Oximetry * oximetry;
 
 	/**
 	 *	Our own reference to Speed
 	 */
-	Speed speed;
+	Speed * speed;
 
 	Bikex();
 	~Bikex();
+
+	/**
+	 *	Initialize Bikex
+	 */
+	void init();
+
+	/**
+	 *	Print current Bikex state values
+	 */
+	void printCurrState();
 
 	// ********************* Methods declared in UML *************************
 

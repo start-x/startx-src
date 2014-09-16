@@ -10,27 +10,72 @@
 #include <unistd.h>
 #include <stdio.h>
 
-using namespace std;
-
 Bikex::Bikex()
 {
-	cout << "Initiating Bikex" << endl;
-	Battery bat;
-	Break br;
-	Direction dir;
-	Oximetry oxi;
-	Speed sp;
-	Ovr ovr;
-	Unity unity;
+	std::cout << "Creating Bikex" << std::endl;
+
+	this->unity = new Unity();
+	this->ovr = new Ovr();
+	this->battery = new Battery();
+	this->_break = new Break();
+	this->direction = new Direction();
+	this->oximetry = new Oximetry();
+	this->speed = new Speed();
+
+	this->currPosition.x = 0.0;
+	this->currPosition.y = 0.0;
+	this->currPosition.z = 0.0;
+	this->currRotation.x = 0.0;
+	this->currRotation.y = 0.0;
+	this->currRotation.z = 0.0;
+
+	dt = 0;
+	FRAME_RATE = 0;
+	currBattery = 0;
+	currHearBeat = 0;
+	currDistance = 0;
+	currSpeed = 0;
+	currDirection = 0;
+	currAngle = 0;
 }
 
 Bikex::~Bikex()
 {
-	cout << "Termination Bikex" << endl;
+	std::cout << "Termination Bikex" << std::endl;
+	delete unity;
+	delete ovr;
+	delete battery;
+	delete _break;
+	delete direction;
+	delete oximetry;
+	delete speed;
+}
+
+void Bikex::init()
+{
+	std::cout << "Initiating Bikex" << std::endl;
+	ovr->init();
+	ovr->startSensor();
+}
+
+void Bikex::printCurrState()
+{
+	std::cout << "Bikex state" << std::endl;
+	std::cout << "dt = " << dt << std::endl;
+	std::cout << "FRAME_RATE = " << FRAME_RATE << std::endl;
+	std::cout << "currPosition = [" << currPosition.x << ", " << currPosition.y << ", " << currPosition.z << "]" << std::endl;
+	std::cout << "currRotation = [" << currRotation.x << ", " << currRotation.y << ", " << currRotation.z << "]" << std::endl;
+	std::cout << "currBattery = " << (int)currBattery << std::endl;
+	std::cout << "currHearBeat = " << (int)currHearBeat << std::endl;
+	std::cout << "currDistance = " << (int)currDistance << std::endl;
+	std::cout << "currSpeed = " << (int)currSpeed << std::endl;
+	std::cout << "currDirection = " << (int)currDirection << std::endl;
+	std::cout << "currAngle = " << currAngle << std::endl;
 }
 
 void Bikex::calculatePlayerPosition()
 {
+	std::cout << "Calculating player position" << std::endl;
 	// TODO: check how the values are gonna come and check the relation between them
 	// TODO: calculate the change of angle
 	this->currAngle = 90;
@@ -46,20 +91,24 @@ void Bikex::calculatePlayerPosition()
 
 void Bikex::calculatePlayerRotation()
 {
+	std::cout << "Calculating player rotation" << std::endl;
 	// NOTE: it's probably not like this how we do, again let's check the values
 	double garbage;
-	ovr.getXYZW(&this->currRotation.x, &this->currRotation.y, &this->currRotation.z, &garbage);
+	ovr->getXYZW(&this->currRotation.x, &this->currRotation.y, &this->currRotation.z, &garbage);
 }
 
 void Bikex::setBreakIntensity()
 {
+	std::cout << "Setting break intensity" << std::endl;
 	// TODO: do some calculations to set right amount of intensity
-	int altitude = unity.getPlayerAltitude();
-	_break.setData(altitude);
+	int altitude = unity->getPlayerAltitude();
+	currPosition.y = (char)altitude;
+	_break->setData(altitude);
 }
 
 int Bikex::writeDevices()
 {
+	std::cout << "Writting devices" << std::endl;
 	static char info[256];
 
 	// First, common sensors
@@ -68,29 +117,32 @@ int Bikex::writeDevices()
 	// Now Unity stuff
 	sprintf(info, "Speed: %i | Heart: %i | Dist: %i | Batt: %i", 
 		this->currSpeed, this->currHearBeat, this->currDistance, this->currBattery);
-	unity.setInfo(info);
-	unity.setPlayerPosition(this->currPosition.x, this->currPosition.z);
-	unity.setPlayerRotation(this->currRotation.x, this->currRotation.x, this->currRotation.z);
+	unity->setInfo(info);
+	unity->setPlayerPosition(this->currPosition.x, this->currPosition.z);
+	unity->setPlayerRotation(this->currRotation.x, this->currRotation.x, this->currRotation.z);
 
 	return 0;
 }
 
 int Bikex::readDevices()
 {
+	std::cout << "Reading devices" << std::endl;
 	// Make all comon readings
 	Passive::flush();
-	speed.getData(this->currSpeed);
-	direction.getData(this->currDirection);
-	oximetry.getData(this->currHearBeat);
-	battery.getData(this->currBattery);
+	speed->getData(this->currSpeed);
+	direction->getData(this->currDirection);
+	oximetry->getData(this->currHearBeat);
+	battery->getData(this->currBattery);
 
 	return 0;
 }
 
 void Bikex::play()
 {
+	std::cout << "Playing" << std::endl;
 	bool keepGoing = true;
-	while(keepGoing)
+	int i = 0;
+	while(i++ < 1002)
 	{
 		// Read all sensors 
 		this->readDevices();
@@ -104,7 +156,9 @@ void Bikex::play()
 		this->writeDevices();
 
 		// Finally tells unity it can render the frame
-		unity.render();
+		unity->render();
+
+		this->printCurrState();
 
 		/*
 		However if you use this fps value directly and just display it to the screen, 
@@ -144,11 +198,13 @@ void Bikex::play()
 
 		// Now we sleep
 		usleep(calcFPS(0));
+		std::cout << "Playing TODO" << std::endl;
+		keepGoing = false;
 	}
-
 }
 
 float Bikex::calcFPS(int dt)
 {
-	return 0.0;
+	std::cout << "Calculating FPS" << std::endl;
+	return 1.0;
 }

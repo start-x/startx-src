@@ -50,7 +50,7 @@ public:
 	/**
 	 *	Creates a OVR device
 	 */
-	bool initOVR();
+	bool init();
 
 	/**
 	 *	Print all the information about this class
