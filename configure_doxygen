@@ -1,0 +1,48 @@
+#!/usr/bin/python
+# coding: utf-8
+
+import subprocess
+import os
+import getpass
+
+from device.scripts.util import ROOT_MESSAGE
+
+_ROOT_MESSAGE = """    
+    .-------------------------------.    
+   ( You need Super Cow Powers here. )    
+    '-------------------------------'    
+           \   ^__^            
+            \  (oo)\_______          
+               (__)\       )\/\\     
+                   ||----w |    
+                   ||     ||    
+         
+  """  
+
+def is_tool(prog):
+    for dir in os.environ['PATH'].split(os.pathsep):
+        if os.path.exists(os.path.join(dir, prog)):
+            try:
+                subprocess.call([os.path.join(dir, prog)],
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT)
+            except OSError, e:
+                return False
+            return True
+    return False
+
+user = getpass.getuser()
+if  user != 'root':
+	print ROOT_MESSAGE
+	exit()
+	
+doxy_version =''
+if is_tool('doxygen'):
+	print "Doxygen already installed"
+else:
+	subprocess.call('apt-get install doxygen -s'.split(' '))
+
+if is_tool('graphviz'):
+	print "Graphviz already installed"
+else:
+	subprocess.call('apt-get install graphviz dots -s'.split(' '))
