@@ -32,13 +32,11 @@ if  user != 'root':
     # exit()
 else:
     suffix = ''
-doxy_version =''
-if is_tool('doxygen'):
-    print "Doxygen already installed"
-else:
-    subprocess.call(('apt-get install doxygen -s'+suffix).split(' '))
 
-if is_tool('graphviz'):
-    print "Graphviz already installed"
-else:
-    subprocess.call(('apt-get install graphviz dots -s'+suffix).split(' '))
+programs = ['doxygen','graphviz', 'dots']
+
+for prog in programs:
+    if is_tool(prog):
+        print prog +" already installed"
+    else:
+        subprocess.call(('apt-get install %s %s'%(prog,suffix)).split(' '))
