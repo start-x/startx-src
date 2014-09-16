@@ -31,16 +31,24 @@ compile: $(MODULES)
 	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) $(OVRLIB) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS)
 
 $(MODULES):
+	# Set flag to compile submodules with mock_flag
+ifeq ($(MAKECMDGOALS),mock)
+	cd $(basename $@) && make MOCK_FLAG=-DMOCK_DATA && cp $@ ../$(BUILD_DIR)/
+else
 	cd $(basename $@) && make && cp $@ ../$(BUILD_DIR)/
+endif
 
-debug:$(MODULES)
+debug: $(MODULES)
 	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) $(OVRLIB) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS) $(CFLAGSDEBUG)
 
+mock: compile
+	
 
 clean:	
 	rm -f $(BUILD_DIR)/*
 	rm -f $(patsubst %, $(BUILD_DIR)/%, $(MODULES))
 	rm -f $(patsubst %.a, %/*.a, $(MODULES))
+	rm -f $(patsubst %.a, %/obj/*.o, $(MODULES))
 
 .PHONY: doc
 doc:

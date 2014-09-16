@@ -3,6 +3,8 @@
 
 #include <Device.h>
 
+#define ACTIVE_FILENAME "files/active.txt"
+
 /**
  *	Represents all devices which will be serving as data sources
  */

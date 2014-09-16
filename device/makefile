@@ -35,7 +35,7 @@ $(OBJDIR):
 
 $(OBJDIR)/%.o: %.cpp $(DEP)
 	rm -f $@
-	$(CC) -c -o $@ $< $(CFLAGS) $(INCDIR)
+	$(CC) -c -o $@ $< $(MOCK_FLAG) $(CFLAGS) $(INCDIR)
 
 .PHONY: tests
 

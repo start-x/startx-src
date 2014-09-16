@@ -3,6 +3,8 @@
 
 #include <Device.h>
 
+#define PASSIVE_FILENAME "files/passive.txt"
+
 /**
  *	Represents all devices which will be serving as data sources
  */

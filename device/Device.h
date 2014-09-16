@@ -10,10 +10,12 @@ typedef enum _deviceType
 	BREAK 		= 4
 } deviceType;
 
+#define BUFFER_SIZE 256
+
 class Device
 {
 protected:
-	static char buffer[256];
+	static char buffer[BUFFER_SIZE];
 };
 
 #endif

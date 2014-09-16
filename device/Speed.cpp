@@ -2,6 +2,6 @@
 
 int Speed::getData(char &data)
 {
-	data = buffer[SPEED];
+	data = Device::buffer[SPEED];
 	return 0;
 }
