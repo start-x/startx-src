@@ -7,42 +7,38 @@ import getpass
 
 from device.scripts.util import ROOT_MESSAGE
 
-_ROOT_MESSAGE = """    
-    .-------------------------------.    
-   ( You need Super Cow Powers here. )    
-    '-------------------------------'    
-           \   ^__^            
-            \  (oo)\_______          
-               (__)\       )\/\\     
-                   ||----w |    
-                   ||     ||    
-         
-  """  
 
-def is_tool(prog):
-    for dir in os.environ['PATH'].split(os.pathsep):
-        if os.path.exists(os.path.join(dir, prog)):
-            try:
-                subprocess.call([os.path.join(dir, prog)],
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.STDOUT)
-            except OSError, e:
-                return False
-            return True
-    return False
+def is_tool(package_name):   
+    import apt
+    # from apt import progress
+
+    cache = apt.cache.Cache()
+    # cache.update()
+    cache.open()
+    try:
+        pkg = cache[package_name]
+    except KeyError, e:
+        print "{pkg_name}  not found".format(pkg_name=package_name)
+        return False
+    if pkg.is_installed:
+        return True
+    else:
+        return False
 
 user = getpass.getuser()
 if  user != 'root':
-	print ROOT_MESSAGE
-	exit()
-	
+    print ROOT_MESSAGE
+    suffix = ' -s'
+    # exit()
+else:
+    suffix = ''
 doxy_version =''
 if is_tool('doxygen'):
-	print "Doxygen already installed"
+    print "Doxygen already installed"
 else:
-	subprocess.call('apt-get install doxygen -s'.split(' '))
+    subprocess.call(('apt-get install doxygen -s'+suffix).split(' '))
 
 if is_tool('graphviz'):
-	print "Graphviz already installed"
+    print "Graphviz already installed"
 else:
-	subprocess.call('apt-get install graphviz dots -s'.split(' '))
+    subprocess.call(('apt-get install graphviz dots -s'+suffix).split(' '))
