@@ -49,7 +49,7 @@ int Passive::flush()
 			mockIndex = 0;
 
 		for(int i = 0; i < BUFFER_SIZE && mockIndex < MOCK_SIZE; i++, mockIndex++)
-			sscanf(&mockData[mockIndex], "%c", Device::buffer[i]);
+			buffer[i] = mockData[mockIndex];
 		mockIndex++; // Skip line break
 
 	#else
