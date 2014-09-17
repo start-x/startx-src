@@ -39,4 +39,14 @@ for prog in programs:
     if is_tool(prog):
         print prog +" already installed"
     else:
-        subprocess.call(('apt-get install %s %s'%(prog,suffix)).split(' '))
+        pkg = cache[prog]
+        print ('apt-get install %s %s'%(prog,suffix))
+        pkg.mark_install()
+
+print "Processing installation..."
+try:
+    cache.commit(install_progress=progress.base.InstallProgress())
+except apt.cache.LockFailedException as arg:
+    print "Missing privilegies or another root user aready [{err}]".format(
+        err=str(arg))
+cache.close()
