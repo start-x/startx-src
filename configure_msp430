@@ -1,0 +1,52 @@
+#!/usr/bin/python
+# coding: utf-8
+
+import subprocess
+import os
+import getpass
+
+from device.scripts.util import ROOT_MESSAGE
+import apt
+from apt import progress
+
+cache = apt.cache.Cache()
+# cache.update()
+cache.open()
+
+def is_tool(package_name):   
+    try:
+        pkg = cache[package_name]
+    except KeyError, e:
+        print "{pkg_name}  not found".format(pkg_name=package_name)
+        return False
+    if pkg.is_installed:
+        return True
+    else:
+        return False
+
+user = getpass.getuser()
+if  user != 'root':
+    print ROOT_MESSAGE
+    suffix = ' -s'
+    # exit()
+else:
+    suffix = ''
+doxy_version =''
+
+programs = ['binutils-msp430','gcc-msp430','msp430-libc','msp430mcu','mspdebug']
+
+for prog in programs:
+    if is_tool(prog):
+        print prog +" already installed"
+    else:
+        pkg = cache[prog]
+        print ('apt-get install %s %s'%(prog,suffix))
+        pkg.mark_install()
+
+print "Processing installation..."
+try:
+    cache.commit(install_progress=progress.base.InstallProgress())
+except apt.cache.LockFailedException as arg:
+    print "Missing privilegies or another root user aready [{err}]".format(
+        err=str(arg))
+cache.close()
