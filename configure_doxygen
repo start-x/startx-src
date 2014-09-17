@@ -6,15 +6,15 @@ import os
 import getpass
 
 from device.scripts.util import ROOT_MESSAGE
+import apt
+from apt import progress
 
+cache = apt.cache.Cache()
+# cache.update()
+cache.open()
 
 def is_tool(package_name):   
-    import apt
-    # from apt import progress
 
-    cache = apt.cache.Cache()
-    # cache.update()
-    cache.open()
     try:
         pkg = cache[package_name]
     except KeyError, e:
