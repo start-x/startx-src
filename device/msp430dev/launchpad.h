@@ -20,6 +20,8 @@
 #define PIN_TX BIT1
 #define PIN_RX BIT2
 
+// defines timer
+#define T_100US 100 /* 100us period*/
 	
 
 // Desabilita WDT
@@ -60,6 +62,8 @@ char getchar();
 int putchar(int caracter);
 
 void wsserial(char *st);
+
+void setMultitimes();
 
 #endif
 
