@@ -155,3 +155,10 @@ void wsserial(char *st)
 }
 
 
+void setMultitimes()
+{
+	CCTL0 = CCIE;                             // CCR0 interrupt enabled
+	CCR0 = T_100US; 
+	TACTL = TASSEL_2 + MC_2;                  // SMCLK, contmode
+}
+
