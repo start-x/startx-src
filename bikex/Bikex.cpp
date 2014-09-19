@@ -93,8 +93,6 @@ void Bikex::calculatePlayerRotation()
 {
 	std::cout << "Calculating player rotation" << std::endl;
 	// NOTE: it's probably not like this how we do, again let's check the values
-	double garbage;
-	ovr->getXYZW(&this->currRotation.x, &this->currRotation.y, &this->currRotation.z, &garbage);
 }
 
 void Bikex::setBreakIntensity()
@@ -133,6 +131,10 @@ int Bikex::readDevices()
 	direction->getData(this->currDirection);
 	oximetry->getData(this->currHearBeat);
 	battery->getData(this->currBattery);
+
+	// Read from Ovr
+	double garbage;
+	ovr->getXYZW(&this->currRotation.x, &this->currRotation.y, &this->currRotation.z, &garbage);
 
 	return 0;
 }
