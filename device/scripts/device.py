@@ -50,11 +50,11 @@ class Active(Device):
 
     def write_data(self, command, data):
         """ Return actual data from device """
-        self.serial.write(command+'\n')
-        self.serial.write(data+'\n')
+        self.serial.write(str(command))
+        self.serial.write(str(data))
 
     def read_data(self, command):
-        return None
+        return None #self.serial.readline()
 
 
 class Passive(Device):
@@ -94,7 +94,7 @@ class Direction(Passive):
         self.arg = arg
         
     def read_data(self):
-        return super(Direction, self).read_data('a').split(',')[self.arg]
+        return super(Direction, self).read_data(self.arg)
 
 
 if __name__ == '__main__':
