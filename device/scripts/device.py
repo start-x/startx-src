@@ -53,6 +53,9 @@ class Active(Device):
         self.serial.write(command)
         self.serial.write(data)
 
+    def read_data(self, command):
+        return None
+
 
 class Passive(Device):
 
@@ -69,6 +72,9 @@ class Passive(Device):
         self.data = self.serial.readline()
         self.data = self.data.split('\n')[0]
         return self.data
+
+    def write_data(self, command, data):
+        return None
 
 if __name__ == '__main__':
     import serial

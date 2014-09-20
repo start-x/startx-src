@@ -34,6 +34,7 @@ class MSP(Miniterm):
     """
     port = 0
     alive = False
+    modules={}
 
     def __init__(self, tty, baud=9600):
         if tty is not None:
@@ -53,7 +54,16 @@ class MSP(Miniterm):
         self.port = tty
         self.adc = sensor.Passive(self.serial)
         self.pwm = sensor.Active(self.serial)
+        self.modules['active'] = [self.pwm]
+        self.modules['passive'] = [self.adc]
+
         self.enable()
+
+    def __getitem__(self,key):
+        return getattr(self,key).read_data('t')
+
+    def __setitem__(self,key,item):
+        getattr(self,key).write_data('r',str(item))
 
     def enable(self):
         """ Method to enable the micro """
@@ -87,12 +97,13 @@ if __name__ == '__main__':
         print x, msp430.adc.read_data('t')
 
     # define a new reading method
-    def thridfirst():
+    def thridfirst(item):
         """ Rewritng method """
         data = msp430.serial.readline()
         return data.split(',')[:3]
 
-    msp430.adc.read = thridfirst
+    print msp430['adc']
+    msp430.adc.read_data = thridfirst
 
     # make 10 reads from adc using the new method
     print '\nProcessed data \n----------'
@@ -103,6 +114,11 @@ if __name__ == '__main__':
     print '\nActive sensor\'s data \n----------'
     for x in xrange(1, 11):
         print x, msp430.pwm.write_data('r', 't')
+
+    # new microcontroller interface
+    print msp430['adc']
+    msp430['pwm'] = 25
+    print msp430['pwm']
 
     # closes msp430 dependecies
     msp430.desable()
