@@ -60,9 +60,16 @@ class MSP(Miniterm):
         self.enable()
 
     def __getitem__(self,key):
-        return getattr(self,key).read_data('t')
+        """ Return the value of a item """
+        try:
+            return getattr(self,key).read_data()
+        except TypeError:
+            return getattr(self,key).read_data('t')
+        except Exception, e:
+            raise e
 
     def __setitem__(self,key,item):
+        """ Set a value of a item """
         getattr(self,key).write_data('r',str(item))
 
     def enable(self):
@@ -119,6 +126,10 @@ if __name__ == '__main__':
     print msp430['adc']
     msp430['pwm'] = 25
     print msp430['pwm']
+
+    msp430.guidao = sensor.Direction(msp430.serial,2)
+
+    print msp430['guidao']
 
     # closes msp430 dependecies
     msp430.desable()

@@ -50,8 +50,8 @@ class Active(Device):
 
     def write_data(self, command, data):
         """ Return actual data from device """
-        self.serial.write(command)
-        self.serial.write(data)
+        self.serial.write(command+'\n')
+        self.serial.write(data+'\n')
 
     def read_data(self, command):
         return None
@@ -68,13 +68,34 @@ class Passive(Device):
 
     def read_data(self, command):
         """ Send some data to device """
-        self.serial.write(command)
+        self.serial.write(str(command))
         self.data = self.serial.readline()
         self.data = self.data.split('\n')[0]
         return self.data
 
     def write_data(self, command, data):
         return None
+
+
+class Freio(Active):
+    """docstring for Freio"""
+    def __init__(self,terminal, arg=0):
+        super(Freio, self).__init__(terminal)
+        self.arg = arg
+        
+    def write_data(self,data):
+        super(Freio, self).write_data(self.arg,data)
+
+
+class Direction(Passive):
+    """docstring for Direction"""
+    def __init__(self,terminal, arg=1):
+        super(Direction, self).__init__(terminal)
+        self.arg = arg
+        
+    def read_data(self):
+        return super(Direction, self).read_data('a').split(',')[self.arg]
+
 
 if __name__ == '__main__':
     import serial
