@@ -5,8 +5,14 @@
 
 class Unity
 {
-	
+
 public:
+	/**
+	 *	In order to have the virtual build working, we need to create a 
+	 *	whole new process for it, and this is its pid
+	 */
+	int buildPid;
+
 	Unity();
 	~Unity();
 
@@ -14,6 +20,11 @@ public:
 	 *	Do necessary stuff to initialize Unity model
 	 */
 	void init();
+
+	/**
+	 *	Initialize build
+	 */
+	void initBuild();
 
 	// ********************* Methods declared in UML *************************
 

@@ -144,7 +144,7 @@ void Bikex::play()
 	char c;
 	//scanf("%c", &c);
 	int i = 0;
-	while(i++ < 1002)
+	while(i++ < 10002)
 	{
 		// Read all sensors 
 		this->readDevices();

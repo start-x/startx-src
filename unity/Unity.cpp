@@ -1,36 +1,55 @@
 #include <Unity.h>
 #include <iostream>
 #include <unistd.h>
+#include <signal.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <errno.h>
 
 using namespace std;
 
 Unity::Unity()
 {
+	this->buildPid = 0;
 	cout << "Initiating Unity" << endl;
 }
 
 Unity::~Unity()
 {
+	if(this->buildPid > 0)
+	{
+		cout << "Killing unity process: " << this->buildPid << endl;
+		kill(this->buildPid, SIGTERM);
+	}
 	cout << "Termination Unity" << endl;
 }
 
-/**
- *	Runs current unity build in a separated thread
- */
-static void * runCurrentUnityBuild(void * params)
+void Unity::initBuild()
 {
+	// Creates a whole new process
+	this->buildPid = fork();
+	if(this->buildPid == -1)
+	{
+		cout << "Problems while initiazing a new process!!!" << endl;
+		perror("Reason");
+		exit(-1);
+	}
 
-	execl(CURRENT_UNITY_BUILD, "currentBuild",NULL);
+	// pid > 0 means this is still parent process
+	if(this->buildPid > 0)
+	{
+		return; // so we just keep doing our amazing job
+	}
+
+	// If we got here, from the line bellow until exit(0) means totaly the child process
+	cout << "Initiating unity build with the process: " << this->buildPid << endl;
+	execl(CURRENT_UNITY_BUILD, "currentBuild", NULL);
+	exit(0);
 }
 
 void Unity::init()
 {
-	// Create a thread 
-	pthread_t unity_th;
-
-	// TODO: for now, we're leaving the thread run on its own
-	pthread_create(& unity_th, NULL, runCurrentUnityBuild, NULL);
+	this->initBuild();
 }
 
 int Unity::getPlayerAltitude()
