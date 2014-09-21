@@ -1,14 +1,7 @@
-#include <Bikex.h>
-#include <Battery.h>
-#include <Break.h>
-#include <Direction.h>
-#include <Oximetry.h>
-#include <Speed.h>
-#include <Ovr.h>
-#include <Unity.h>
 #include <iostream>
 #include <unistd.h>
 #include <stdio.h>
+#include <Bikex.h>
 
 Bikex::Bikex()
 {

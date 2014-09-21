@@ -1,6 +1,4 @@
-
 #include <signal.h>
-
 
 #define SIG1 30 //SIGUSR1 
 #define SIG2 31 //SIGUSR2
