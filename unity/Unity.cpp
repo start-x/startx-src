@@ -38,12 +38,18 @@ void Unity::initBuild()
 	// pid > 0 means this is still parent process
 	if(this->buildPid > 0)
 	{
+		cout << "Initiating unity build with the process: " << this->buildPid << endl;
 		return; // so we just keep doing our amazing job
 	}
 
 	// If we got here, from the line bellow until exit(0) means totaly the child process
-	cout << "Initiating unity build with the process: " << this->buildPid << endl;
-	execl(CURRENT_UNITY_BUILD, "currentBuild", NULL);
+	cout << "$ " << CURRENT_UNITY_BUILD << endl;
+	int rc = execl(CURRENT_UNITY_BUILD, "currentBuild", NULL);
+	if(rc == -1)
+	{
+		cout << "Error while initiating unity build" << endl;
+		perror("Reason");
+	}
 	exit(0);
 }
 

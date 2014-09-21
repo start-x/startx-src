@@ -42,6 +42,9 @@ Bikex::~Bikex()
 	delete direction;
 	delete oximetry;
 	delete speed;
+
+	// Termination Devices
+	Device::destroy();
 }
 
 void Bikex::init()
@@ -54,6 +57,9 @@ void Bikex::init()
 
 	// Unity initialization
 	unity->init();
+
+	// Devices initialization
+	Device::init();
 }
 
 void Bikex::printCurrState()
@@ -141,10 +147,8 @@ void Bikex::play()
 {
 	std::cout << "Playing" << std::endl;
 	bool keepGoing = true;
-	char c;
-	//scanf("%c", &c);
 	int i = 0;
-	while(i++ < 10002)
+	while(i++ < 1002)
 	{
 		// Read all sensors 
 		this->readDevices();
