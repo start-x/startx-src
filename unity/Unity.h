@@ -1,11 +1,19 @@
 #ifndef UNITY_H
 #define UNITY_H
 
+#define CURRENT_UNITY_BUILD "unity/currentBuild"
+
 class Unity
 {
+	
 public:
 	Unity();
 	~Unity();
+
+	/**
+	 *	Do necessary stuff to initialize Unity model
+	 */
+	void init();
 
 	// ********************* Methods declared in UML *************************
 

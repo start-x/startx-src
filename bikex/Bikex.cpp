@@ -47,8 +47,13 @@ Bikex::~Bikex()
 void Bikex::init()
 {
 	std::cout << "Initiating Bikex" << std::endl;
+
+	// Ovr initialization
 	ovr->init();
 	ovr->startSensor();
+
+	// Unity initialization
+	unity->init();
 }
 
 void Bikex::printCurrState()
@@ -136,6 +141,8 @@ void Bikex::play()
 {
 	std::cout << "Playing" << std::endl;
 	bool keepGoing = true;
+	char c;
+	//scanf("%c", &c);
 	int i = 0;
 	while(i++ < 1002)
 	{
