@@ -57,7 +57,8 @@ int Passive::flush()
 		if(file.is_open())
 		{
 			file.seekg(0, std::ios::beg);
-			file.read(buffer, BUFFER_SIZE);
+			// TODO: check how the input is gonna be written by msp430
+			file.read((char *)buffer, BUFFER_SIZE);
 			file.close();
 			std::cout << "Passive mockData loaded: " << BUFFER_SIZE << " bytes long" << std::endl;
 		}

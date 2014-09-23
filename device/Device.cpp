@@ -9,8 +9,8 @@
 
 using namespace std;
 
-char Device::buffer[256];
 int Device::pythonPid;
+unsigned char Device::buffer[BUFFER_SIZE];
 
 /**
  *	Initialize python program, because we need to give it our pid

@@ -4,9 +4,14 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <errno.h>
 
 using namespace std;
+
+#define MOCK_SIZE 513 // number of lines with mocked values
+
+static double mockData[MOCK_SIZE];
 
 Unity::Unity()
 {
@@ -21,7 +26,20 @@ Unity::~Unity()
 		cout << "Killing unity process: " << this->buildPid << endl;
 		kill(this->buildPid, SIGTERM);
 	}
-	cout << "Termination Unity" << endl;
+
+	if(!this->infoFile.is_open())
+		this->infoFile.close();
+
+	if(!this->altitudeFile.is_open())
+		this->altitudeFile.close();
+
+	if(!this->rotationFile.is_open())
+		this->rotationFile.close();
+
+	if(!this->positionFile.is_open())
+		this->positionFile.close();
+
+	cout << "Terminating Unity" << endl;
 }
 
 void Unity::initBuild()
@@ -55,30 +73,126 @@ void Unity::initBuild()
 
 void Unity::init()
 {
+	// First forks this process do load the heavy unity application
 	this->initBuild();
+
+	// Now open some useful files
+	this->altitudeFile.open(UNITY_ALTITUDE_FILE, std::ios::in | std::ios::binary | std::ios::ate);
+	this->infoFile.open(UNITY_INFO_FILE);
+	this->rotationFile.open(UNITY_ROTATION_FILE);
+	this->positionFile.open(UNITY_POSITION_FILE);
+
+	if(!this->infoFile.is_open() || !this->altitudeFile.is_open() || 
+	   !this->rotationFile.is_open() || this->positionFile.is_open())
+	{
+		cout << "Couldn't open unity communication files";
+	}
 }
 
 int Unity::getPlayerAltitude()
 {
-	return 0;
+	static std::ifstream file;
+	int returned = -1;
+
+	#ifdef MOCK_DATA
+		std::cout << "Mocaaaando" << std::endl;
+		static int mockIndex = 0;
+
+		// First time
+		if(MOCK_SIZE == 0)
+		{
+			file.open("files/unity_altitude_mock.txt", std::ios::in | std::ios::binary | std::ios::ate);
+			if(file.is_open())
+			{
+				for(int i = 0; i < MOCK_SIZE; i++)
+					file >> mockData[i];
+				file.close();
+				std::cout << "Unity mockData loaded: " << MOCK_SIZE * sizeof(double) << " bytes long" << std::endl;
+			}
+			else
+			{
+				std::cout << "Failed to load unity mockData" << std::endl;
+				mockData[0] = -1.0;
+			}
+		}
+
+		if(mockIndex >= MOCK_SIZE)
+			mockIndex = 0;
+
+		returned = (int)mockData[mockIndex];
+		mockIndex++;
+
+	#else
+		if(this->altitudeFile.is_open())
+		{
+			// Make sure to read new data
+			this->altitudeFile.sync();
+
+			this->altitudeFile >> returned;
+
+			// Rewinds it, so next time it will read from the beginning again
+			this->altitudeFile.seekg(0, ios_base::beg);
+		}
+		else
+			std::cout << "Failed to load unity altitude" << std::endl;
+
+	#endif
+
+	return returned;
 }
 
-void Unity::setPlayerPosition(float x, float z)
+void Unity::setPlayerPosition(double x, double z)
 {
+	if(this->positionFile.is_open())
+	{
+		// Rewinds it, so it will write to the beginning again
+		// TODO: how to come back to the beginning of the output file?
+		// this->positionFile.seekg(0);
 
+		this->positionFile << x << " " << z;
+
+		// Make sure to write new data
+		this->positionFile.flush();
+	}
+	else
+		std::cout << "Failed to write unity position" << std::endl;
 }
 
-void Unity::setPlayerRotation(float x, float y, float z)
+void Unity::setPlayerRotation(double x, double y, double z)
 {
+	if(this->rotationFile.is_open())
+	{
+		// Rewinds it, so it will write to the beginning again
+		// TODO: how to come back to the beginning of the output file?
+		//this->rotationFile.seekg(0);
 
+		this->rotationFile << x << " " << y << " " << z;
+
+		// Make sure to write new data
+		this->rotationFile.flush();
+	}
+	else
+		std::cout << "Failed to write unity rotation" << std::endl;
 }
 
-void Unity::setInfo(const char * info)
+void Unity::setInfo(const char * info, int chars_written)
 {
+	if(this->infoFile.is_open())
+	{
+		// Rewinds it, so it will write to the beginning again
+		// TODO: how to come back to the beginning of the output file?
+		//this->infoFile.seekg(0);
 
+		this->infoFile << info;
+
+		// Make sure to write new data
+		this->infoFile.flush();
+	}
+	else
+		std::cout << "Failed to write unity information" << std::endl;
 }
 
 void Unity::render()
 {
-
+	// TODO: somehow tell unity to keep rendering the frames
 }

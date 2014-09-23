@@ -112,14 +112,15 @@ int Bikex::writeDevices()
 {
 	std::cout << "Writting devices" << std::endl;
 	static char info[256];
+	static int chars_written;
 
 	// First, common sensors
 	Active::flush();
 
 	// Now Unity stuff
-	sprintf(info, "Speed: %i | Heart: %i | Dist: %i | Batt: %i", 
+	chars_written = sprintf(info, "Speed: %i | Heart: %i | Dist: %i | Batt: %i", 
 		this->currSpeed, this->currHearBeat, this->currDistance, this->currBattery);
-	unity->setInfo(info);
+	unity->setInfo(info, chars_written);
 	unity->setPlayerPosition(this->currPosition.x, this->currPosition.z);
 	unity->setPlayerRotation(this->currRotation.x, this->currRotation.x, this->currRotation.z);
 
