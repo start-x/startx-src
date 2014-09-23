@@ -72,7 +72,8 @@ except AttributeError:
 SIG1 = _startx.SIG1
 SIG2 = _startx.SIG2
 SIG3 = _startx.SIG3
-FILE = _startx.FILE
+ACTIVE_FILE = _startx.ACTIVE_FILE
+PASSIVE_FILE = _startx.PASSIVE_FILE
 # This file is compatible with both classic and new-style classes.
 
 
