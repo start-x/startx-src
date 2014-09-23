@@ -6,7 +6,7 @@
 class Break : public Active
 {
 public:
-	int setData(char data);
+	int setData(unsigned char data);
 };
 
 #endif

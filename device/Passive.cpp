@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <Passive.h>
 
-static char * mockData = 0;
+static unsigned char * mockData = 0;
 static int MOCK_SIZE = 0;
 
 int Passive::flush()
@@ -23,7 +23,7 @@ int Passive::flush()
 				std::streampos size = file.tellg();
 				MOCK_SIZE = size;
 				// TODO: free this memory later
-				mockData = new char[MOCK_SIZE];
+				mockData = new unsigned char[MOCK_SIZE];
 				file.seekg(0, std::ios::beg);
 				file.read(mockData, MOCK_SIZE);
 				file.close();
@@ -32,7 +32,7 @@ int Passive::flush()
 			else
 			{
 				std::cout << "Failed to load passive mockData" << std::endl;
-				mockData = new char[1];
+				mockData = unsigned new char[1];
 				*mockData = '0';
 			}
 			file.close();

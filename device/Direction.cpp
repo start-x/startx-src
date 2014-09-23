@@ -1,6 +1,6 @@
 #include <Direction.h>
 
-int Direction::getData(char &data)
+int Direction::getData(unsigned char &data)
 {
 	data = buffer[DIRECTION];
 	return 0;

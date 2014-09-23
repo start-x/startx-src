@@ -104,7 +104,7 @@ void Bikex::setBreakIntensity()
 	std::cout << "Setting break intensity" << std::endl;
 	// TODO: do some calculations to set right amount of intensity
 	int altitude = unity->getPlayerAltitude();
-	currPosition.y = (char)altitude;
+	currPosition.y = (unsigned char)altitude;
 	_break->setData(altitude);
 }
 
