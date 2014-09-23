@@ -19,6 +19,7 @@ def write_file(signum, frame):
     """ was requisited new data from sensor"""
     f = open(FILE,'w')
     f.write(msp430.read_data()) 
+    # f.write(msp430['direcao'])
     f.close()
     #kill(pid_bikex,SIG2)
     pass
@@ -26,7 +27,9 @@ def write_file(signum, frame):
 def read_file(signum, frame):
     """ read file and sendo to mcu """
     f = open(FILE,'r')
-    print f.readline() 
+    data = f.readline() 
+    print data
+    # msp430['freio'] = data
     f.close()
     pass
 
@@ -34,7 +37,8 @@ def main():
     pid_bikex = sys.argv[1]
     print getpid()
     print SIG1,SIG2,SIG3,SIG4
-    #msp430.adc = sensor.Direction(msp430.serial,0)
+    #msp430.freio = sensor.Freio(msp430.serial,0)
+    #msp430.direcao = sensor.Direction(msp430.serial,0)
 
 
     signal.signal(SIG1, write_file)
