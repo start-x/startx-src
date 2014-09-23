@@ -1,6 +1,8 @@
 #include<msp430g2553.h>
 
 #include <launchpad.h>
+#include <Wrap.h>
+
 
 int main()
 {
@@ -12,21 +14,30 @@ int main()
 	hled(VERM);
 	desled(VERM);
 	
+	// Defined in Wrap.h
+	PipeCommand cmd;
+
 	for(;;)
 	{
-		if (getchar()=='R')
+		cmd = getchar();
+		switch(cmd)
 		{
-			ligled(VERM);
-			dly_coxa(3);
-			wsserial("Ligado\n");
-		}
-		else if(getchar()=='r')
-		{
-			desled(VERM);
-			dly_coxa(3);
-			wsserial("desligado\n");
-		}
-		printf("channel 1: %d\n", adc_read(1));
+			case ALL:
+				printf("[%d,%d]\n", adc_read(0),adc_read(1));
+				break;
+			case BREAK:
+				/*
+					Read new value from serial
+					and use this value to set the
+					position of the servo motor
+				*/
+				break;
+			case DIRECTION:
+				printf("[%d]\n", adc_read(0));
+				break;
+			default:
+				break;
+		}		
 			
 	}
 

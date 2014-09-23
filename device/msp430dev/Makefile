@@ -21,9 +21,9 @@ LD_FLAGS = $(LIBDIR) -lc -lfp -lm $(MMCU) $(INCDIR) -Os
 CP_FLAGS = -O ihex
 OD_FLAGS = -x --syms
 
-INCDIR=-I.
+INCDIR=-I. -I../../bikex
 LIBDIR=-L. 
-CFLAGS= -Os -mmcu=$(MCU) $(INCDIR) $(LIBDIR)
+CFLAGS= -Os -mmcu=$(MCU) $(INCDIR) $(LIBDIR) -pedantic -asci
 OBJDIR =.
 
 SRC = launchpad.c main.c adc.c
@@ -49,7 +49,7 @@ $(TARGET).hex: $(OUTPUT)
 	$(STRIP) $(OUTPUT)
 	@size $(OUTPUT) -Adt
 
-$(OUTPUT): $(OBJ)
+$(OUTPUT): $(OBJ) $(DEP)
 	@echo "Linking..."
 #	$(LD) $(LD_FLAGS) -o $@ $(OBJ)-$(DEVICE) $(INCLUDES) -Os -O3
 	$(CC) $(LD_FLAGS) -o $@ $(OBJ) $(MCU)
