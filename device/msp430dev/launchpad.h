@@ -20,45 +20,60 @@
 #define PIN_TX BIT1
 #define PIN_RX BIT2
 
-	
+#include <stdio.h>
+#include <adc.h>	
 
 // Desabilita WDT
+extern
 void desabWDT();
 
 // habilita botão sem interrupção
+extern
 void botao();
 
 // habilitar led n
+extern
 void hled(unsigned char numled);
 
 // sensibilidade ao botão
+extern
 char readbotao();
 
 // Esperar equanto botão não/é pressionao
+extern
 void waitbton(unsigned char sinal);
 
 // Acender led
+extern
 void ligled(char numled);
 
 // Apagar led
+extern
 void desled(char numled);
 
 // Alternar led
+extern
 void alterled(unsigned volatile numled);
 
 // delay coxa! -- count 1000
+extern
 void dly_coxa(int numcic);
 
 // configurar clock em 1MHz
+extern
 void dco1mhz();
 
+extern
 void hserial();
 
 //le um char da uart
+extern
 char getchar();
 
+extern
 int putchar(int caracter);
 
+extern
 void wsserial(char *st);
 
 #endif

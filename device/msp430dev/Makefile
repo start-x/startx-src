@@ -26,7 +26,7 @@ LIBDIR=-L.
 CFLAGS= -Os -mmcu=$(MCU) $(INCDIR) $(LIBDIR)
 OBJDIR =.
 
-SRC = launchpad.c main.c
+SRC = launchpad.c main.c adc.c
 
 OBJ = ${SRC:.c=.o}
 DEP=$(wildcard *.h)

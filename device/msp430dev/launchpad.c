@@ -1,6 +1,6 @@
 #include<msp430g2553.h>
 #include<string.h>
-#include "launchpad.h"
+#include <launchpad.h>
 
 /**
  * @brief Desable Watchdog

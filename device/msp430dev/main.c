@@ -1,6 +1,6 @@
 #include<msp430g2553.h>
 
-#include "launchpad.h"
+#include <launchpad.h>
 
 int main()
 {
@@ -26,7 +26,7 @@ int main()
 			dly_coxa(3);
 			wsserial("desligado\n");
 		}
-		
+		printf("channel 1: %d\n", adc_read(1));
 			
 	}
 
