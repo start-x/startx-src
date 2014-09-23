@@ -11,7 +11,6 @@ void desabWDT()
 	WDTCTL = WDTPW|WDTHOLD;
 }
 
-// habilita botão sem interrupção
 /**
  * @brief Enable the button
  * @details Enable the button without the interruption support
@@ -23,8 +22,6 @@ void botao()
 	P1REN |= BOTAO;	
 }
 
-
-// habilitar led n
 /**
  * @brief Enable LED
  * @details Enable LED *n*, making this port a output port
@@ -35,11 +32,12 @@ void botao()
  */
 void hled(unsigned char numled)
 {
-	//numled é LED1 ou LED2
+	/*numled é LED1 ou LED2 */
 	P1DIR|=numled;		
 }
-// sensibilidade ao botão
-char readbotao()
+
+/* sensibilidade ao botão */
+char readbotao(void)
 {
 	unsigned volatile sig;
 	if ((P1IN & BOTAO) == BOTAO)
@@ -51,7 +49,7 @@ char readbotao()
 			
 }
 
-// Esperar equanto botão não/é pressionao
+/* Esperar equanto botão não/é pressionao */
 void waitbton(unsigned char sinal)
 {
 	if (sinal==SOLTA)
@@ -62,25 +60,25 @@ void waitbton(unsigned char sinal)
 		{}
 }
 
-// Acender led
+/* Acender led */
 void ligled(char numled)
 {
 	P1OUT |= numled;
 }
 
-// Apagar led
+/* Apagar led */
 void desled(char numled)
 {
 	P1OUT &= ~numled;
 }
 
-// Alternar led
+/* Alternar led */
 void alterled(unsigned volatile numled)
 {
 	P1OUT ^= numled;
 }
 
-// delay coxa! -- count 1000
+/* delay coxa! -- count 1000 */
 void dly_coxa(int numcic)
 {
 	volatile unsigned int count1 = 0, count2 = 0;
@@ -93,10 +91,10 @@ void dly_coxa(int numcic)
 	}
 }
 
-// configurar clock em 1MHz
+/* configurar clock em 1MHz */
 void dco1mhz()
 {
-	// BASEADO EM EXEMPLOS	
+	/* BASEADO EM EXEMPLOS	 */
 	
 	DCOCTL = 0;                             
 	BCSCTL1 = CALBC1_1MHZ;                  
@@ -116,21 +114,21 @@ void dco1mhz()
  * + UCA0BR0 = 104;
  * + Error = 1.6%
  * 
- * [Source](http://www.win.tue.nl/~johanl/educ/RTcourse/MSP430%20UART.pdf)
+ * [Source](http:/*www.win.tue.nl/~johanl/educ/RTcourse/MSP430%20UART.pdf)
  */
 void hserial()
 {
-	P1SEL |= PIN_TX + PIN_RX ;                     // P1.1 = RXD, P1.2=TXD
-	P1SEL2 |= PIN_TX + PIN_RX ;                    // P1.1 = RXD, P1.2=TXD
+	P1SEL |= PIN_TX + PIN_RX ;                     /* P1.1 = RXD, P1.2=TXD */
+	P1SEL2 |= PIN_TX + PIN_RX ;                    /* P1.1 = RXD, P1.2=TXD */
   
-	UCA0CTL1 |= UCSSEL_2;                     // SMCLK
-	UCA0BR0 = 104;                            // 1MHz 9600
-	UCA0BR1 = 0;                              // 1MHz 9600
-	UCA0MCTL = UCBRS0;                        // Modulation UCBRSx = 1
-	UCA0CTL1 &= ~UCSWRST;                     // **Initialize USCI state machine**
+	UCA0CTL1 |= UCSSEL_2;                     /* SMCLK */
+	UCA0BR0 = 104;                            /* 1MHz 9600 */
+	UCA0BR1 = 0;                              /* 1MHz 9600 */
+	UCA0MCTL = UCBRS0;                        /* Modulation UCBRSx = 1 */
+	UCA0CTL1 &= ~UCSWRST;                     /* **Initialize USCI state machine** */
 }
 
-//le um char da uart
+/* le um char da uart */
 char getchar()
 {
 	return UCA0RXBUF;

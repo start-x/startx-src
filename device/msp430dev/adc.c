@@ -1,8 +1,5 @@
 #include <adc.h>
 
-/*///////////////////////////////////////////////////////////////////////////////
-*//////////////////////////////////////////////////////////////////////////////
-
 /**
  * 	@fn adc_read
  * 	@brief Read a Analogic port 
@@ -26,12 +23,12 @@ int adc_read(unsigned int ch){
 				break;
 			case 3:
 				if((ADC10CTL0 & SREF_6))
-					return -EPERM;  // Operation not permitted      
+					return -EPERM;  /* Operation not permitted */      
 				ADC10CTL1 = INCH_3;
 				break;
 			case 4:
 				if((ADC10CTL0 & SREF_6))
-					return -EPERM; // Operation not permitted         
+					return -EPERM; /* Operation not permitted */         
 				ADC10CTL1 = INCH_4;
 				break;
 			case 12:
@@ -63,12 +60,12 @@ int adc_read(unsigned int ch){
 				break;
 			case 3:
 				if((ADC10CTL0 & SREF_6))
-					return -EPERM;  // Operation not permitted      
+					return -EPERM;  /* Operation not permitted */      
 				ADC10CTL1 = INCH_3;
 				break;
 			case 4:
 				if((ADC10CTL0 & SREF_6))
-					return -EPERM; // Operation not permitted         
+					return -EPERM; /* Operation not permitted */         
 				ADC10CTL1 = INCH_4;
 				break;
 			case 5:
@@ -81,7 +78,7 @@ int adc_read(unsigned int ch){
 				ADC10CTL1 = INCH_7;
 				break;
 			default:
-				return -EPERM; //Operation not permitted 
+				return -EPERM; /* Operation not permitted */
 		}
 	#else
 		#error "No such device!"
@@ -100,9 +97,6 @@ int adc_read(unsigned int ch){
 	return ADC10MEM;
 }
 
-/*///////////////////////////////////////////////////////////////////////////////
-*//////////////////////////////////////////////////////////////////////////////
-
 /**
  * @fn adc_eref_off
  * @brief It will hold the configuration of the ADC, and change it according to the OP variable.
@@ -113,28 +107,25 @@ int adc_eref_off()
 {
 	#if defined(__MSP430G2553__) || defined(__MSP430F2274__)
 	
-		ADC10AE0 = 0xff;  					//Seleção das portas como OUTPUT  
+		ADC10AE0 = 0xff;  					/* Seleção das portas como OUTPUT  */
 	
 		ADC10CTL0 |= ~ENC;
 	
 		ADC10CTL0 = 
 		ADC10ON + 
-		SREF_0+				// Referencia VCC
+		SREF_0+				/* Referencia VCC */
 		ADC10SHT_3 + 
 		ADC10IE; 
 		return (ADC10CTL0 - (ADC10ON + SREF_0 + ADC10SHT_3 + ADC10IE));
 	#else
 		#error "No such device!"
-		return -ENXIO; // No such device
+		return -ENXIO; /* No such device */
 	#endif
 	
 	
-	return -ENXIO; // No such device
+	return -ENXIO; /* No such device */
 	}
 
-
-/*///////////////////////////////////////////////////////////////////////////////
-*//////////////////////////////////////////////////////////////////////////////
 
 /**
  * @fn adc_eref_on
@@ -146,18 +137,18 @@ int adc_eref_on()
 {
 	#if defined(__MSP430F2274__) || defined(__MSP430G2553__)
 		
-//		if( ADC10CTL0 && ADC10ON)
-//			return -EPERM; // Operation not permitted
-			
+/*		if( ADC10CTL0 && ADC10ON)
+			return -EPERM; /* Operation not permitted */
+ 			
 		// Modo com referencia externa nos pinos 6 (-) e 7 (+)
 			
 		volatile int delay;
-		ADC10AE0 |= 0x3ff;		// seleção de todas as portas exceto as que correspondem a eref+/-
+		ADC10AE0 |= 0x3ff;		/* seleção de todas as portas exceto as que correspondem a eref+/-  */
 		
 		ADC10CTL0 |= ~ENC;
 		ADC10CTL0 |= 
 		ADC10ON + 
-		SREF_6+				// Referencia VCC
+		SREF_6+				/* Referencia VCC */
 		ADC10SHT_3 + 
 		ADC10IE; 
 		
@@ -170,9 +161,6 @@ int adc_eref_on()
 	#endif
 	return -ENXIO;
 }
-
-/*///////////////////////////////////////////////////////////////////////////////
-*//////////////////////////////////////////////////////////////////////////////
 
 /**
  * @fn adc_close
@@ -199,7 +187,7 @@ void adc_close()
 //Rotina de interrupção
 #if defined(__MSP430G2553__) || defined(__MSP430F2274__)
 
-	//pfs wrapped the following to accommodate mspgcc compiler
+	/* pfs wrapped the following to accommodate mspgcc compiler */
 	#ifdef __GNUC__
 	#include <legacymsp430.h>
 	interrupt (ADC10_VECTOR) ADC10ISR (void)

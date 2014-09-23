@@ -2,9 +2,9 @@
 #include <msp430.h>
 
 #define SUCCESS		0
-//! Operation not permitted 
+/* Operation not permitted */
 #define	EPERM		 1	
-//! No such device or address 
+/* No such device or address */ 
 #define	ENXIO		 6	
 /**
  * 	@fn adc_read

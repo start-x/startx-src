@@ -7,14 +7,14 @@
 int main()
 {
 	desabWDT();
-	//botao();
+	/* botao(); */
 	dco1mhz();
 	hserial();
 	
 	hled(VERM);
 	desled(VERM);
 	
-	// Defined in Wrap.h
+	/* Defined in Wrap.h */
 	PipeCommand cmd;
 
 	for(;;)
