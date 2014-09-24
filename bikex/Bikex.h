@@ -9,6 +9,9 @@
 #include <Unity.h>
 #include <Ovr.h>
 
+#define MAX_DT 100 // 100 == (1/10) * 1000
+#define MIN_DT 33 // 33 == (1/30) * 1000
+#define SAMPLES_FPS 128
 typedef struct _position
 {
 	double x, y, z;
