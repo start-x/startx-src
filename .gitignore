@@ -38,3 +38,8 @@ GRTAGS
 GSYMS
 GTAGS
 doc/html/*
+
+#Auto-generated files
+build/bikex
+data_visualization.txt
+files/*
