@@ -6,6 +6,11 @@
 
 int main()
 {
+	/* Counting parameters */
+	volatile int counter = 0, endcount = 1000;
+	char ch;	
+	
+	
 	desabWDT();
 	/* botao(); */
 	dco1mhz();
@@ -26,6 +31,27 @@ int main()
 				printf("[%d,%d]\n", adc_read(0),adc_read(1));
 				break;
 			case BREAK:
+				
+				ch = getchar();
+				
+				if (counter >= endcount)
+				{
+					counter = 0;
+					alterled(unsigned volatile numled);
+				}
+				else
+				{
+					counter++;
+				}
+				
+				if((ch >= 48) && (ch <= 58))
+					endcount = 1000 + (int) ((unsigned char) ch-48)*50000/10;
+				//wcserial(ch);
+		
+				
+				
+				
+				
 				/*
 					Read new value from serial
 					and use this value to set the
