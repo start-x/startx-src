@@ -6,9 +6,10 @@
     MSP430.
 """
 
-import msp430
 import util
 import sys
+from msp430 import MSP
+import device as sensor
 from signal import signal, SIGINT, SIGALRM, SIGABRT, SIGQUIT
 from startx import SIG1,SIG2,SIG3,ACTIVE_FILE, PASSIVE_FILE
 from time import sleep
@@ -23,14 +24,14 @@ msp430 = object()
 def safe_quit(signum, frame):
     """ Care for a safe quit """
     print "Exiting"
-    # msp430.desable()
+    msp430.desable()
     exit()
 
 def write_file(signum, frame):
     """ was requisited new data from sensor"""
     f = open(PASSIVE_FILE,'w')
-    f.write(msp430.read_data()) 
-    # f.write(msp430['direcao'])
+    #f.write(msp430.read_data()) 
+    f.write(msp430['direcao'])
     f.close()
     #kill(pid_bikex,SIG2)
     pass
@@ -40,7 +41,7 @@ def read_file(signum, frame):
     f = open(ACTIVE_FILE,'a+r')
     data = f.readline() 
     print data
-    # msp430['freio'] = data
+    msp430['freio'] = data
     f.close()
     pass
 
@@ -49,8 +50,8 @@ def main():
     print "Father: %s" % pid_bikex
     print "Mine: %d " % getpid()
     print SIG1,SIG2,SIG3
-    #msp430.freio = sensor.Freio(msp430.serial,0)
-    #msp430.direcao = sensor.Direction(msp430.serial,0)
+    msp430.freio = sensor.Freio(msp430.serial,0)
+    msp430.direcao = sensor.Direction(msp430.serial,0)
 
     signal(SIG1, write_file)
     signal(SIG3, read_file)
@@ -62,22 +63,22 @@ def main():
 
 if __name__ == '__main__':
     # list available ports
-    # print 'Available ports:'
-    # PORTS_AVAILABLE = util.available_ports()
-    # try:
-    #     for i in PORTS_AVAILABLE:
-    #         print '>>> %s' % i
-    #     print '---'
-    # except TypeError, error:
-    #     print "None device connected"
-    #     #exit()
+    print 'Available ports:'
+    PORTS_AVAILABLE = util.available_ports()
+    try:
+        for i in PORTS_AVAILABLE:
+            print '>>> %s' % i
+        print '---'
+        # choose a port
+        if len(PORTS_AVAILABLE) == 1:
+            msp430 = MSP(PORTS_AVAILABLE[0])
+    except TypeError, error:
+        print "None device connected"
+        msp430 = MagicMock()
 
-    # # choose a port
-    # if len(PORTS_AVAILABLE) == 1:
-    #     msp430 = MSP(PORTS_AVAILABLE[0])
-    msp430 = MagicMock()
-
-    msp430.read_data =  MagicMock(return_value='jhasdfaskjfkjb')
+        msp430.read_data =  MagicMock(return_value='jhasdfaskjfkjb'
+        #exit()
+)
 
     print 'Ready'
     main()
