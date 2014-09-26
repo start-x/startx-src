@@ -6,7 +6,7 @@
 class Oximetry : public Passive
 {
 public:
-	int getData(char &data);
+	int getData(unsigned char &data);
 };
 
 #endif

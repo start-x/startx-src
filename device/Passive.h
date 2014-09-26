@@ -15,7 +15,7 @@ public:
 	/**
 	 *	Reads specific char at from a device and returns 0 in case of success or != 0 otherwise
 	 */
-	virtual int getData(char &data) = 0;
+	virtual int getData(unsigned char &data) = 0;
 
 	/**
 	 *	Flush the old data and get the new one

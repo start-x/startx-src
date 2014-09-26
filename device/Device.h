@@ -4,7 +4,7 @@
 #include <DeviceType.h>
 
 #define BUFFER_SIZE 256
-#define PYTHON_PROGRAM "device/scripts/device.py"
+#define PYTHON_PROGRAM "device/scripts/main.py"
 
 class Device
 {
@@ -26,7 +26,7 @@ public:
 	static void destroy();
 
 protected:
-	static char buffer[BUFFER_SIZE];
+	static unsigned char buffer[BUFFER_SIZE];
 };
 
 #endif

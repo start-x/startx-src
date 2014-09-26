@@ -9,8 +9,8 @@
 
 using namespace std;
 
-char Device::buffer[256];
 int Device::pythonPid;
+unsigned char Device::buffer[BUFFER_SIZE];
 
 /**
  *	Initialize python program, because we need to give it our pid
@@ -39,7 +39,7 @@ static void initPython()
 	cout << "$ " << PYTHON_PROGRAM << " " << parentPid << endl;
 	char strPid[16]; // Gotta convert pid into a string
 	sprintf(strPid, "%i", parentPid);
-	int rc = execl(PYTHON_PROGRAM, "device.py", strPid, NULL);
+	int rc = execl(PYTHON_PROGRAM, "main.py", strPid, NULL);
 	if(rc == -1)
 	{
 		cout << "Error while initiating python program: " << rc << endl;
