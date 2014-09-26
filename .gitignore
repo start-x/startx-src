@@ -40,6 +40,5 @@ GTAGS
 doc/html/*
 
 #Auto-generated files
+*.txt
 build/bikex
-data_visualization.txt
-files/*
