@@ -131,6 +131,7 @@ void hserial()
 /* le um char da uart */
 char getchar()
 {
+	while(!(IFG2 & UCA0RXBUF));
 	return UCA0RXBUF;
 }
 
