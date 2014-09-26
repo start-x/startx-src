@@ -4,7 +4,7 @@
 #include <DeviceType.h>
 
 #define BUFFER_SIZE 256
-#define PYTHON_PROGRAM "device/scripts/device.py"
+#define PYTHON_PROGRAM "device/scripts/main.py"
 
 class Device
 {
