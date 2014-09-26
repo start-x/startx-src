@@ -16,41 +16,41 @@ int main()
 	dco1mhz();
 	hserial();
 	
-	hled(VERM);
-	desled(VERM);
-	
+	hled(VERM|VERD);
+	ligled(VERM);
+	//P1OUT ^= VERM;
 	/* Defined in Wrap.h */
 	PipeCommand cmd;
 
 	for(;;)
 	{
-		cmd = getchar();
+		//P1OUT ^= VERM;
+		cmd = (PipeCommand) getchar();
 		switch(cmd)
 		{
 			case ALL:
-				printf("[%d,%d]\n", adc_read(0),adc_read(1));
+				//printf("[%d,%d]\n", adc_read(0),adc_read(1));
 				break;
+			case 'a':
 			case BREAK:
+			
+				//dly_coxa(1000);
 				
 				ch = getchar();
-				
-				if (counter >= endcount)
-				{
-					counter = 0;
-					alterled(unsigned volatile numled);
-				}
-				else
-				{
-					counter++;
-				}
-				
-				if((ch >= 48) && (ch <= 58))
-					endcount = 1000 + (int) ((unsigned char) ch-48)*50000/10;
-				//wcserial(ch);
-		
-				
-				
-				
+								
+				if((ch >= '0') && (ch <= '9'))
+					endcount = 1000 + (int) ((unsigned char) ch-'0')*10000/10;
+					
+					//if(counter >= endcount)
+					//{
+						counter = 0;
+						P1OUT ^= VERD;
+					//}
+					//else
+					//{
+						//counter++;
+					//}
+					
 				
 				/*
 					Read new value from serial
@@ -59,10 +59,21 @@ int main()
 				*/
 				break;
 			case DIRECTION:
-				printf("[%d]\n", adc_read(0));
+				//printf("[%d]\n", adc_read(0));
 				break;
 			default:
 				break;
+		}
+		
+		
+		if (counter >= endcount)
+		{
+			counter = 0;
+			P1OUT ^= VERM;
+		}
+		else
+		{
+			counter++;
 		}		
 			
 	}
