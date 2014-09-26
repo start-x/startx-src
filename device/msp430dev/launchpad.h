@@ -20,8 +20,14 @@
 #define PIN_TX BIT1
 #define PIN_RX BIT2
 
+//<<<<<<< HEAD
+// defines timer
+#define T_100US 100 /* 100us period*/
+	
+//=======
 #include <stdio.h>
 #include <adc.h>	
+//>>>>>>> ba77d88a5df4e5eb8f02948ffb69751eea2dfb1b
 
 /* Desabilita WDT */
 extern
@@ -75,6 +81,8 @@ int putchar(int caracter);
 
 extern
 void wsserial(char *st);
+
+void setMultitimes();
 
 #endif
 
