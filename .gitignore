@@ -6,7 +6,7 @@
 *.pyc
 
 # Compiled Dynamic libraries
-# *.so
+*.so
 *.dylib
 # *.dll
 
@@ -24,7 +24,13 @@
 #vim/vi temp
 .swp
 .swo
-~
+
+#MSP FILES ~
+*.elf
+*.map
+*.list
+*.hex
+*.dmp
 
 #Documents
 GPATH

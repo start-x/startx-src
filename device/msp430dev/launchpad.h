@@ -1,12 +1,12 @@
 #ifndef _H_LAUNCHPAD
 #define _H_LAUNCHPAD
 
-// defines do botão s2 da launchpad
+/* defines do botão s2 da launchpad */
 #define BOTAO BIT3
 #define APERTA 1
 #define SOLTA 0
 
-// defines do led
+/* defines do led */
 #define LED1 BIT0
 #define LED2 BIT6
 
@@ -16,51 +16,70 @@
 #define ALTO 1
 #define BAIXO 0
 
-// defines serial uart
+/* defines serial uart */
 #define PIN_TX BIT1
 #define PIN_RX BIT2
 
+//<<<<<<< HEAD
 // defines timer
 #define T_100US 100 /* 100us period*/
 	
+//=======
+#include <stdio.h>
+#include <adc.h>	
+//>>>>>>> ba77d88a5df4e5eb8f02948ffb69751eea2dfb1b
 
-// Desabilita WDT
+/* Desabilita WDT */
+extern
 void desabWDT();
 
-// habilita botão sem interrupção
+/* habilita botão sem interrupção */
+extern
 void botao();
 
-// habilitar led n
+/* habilitar led n */
+extern
 void hled(unsigned char numled);
 
-// sensibilidade ao botão
+/* sensibilidade ao botão */
+extern
 char readbotao();
 
-// Esperar equanto botão não/é pressionao
+/* Esperar equanto botão não/é pressionado */
+extern
 void waitbton(unsigned char sinal);
 
-// Acender led
+/* Acender led */
+extern
 void ligled(char numled);
 
-// Apagar led
+/* Apagar led */
+extern
 void desled(char numled);
 
-// Alternar led
+/* Alternar led */
+extern
 void alterled(unsigned volatile numled);
 
-// delay coxa! -- count 1000
+/* delay coxa! -- count 1000  */
+extern
 void dly_coxa(int numcic);
 
-// configurar clock em 1MHz
+/* configurar clock em 1MHz */
+extern
 void dco1mhz();
 
+extern
 void hserial();
 
-//le um char da uart
+/* le um char da uart */
+extern
 char getchar();
 
+extern
 int putchar(int caracter);
 
+extern
 void wsserial(char *st);
 
 void setMultitimes();

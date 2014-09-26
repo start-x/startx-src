@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <Passive.h>
 
-static char * mockData = 0;
+static unsigned char * mockData = 0;
 static int MOCK_SIZE = 0;
 
 int Passive::flush()
@@ -23,7 +23,7 @@ int Passive::flush()
 				std::streampos size = file.tellg();
 				MOCK_SIZE = size;
 				// TODO: free this memory later
-				mockData = new char[MOCK_SIZE];
+				mockData = new unsigned char[MOCK_SIZE];
 				file.seekg(0, std::ios::beg);
 				file.read(mockData, MOCK_SIZE);
 				file.close();
@@ -32,7 +32,7 @@ int Passive::flush()
 			else
 			{
 				std::cout << "Failed to load passive mockData" << std::endl;
-				mockData = new char[1];
+				mockData = unsigned new char[1];
 				*mockData = '0';
 			}
 			file.close();
@@ -49,7 +49,7 @@ int Passive::flush()
 			mockIndex = 0;
 
 		for(int i = 0; i < BUFFER_SIZE && mockIndex < MOCK_SIZE; i++, mockIndex++)
-			sscanf(&mockData[mockIndex], "%c", Device::buffer[i]);
+			buffer[i] = mockData[mockIndex];
 		mockIndex++; // Skip line break
 
 	#else
@@ -57,7 +57,8 @@ int Passive::flush()
 		if(file.is_open())
 		{
 			file.seekg(0, std::ios::beg);
-			file.read(buffer, BUFFER_SIZE);
+			// TODO: check how the input is gonna be written by msp430
+			file.read((char *)buffer, BUFFER_SIZE);
 			file.close();
 			std::cout << "Passive mockData loaded: " << BUFFER_SIZE << " bytes long" << std::endl;
 		}

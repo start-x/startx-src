@@ -34,6 +34,7 @@ class MSP(Miniterm):
     """
     port = 0
     alive = False
+    modules={}
 
     def __init__(self, tty, baud=9600):
         if tty is not None:
@@ -51,9 +52,23 @@ class MSP(Miniterm):
             self.serial.readline = util.randomstring
             # raise Exception  
         self.port = tty
-        self.adc = sensor.Passive(self.serial)
-        self.pwm = sensor.Active(self.serial)
         self.enable()
+
+    def __getitem__(self,key):
+        """ Return the value of a item """
+        try:
+            return getattr(self,key).read_data()
+        except TypeError:
+            return getattr(self,key).read_data('t')
+        except IndexError:
+            return getattr(self,key).data
+        except Exception, e:
+            raise e
+
+    def __setitem__(self,key,item):
+        """ Set a value of a item """
+        # getattr(self,key).write_data('r',str(item))
+        getattr(self,key).write_data(str(item))
 
     def enable(self):
         """ Method to enable the micro """
@@ -79,30 +94,57 @@ if __name__ == '__main__':
 
     # choose a port
     if len(PORTS_AVAILABLE) == 1:
-        msp430 = MSP(PORTS_AVAILABLE[0], 4800)
+        msp430 = MSP(PORTS_AVAILABLE[0])
+    print 'Ready'
 
     # make 10 reads from adc
-    print '\nRaw data \n----------'
-    for x in xrange(1, 11):
-        print x, msp430.adc.read_data('t')
+    # print '\nRaw data \n----------'
+    # for x in xrange(1, 11):
+    #     print x, msp430.adc.read_data('t')
 
-    # define a new reading method
-    def thridfirst():
-        """ Rewritng method """
-        data = msp430.serial.readline()
-        return data.split(',')[:3]
+    # # define a new reading method
+    # def thridfirst(item):
+    #     """ Rewritng method """
+    #     data = msp430.serial.readline()
+    #     return data.split(',')[:3]
 
-    msp430.adc.read = thridfirst
+    # print msp430['adc']
+    # msp430.adc.read_data = thridfirst
 
-    # make 10 reads from adc using the new method
-    print '\nProcessed data \n----------'
-    for x in xrange(1, 11):
-        print x, msp430.adc.flush()
+    # # make 10 reads from adc using the new method
+    # print '\nProcessed data \n----------'
+    # for x in xrange(1, 11):
+    #     print x, msp430.adc.flush()
 
-    # example of using a active sensor
-    print '\nActive sensor\'s data \n----------'
-    for x in xrange(1, 11):
-        print x, msp430.pwm.write_data('r', 't')
+    # # example of using a active sensor
+    # print '\nActive sensor\'s data \n----------'
+    # for x in xrange(1, 11):
+    #     print x, msp430.pwm.write_data('r', 't')
+
+    # new microcontroller interface
+    msp430.adc = sensor.Direction(msp430.serial,0)
+    print '\nADC data \n----------'
+    for x in xrange(1,10):
+        print msp430['adc']
+
+    msp430.guidao = sensor.Direction(msp430.serial,2)
+    print '\nGuidão data \n----------'
+    for x in xrange(1,10):
+        print msp430['guidao']
+
+    msp430.freio = sensor.Freio(msp430.serial,3)
+    print '\nFreio data \n----------'
+    for x in xrange(1,11):
+        print "Writinh %d..." %x,
+        msp430['freio']=x
+        print msp430['freio']
+
+    # teste number larger than 9
+    msp430.teste = sensor.Direction(msp430.serial,13)
+    print '\nTeste data \n----------'
+    for x in xrange(1,10):
+        print msp430['teste']
+
 
     # closes msp430 dependecies
     msp430.desable()

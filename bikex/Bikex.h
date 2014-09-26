@@ -9,6 +9,9 @@
 #include <Unity.h>
 #include <Ovr.h>
 
+#define MAX_DT 100 // 100 == (1/10) * 1000
+#define MIN_DT 33 // 33 == (1/30) * 1000
+#define SAMPLES_FPS 128
 typedef struct _position
 {
 	double x, y, z;
@@ -43,12 +46,12 @@ public:
 	/**
 	 *	Current battery status
 	 */
-	char currBattery;
+	unsigned char currBattery;
 
 	/**
 	 *	Current player's heart beat rate
 	 */
-	char currHearBeat;
+	unsigned char currHearBeat;
 
 	/**
 	 *	Current player's distance already biked, in meters
@@ -58,12 +61,12 @@ public:
 	/**
 	 *	Current player's speed (intensity of going forward)
 	 */
-	char currSpeed;
+	unsigned char currSpeed;
 
 	/**
 	 *	Current player's direction, if turning to the right or to the left, to the left
 	 */
-	char currDirection;
+	unsigned char currDirection;
 
 	/**
 	 *	Current player's angle referred to the origin point [0, 0]

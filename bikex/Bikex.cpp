@@ -1,14 +1,23 @@
-#include <Bikex.h>
-#include <Battery.h>
-#include <Break.h>
-#include <Direction.h>
-#include <Oximetry.h>
-#include <Speed.h>
-#include <Ovr.h>
-#include <Unity.h>
 #include <iostream>
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/time.h>
+#include <Bikex.h>
+
+/**
+ *	Get time difference between two timestamps
+ */
+static int time_diff(struct timeval x , struct timeval y)
+{
+    int x_ms , y_ms , diff;
+     
+    x_ms = x.tv_sec*1000 + x.tv_usec/1000;
+    y_ms = y.tv_sec*1000 + y.tv_usec/1000;
+     
+    diff = y_ms - x_ms;
+     
+    return diff;
+}
 
 Bikex::Bikex()
 {
@@ -49,13 +58,24 @@ Bikex::~Bikex()
 	delete direction;
 	delete oximetry;
 	delete speed;
+
+	// Termination Devices
+	Device::destroy();
 }
 
 void Bikex::init()
 {
 	std::cout << "Initiating Bikex" << std::endl;
+
+	// Ovr initialization
 	ovr->init();
 	ovr->startSensor();
+
+	// Unity initialization
+	unity->init();
+
+	// Devices initialization
+	Device::init();
 }
 
 void Bikex::printCurrState()
@@ -93,8 +113,6 @@ void Bikex::calculatePlayerRotation()
 {
 	std::cout << "Calculating player rotation" << std::endl;
 	// NOTE: it's probably not like this how we do, again let's check the values
-	double garbage;
-	ovr->getXYZW(&this->currRotation.x, &this->currRotation.y, &this->currRotation.z, &garbage);
 }
 
 void Bikex::setBreakIntensity()
@@ -102,7 +120,7 @@ void Bikex::setBreakIntensity()
 	std::cout << "Setting break intensity" << std::endl;
 	// TODO: do some calculations to set right amount of intensity
 	int altitude = unity->getPlayerAltitude();
-	currPosition.y = (char)altitude;
+	currPosition.y = (unsigned char)altitude;
 	_break->setData(altitude);
 }
 
@@ -110,14 +128,15 @@ int Bikex::writeDevices()
 {
 	std::cout << "Writting devices" << std::endl;
 	static char info[256];
+	static int chars_written;
 
 	// First, common sensors
 	Active::flush();
 
 	// Now Unity stuff
-	sprintf(info, "Speed: %i | Heart: %i | Dist: %i | Batt: %i", 
+	chars_written = sprintf(info, "\rSpeed: %i | Heart: %i | Dist: %i | Batt: %i", 
 		this->currSpeed, this->currHearBeat, this->currDistance, this->currBattery);
-	unity->setInfo(info);
+	unity->setInfo(info, chars_written);
 	unity->setPlayerPosition(this->currPosition.x, this->currPosition.z);
 	unity->setPlayerRotation(this->currRotation.x, this->currRotation.x, this->currRotation.z);
 
@@ -134,16 +153,31 @@ int Bikex::readDevices()
 	oximetry->getData(this->currHearBeat);
 	battery->getData(this->currBattery);
 
+	// Read from Ovr
+	double garbage;
+	ovr->getXYZW(&this->currRotation.x, &this->currRotation.y, &this->currRotation.z, &garbage);
+
 	return 0;
 }
 
 void Bikex::play()
 {
+
 	std::cout << "Playing" << std::endl;
-	bool keepGoing = true;
-	int i = 0;
-	while(i++ < 1002)
+    int samples[SAMPLES_FPS], i_samples = 0;
+    int diff = 0, total = 0, average = 0, i = 0;
+    struct timeval before , after;
+
+    for (i=0; i<SAMPLES_FPS; i++)
+        samples[i] = 30;
+    
+	while(1)
 	{
+        printf("\rmedia: %d", average);
+
+        // Begin time count
+		gettimeofday(&before , NULL);
+
 		// Read all sensors 
 		this->readDevices();
 
@@ -156,50 +190,26 @@ void Bikex::play()
 		this->writeDevices();
 
 		// Finally tells unity it can render the frame
+		// TODO: checks how to make unity wait until next frame rendering
 		unity->render();
 
-		this->printCurrState();
+		gettimeofday(&after , NULL);
 
-		/*
-		However if you use this fps value directly and just display it to the screen, 
-		you'll find it's rather irratic. The amount of time it takes to complete a frame 
-		will typically vary a bit from frame to frame, and this will make it hard to read 
-		and not so useful. To get around this, you can filter your result a bit taking a 
-		bunch of samples and averaging the result.
+        // Time taking task
+        for(i = total = 0; i < SAMPLES_FPS; i++)
+            total += samples[i];
 
+        diff = time_diff(before , after);
+        samples[i_samples++] = diff;
+        if(i_samples == SAMPLES_FPS) 
+        	i_samples = 0;
 
+        average = total/SAMPLES_FPS;
+        if(average < MIN_DT) 
+        	average = MIN_DT;
 
-		static const int NUM_FPS_SAMPLES = 64;
-
-		float fpsSamples[NUM_FPS_SAMPLES]
-
-		int currentSample = 0;
-
-
-
-		float CalcFPS(int dt)
-
-		{
-
-		    fpsSamples[currentSample % NUM_FPS_SAMPLES] = 1.0f / dt;
-
-		    float fps = 0;
-
-		    for (int i = 0; i < NUM_FPS_SAMPLES; i++)
-
-		        fps += fpsSamples[i];
-
-		    fps /= NUM_FPS_SAMPLES;
-
-		    return fps;
-
-		}
-		*/
-
-		// Now we sleep
-		usleep(calcFPS(0));
-		std::cout << "Playing TODO" << std::endl;
-		keepGoing = false;
+        if(diff < average)
+            usleep((average - diff)*1000);
 	}
 }
 
