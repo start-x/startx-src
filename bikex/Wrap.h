@@ -18,4 +18,5 @@
 
 #define ALL_VALUES 0
 #define DIRECTION_MSP 1
-#define BREAK_MSP 2
+#define VELOCITY_MSP 2
+#define BREAK_MSP 3

@@ -76,6 +76,7 @@ ACTIVE_FILE = _startx.ACTIVE_FILE
 PASSIVE_FILE = _startx.PASSIVE_FILE
 ALL_VALUES = _startx.ALL_VALUES
 DIRECTION_MSP = _startx.DIRECTION_MSP
+VELOCITY_MSP = _startx.VELOCITY_MSP
 BREAK_MSP = _startx.BREAK_MSP
 # This file is compatible with both classic and new-style classes.
 

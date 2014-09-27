@@ -61,6 +61,9 @@ int main()
 			case DIRECTION_MSP:
 				//printf("[%d]\n", adc_read(0));
 				break;
+			case VELOCITY_MSP:
+				//printf("[%d]\n", adc_read(0));
+				break;
 			default:
 				break;
 		}

@@ -23,7 +23,7 @@ OD_FLAGS = -x --syms
 
 INCDIR=-I. -I../../bikex
 LIBDIR=-L. 
-CFLAGS= -Os -mmcu=$(MCU) $(INCDIR) $(LIBDIR) -pedantic -asci
+CFLAGS= -Os -mmcu=$(MCU) $(INCDIR) $(LIBDIR) -Wall
 OBJDIR =.
 
 SRC = launchpad.c main.c adc.c
