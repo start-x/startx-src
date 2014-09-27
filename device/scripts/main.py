@@ -32,7 +32,7 @@ def write_file(signum, frame):
     f = open(PASSIVE_FILE,'w')
     print "requisited new data from sensor"
     #f.write(msp430.read_data()) 
-    f.write(msp430['direcao'])
+    f.write(msp430['passives'])
     f.close()
     try:
         # Without a real pid, could be dangerous
@@ -55,7 +55,7 @@ def main():
     print "Mine: %d " % getpid()
     print SIG1,SIG2,SIG3
     msp430.curb = sensor.Break(msp430.serial,0)
-    msp430.direcao = sensor.Direction(msp430.serial,0)
+    msp430.passives = sensor.Passives(msp430.serial,0)
 
     signal(SIG1, write_file)
     signal(SIG3, read_file)

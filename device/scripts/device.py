@@ -85,7 +85,9 @@ class Break(Active):
         self.arg = arg
         
     def write_data(self,data):
-        super(Break, self).write_data(self.arg,data)
+        data = int(data)
+        if (data >= 0) and (data <= 9):
+            super(Break, self).write_data(self.arg,data)
 
 
 class Direction(Passive):
