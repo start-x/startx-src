@@ -30,27 +30,31 @@ def safe_quit(signum, frame):
 def write_file(signum, frame):
     """ was requisited new data from sensor"""
     f = open(PASSIVE_FILE,'w')
+    print "requisited new data from sensor"
     #f.write(msp430.read_data()) 
     f.write(msp430['direcao'])
     f.close()
-    #kill(pid_bikex,SIG2)
-    pass
+    try:
+        # Without a real pid, could be dangerous
+        # kill(pid_bikex,SIG2)
+        pass
+    except Exception, e:
+        print 'Father not available'
 
 def read_file(signum, frame):
-    """ read file and sendo to mcu """
+    """ read file and send to mcu """
     f = open(ACTIVE_FILE,'a+r')
     data = f.readline() 
-    print data
-    msp430['freio'] = data
+    print data,
+    msp430['curb'] = data
     f.close()
-    pass
 
 def main():
     pid_bikex = sys.argv[1:2]
     print "Father: %s" % pid_bikex
     print "Mine: %d " % getpid()
     print SIG1,SIG2,SIG3
-    msp430.freio = sensor.Freio(msp430.serial,0)
+    msp430.curb = sensor.Break(msp430.serial,0)
     msp430.direcao = sensor.Direction(msp430.serial,0)
 
     signal(SIG1, write_file)
@@ -63,22 +67,19 @@ def main():
 
 if __name__ == '__main__':
     # list available ports
-    print 'Available ports:'
     PORTS_AVAILABLE = util.available_ports()
     try:
+        print 'Available ports:'
         for i in PORTS_AVAILABLE:
             print '>>> %s' % i
         print '---'
         # choose a port
-        if len(PORTS_AVAILABLE) == 1:
+        if len(PORTS_AVAILABLE) > 0:
             msp430 = MSP(PORTS_AVAILABLE[0])
     except TypeError, error:
-        print "None device connected"
+        print "None device connected - test mode"
         msp430 = MagicMock()
-
-        msp430.read_data =  MagicMock(return_value='jhasdfaskjfkjb'
-        #exit()
-)
+        msp430.__getitem__ =  MagicMock(return_value='Test Message\n')
 
     print 'Ready'
     main()
