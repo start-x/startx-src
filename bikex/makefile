@@ -27,7 +27,7 @@ OBJ=$(patsubst %.cpp,$(OBJDIR)/%.o,$(SRC))
 # Dependencies
 DEP=$(wildcard *.h)
 
-$(LIBNAME): $(OBJDIR) $(OBJ)
+$(LIBNAME): wrap $(OBJDIR) $(OBJ)
 	rm -f $(LIBNAME)
 	$(AR) $(ARARGS) $(LIBNAME) $(OBJ)
 

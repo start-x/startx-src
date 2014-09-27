@@ -20,19 +20,19 @@ int main()
 	ligled(VERM);
 	//P1OUT ^= VERM;
 	/* Defined in Wrap.h */
-	PipeCommand cmd;
+	int cmd;
 
 	for(;;)
 	{
 		//P1OUT ^= VERM;
-		cmd = (PipeCommand) getchar();
+		cmd = getchar();
 		switch(cmd)
 		{
-			case ALL:
+			case ALL_VALUES:
 				//printf("[%d,%d]\n", adc_read(0),adc_read(1));
 				break;
 			case 'a':
-			case BREAK:
+			case BREAK_MSP:
 			
 				//dly_coxa(1000);
 				
@@ -58,7 +58,7 @@ int main()
 					position of the servo motor
 				*/
 				break;
-			case DIRECTION:
+			case DIRECTION_MSP:
 				//printf("[%d]\n", adc_read(0));
 				break;
 			default:

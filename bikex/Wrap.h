@@ -15,10 +15,7 @@
  * Macros to define the output
  * from sensor
  */
-typedef
-enum 
-{
-	ALL,
-	DIRECTION,
-	BREAK
-}PipeCommand;
+
+#define ALL_VALUES 0
+#define DIRECTION_MSP 1
+#define BREAK_MSP 2
