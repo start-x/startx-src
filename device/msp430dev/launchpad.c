@@ -1,6 +1,9 @@
 #include<msp430g2553.h>
 #include<string.h>
-#include <launchpad.h>
+#include "launchpad.h"
+
+int TCount123123[NUM_COUNT];
+int TLimit[NUM_COUNT];
 
 /**
  * @brief Desable Watchdog
@@ -167,6 +170,8 @@ void setDigitalOut1(unsigned char pin)
 	P1DIR|=pin;		
 }
 
+
+
 #ifdef ATIVAR_TIMER
 #pragma vector=TIMER0_A0_VECTOR
 __interrupt void teste_timer1(void)
@@ -179,11 +184,6 @@ __interrupt void teste_timer1(void)
 		else
 			TCount[count]++;
 	}
-	
-	/*if(TCount[count] >= TLimit[count])
-			TCount[count] = 0;
-		else
-			TCount[count]++;*/
 	
 	//P1OUT ^= VERD;
 	CCR0 = T_100US;
