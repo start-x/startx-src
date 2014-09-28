@@ -161,3 +161,10 @@ void setMultitimes()
 	TACTL = TASSEL_2 + MC_1;                  // SMCLK, contmode
 }
 
+void setDigitalOut1(unsigned char pin)
+{
+	//numled é LED1 ou LED2
+	P1DIR|=pin;		
+}
+
+
