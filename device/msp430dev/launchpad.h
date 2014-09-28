@@ -84,5 +84,7 @@ void wsserial(char *st);
 
 void setMultitimes();
 
+void setDigitalOut1(unsigned char pin);
+
 #endif
 
