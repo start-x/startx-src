@@ -200,4 +200,14 @@ void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period)
 	TLimit[ntimer] = period;
 }
 
+void pwmOut(PWM_PD pwm_pin, int upto)
+{
+	//volatile int comp = upto*TLimit[pwm_pin.ntimer]/100;
+	
+	if(TCount[3] <= upto)
+		ligled(pwm_pin.pin);
+	else
+		desled(pwm_pin.pin);
+}
+
 
