@@ -1,7 +1,7 @@
 #include<msp430g2553.h>
 
-#include <launchpad.h>
-#include <Wrap.h>
+#include "launchpad.h"
+#include "Wrap.h"
 
 
 int main()
