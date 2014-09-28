@@ -193,4 +193,11 @@ __interrupt void teste_timer1(void)
 }
 #endif
 
+void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period)
+{
+	pwm_pin->pin = pin;
+	pwm_pin->ntimer = ntimer;
+	TLimit[ntimer] = period;
+}
+
 
