@@ -99,5 +99,7 @@ void setDigitalOut1(unsigned char pin);
 
 void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period);
 
+void pwmOut(PWM_PD pwm_pin, int upto);
+
 #endif
 
