@@ -29,6 +29,13 @@
 #include <adc.h>	
 //>>>>>>> ba77d88a5df4e5eb8f02948ffb69751eea2dfb1b
 
+/* PWM pin Descriptor */
+typedef struct pwd_pd
+{
+	unsigned char pin;
+	int ntimer;
+} PWM_PD;
+
 /* Desabilita WDT */
 extern
 void desabWDT();
@@ -85,6 +92,8 @@ void wsserial(char *st);
 void setMultitimes();
 
 void setDigitalOut1(unsigned char pin);
+
+
 
 #endif
 
