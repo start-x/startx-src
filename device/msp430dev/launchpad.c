@@ -153,11 +153,11 @@ void wsserial(char *st)
 		}
 }
 
-
 void setMultitimes()
 {
+	#define ATIVAR_TIMER
 	CCTL0 = CCIE;                             // CCR0 interrupt enabled
 	CCR0 = T_100US; 
-	TACTL = TASSEL_2 + MC_2;                  // SMCLK, contmode
+	TACTL = TASSEL_2 + MC_1;                  // SMCLK, contmode
 }
 
