@@ -167,4 +167,30 @@ void setDigitalOut1(unsigned char pin)
 	P1DIR|=pin;		
 }
 
+#ifdef ATIVAR_TIMER
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void teste_timer1(void)
+{
+	int count;
+	for(count = 0; count < NUM_COUNT; count++)         // Add Offset to CCR0
+	{
+		if(TCount[count] >= TLimit[count])
+			TCount[count] = 0;
+		else
+			TCount[count]++;
+	}
+	
+	/*if(TCount[count] >= TLimit[count])
+			TCount[count] = 0;
+		else
+			TCount[count]++;*/
+	
+	//P1OUT ^= VERD;
+	CCR0 = T_100US;
+	CCTL0 &= ~CCIFG;
+	LPM0_EXIT;
+	
+}
+#endif
+
 
