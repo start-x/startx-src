@@ -134,12 +134,14 @@ void hserial()
 /* le um char da uart */
 char getchar()
 {
-	while(!(IFG2 & UCA0RXBUF));
+	//while(!(IFG2&UCA0RXIFG));
 	return UCA0RXBUF;
+	dly_coxa(1);
 }
 
 int putchar(int caracter)
 {
+	while (!(IFG2&UCA0TXIFG));
 	UCA0TXBUF = caracter;
 	
 	return 0;
@@ -185,6 +187,11 @@ __interrupt void teste_timer1(void)
 			TCount[count]++;
 	}
 	
+	if(TCount[1] <= TLimit[1]/2)
+			ligled(VERD);
+		else
+			desled(VERD);
+	
 	//P1OUT ^= VERD;
 	CCR0 = T_100US;
 	CCTL0 &= ~CCIFG;
@@ -198,13 +205,14 @@ void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period)
 	pwm_pin->pin = pin;
 	pwm_pin->ntimer = ntimer;
 	TLimit[ntimer] = period;
+	P1OUT |= VERD;
 }
 
 void pwmOut(PWM_PD pwm_pin, int upto)
 {
 	//volatile int comp = upto*TLimit[pwm_pin.ntimer]/100;
 	
-	if(TCount[3] <= upto)
+	if(TCount[pwm_pin.ntimer] <= upto)
 		ligled(pwm_pin.pin);
 	else
 		desled(pwm_pin.pin);
