@@ -23,11 +23,22 @@
 //<<<<<<< HEAD
 // defines timer
 #define T_100US 100 /* 100us period*/
-	
+#define NUM_COUNT 10	
+
 //=======
 #include <stdio.h>
-#include <adc.h>	
+#include "adc.h"	
 //>>>>>>> ba77d88a5df4e5eb8f02948ffb69751eea2dfb1b
+
+/* Counter timer A0 */
+int TCount[NUM_COUNT];
+int TLimit[NUM_COUNT];
+/* PWM pin Descriptor */
+typedef struct pwd_pd
+{
+	unsigned char pin;
+	int ntimer;
+} PWM_PD;
 
 /* Desabilita WDT */
 extern
@@ -83,6 +94,12 @@ extern
 void wsserial(char *st);
 
 void setMultitimes();
+
+void setDigitalOut1(unsigned char pin);
+
+void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period);
+
+void pwmOut(PWM_PD pwm_pin, int upto);
 
 #endif
 

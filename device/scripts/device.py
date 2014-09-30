@@ -7,6 +7,7 @@
     Define the basic classes and rotines to a sensor
 """
 
+from startx import BREAK_MSP, DIRECTION_MSP, VELOCITY_MSP, ALL_VALUES
 
 class Device(object):
 
@@ -77,25 +78,46 @@ class Passive(Device):
         return None
 
 
-class Freio(Active):
-    """docstring for Freio"""
-    def __init__(self,terminal, arg=0):
-        super(Freio, self).__init__(terminal)
+class Break(Active):
+    """docstring for Break"""
+    def __init__(self,terminal, arg=BREAK_MSP):
+        super(Break, self).__init__(terminal)
         self.arg = arg
         
     def write_data(self,data):
-        super(Freio, self).write_data(self.arg,data)
+        data = int(data)
+        if (data >= 0) and (data <= 9):
+            super(Break, self).write_data(self.arg,data)
 
 
 class Direction(Passive):
     """docstring for Direction"""
-    def __init__(self,terminal, arg=1):
+    def __init__(self,terminal, arg=DIRECTION_MSP):
         super(Direction, self).__init__(terminal)
         self.arg = arg
         
     def read_data(self):
         return super(Direction, self).read_data(self.arg)
 
+
+class Velocity(Passive):
+    """docstring for Velocity"""
+    def __init__(self,terminal, arg=VELOCITY_MSP):
+        super(Velocity, self).__init__(terminal)
+        self.arg = arg
+        
+    def read_data(self):
+        return super(Velocity, self).read_data(self.arg)
+
+
+class Passives(Passive):
+    """docstring for Passives"""
+    def __init__(self,terminal, arg=ALL_VALUES):
+        super(Passives, self).__init__(terminal)
+        self.arg = arg
+        
+    def read_data(self):
+        return super(Passives, self).read_data(self.arg)
 
 if __name__ == '__main__':
     import serial

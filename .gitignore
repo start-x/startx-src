@@ -22,8 +22,8 @@
 *.app
 
 #vim/vi temp
-.swp
-.swo
+*.swp
+*.swo
 
 #MSP FILES ~
 *.elf
@@ -42,3 +42,7 @@ doc/html/*
 #Auto-generated files
 *.txt
 build/bikex
+
+#puppet modules
+puppet/modules/pip/
+puppet/modules/stdlib/

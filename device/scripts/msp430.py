@@ -37,7 +37,7 @@ class MSP(Miniterm):
     modules={}
 
     def __init__(self, tty, baud=9600):
-        if tty is not None:
+        if tty is not []:
             try:
                 super(MSP, self).__init__(tty, baud, 'N',
                   False, False)

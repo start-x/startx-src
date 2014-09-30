@@ -1,6 +1,9 @@
 #include<msp430g2553.h>
 #include<string.h>
-#include <launchpad.h>
+#include "launchpad.h"
+
+int TCount123123[NUM_COUNT];
+int TLimit[NUM_COUNT];
 
 /**
  * @brief Desable Watchdog
@@ -131,12 +134,14 @@ void hserial()
 /* le um char da uart */
 char getchar()
 {
-	while(!(IFG2 & UCA0RXBUF));
+	//while(!(IFG2&UCA0RXIFG));
 	return UCA0RXBUF;
+	dly_coxa(1);
 }
 
 int putchar(int caracter)
 {
+	while (!(IFG2&UCA0TXIFG));
 	UCA0TXBUF = caracter;
 	
 	return 0;
@@ -153,11 +158,64 @@ void wsserial(char *st)
 		}
 }
 
-
 void setMultitimes()
 {
+	#define ATIVAR_TIMER
 	CCTL0 = CCIE;                             // CCR0 interrupt enabled
 	CCR0 = T_100US; 
-	TACTL = TASSEL_2 + MC_2;                  // SMCLK, contmode
+	TACTL = TASSEL_2 + MC_1;                  // SMCLK, contmode
 }
+
+void setDigitalOut1(unsigned char pin)
+{
+	//numled é LED1 ou LED2
+	P1DIR|=pin;		
+}
+
+
+
+#ifdef ATIVAR_TIMER
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void teste_timer1(void)
+{
+	int count;
+	for(count = 0; count < NUM_COUNT; count++)         // Add Offset to CCR0
+	{
+		if(TCount[count] >= TLimit[count])
+			TCount[count] = 0;
+		else
+			TCount[count]++;
+	}
+	
+	if(TCount[1] <= TLimit[1]/2)
+			ligled(VERD);
+		else
+			desled(VERD);
+	
+	//P1OUT ^= VERD;
+	CCR0 = T_100US;
+	CCTL0 &= ~CCIFG;
+	LPM0_EXIT;
+	
+}
+#endif
+
+void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period)
+{
+	pwm_pin->pin = pin;
+	pwm_pin->ntimer = ntimer;
+	TLimit[ntimer] = period;
+	P1OUT |= VERD;
+}
+
+void pwmOut(PWM_PD pwm_pin, int upto)
+{
+	//volatile int comp = upto*TLimit[pwm_pin.ntimer]/100;
+	
+	if(TCount[pwm_pin.ntimer] <= upto)
+		ligled(pwm_pin.pin);
+	else
+		desled(pwm_pin.pin);
+}
+
 

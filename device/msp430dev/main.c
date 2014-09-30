@@ -1,15 +1,16 @@
 #include<msp430g2553.h>
 
-#include <launchpad.h>
-#include <Wrap.h>
+#include "launchpad.h"
+#include "Wrap.h"
 
 
 int main()
 {
 	/* Counting parameters */
-	volatile int counter = 0, endcount = 1000;
+	volatile int counter = 0, endcount = 1000, fat = 1;
 	char ch;	
 	
+	PWM_PD pwm0;
 	
 	desabWDT();
 	/* botao(); */
@@ -17,34 +18,53 @@ int main()
 	hserial();
 	
 	hled(VERM|VERD);
-	ligled(VERM);
+	//ligled(VERM);
+	
+	setPWMpin(&pwm0, VERM, 0, 600);
+	setMultitimes();
+	
+	//TLimit[0] = 5000;
+	
+	TCount[0] = 0;
+	
+	TLimit[1] = 4000;
+	
+	TCount[1] = 0;
+	
+	
+	
 	//P1OUT ^= VERM;
 	/* Defined in Wrap.h */
-	PipeCommand cmd;
+	int cmd;
+
+	_BIS_SR(LPM0_bits+GIE);
 
 	for(;;)
 	{
 		//P1OUT ^= VERM;
-		cmd = (PipeCommand) getchar();
+		//ligled(VERM);
+		pwmOut(pwm0, fat);
+		//desled(VERM);
+		cmd = getchar();
 		switch(cmd)
 		{
-			case ALL:
+			case ALL_VALUES:
 				//printf("[%d,%d]\n", adc_read(0),adc_read(1));
 				break;
 			case 'a':
-			case BREAK:
+			case BREAK_MSP:
 			
 				//dly_coxa(1000);
-				
+				while(!(IFG2&UCA0RXIFG));
 				ch = getchar();
 								
 				if((ch >= '0') && (ch <= '9'))
-					endcount = 1000 + (int) ((unsigned char) ch-'0')*10000/10;
-					
+					fat = 1 + (int) ((unsigned char) ch-'0');
+				putchar(ch);
 					//if(counter >= endcount)
 					//{
-						counter = 0;
-						P1OUT ^= VERD;
+						//counter = 0;
+						//P1OUT ^= VERD;
 					//}
 					//else
 					//{
@@ -58,7 +78,10 @@ int main()
 					position of the servo motor
 				*/
 				break;
-			case DIRECTION:
+			case DIRECTION_MSP:
+				//printf("[%d]\n", adc_read(0));
+				break;
+			case VELOCITY_MSP:
 				//printf("[%d]\n", adc_read(0));
 				break;
 			default:
@@ -66,15 +89,25 @@ int main()
 		}
 		
 		
-		if (counter >= endcount)
+		//pwmOut(pwm0, 500);
+	/*	
+		if(TCount[1] <= TLimit[1]/2)
+			ligled(VERM);
+		else
+			desled(VERM);
+	*/	
+		
+		/*if (counter >= endcount)
 		{
 			counter = 0;
-			P1OUT ^= VERM;
+			P1OUT ^= VERD;
 		}
 		else
 		{
 			counter++;
-		}		
+		}*/
+		
+			
 			
 	}
 
