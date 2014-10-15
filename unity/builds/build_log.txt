@@ -4,3 +4,8 @@ Write here all the builds that there were made
   - it contains a simple tree, a rusty bicycle and a truck
 9 Sep 2014: First Linux build with OVR integration
   - it contains a simple tree, a rusty bicycle and a truck
+
+15 Oct 2014: Clean builds, now contains:
+  - build1 - first experiment, with a jeep, a tree and a bike. Unity Free
+  - build2 - Official environment for the project, without ovr. Unity Free
+  - build3 - Official environment with OVR. OVR SDK 2.5
