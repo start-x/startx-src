@@ -172,7 +172,15 @@ void setDigitalOut1(unsigned char pin)
 	P1DIR|=pin;		
 }
 
-
+void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period)
+{
+	pwm_pin->pin = pin;
+	pwm_pin->ntimer = ntimer;
+	TLimit[ntimer] = period;
+	//P1OUT |= VERD;
+	
+#define ATIVA_PWM
+}
 
 #ifdef ATIVAR_TIMER
 #pragma vector=TIMER0_A0_VECTOR
@@ -191,7 +199,9 @@ __interrupt void teste_timer1(void)
 			ligled(VERD);
 		else
 			desled(VERD);
-	
+#ifdef ATIVA_PWM
+	pwmOut(pwm0, fat);
+#endif
 	//P1OUT ^= VERD;
 	CCR0 = T_100US;
 	CCTL0 &= ~CCIFG;
@@ -200,13 +210,7 @@ __interrupt void teste_timer1(void)
 }
 #endif
 
-void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period)
-{
-	pwm_pin->pin = pin;
-	pwm_pin->ntimer = ntimer;
-	TLimit[ntimer] = period;
-	P1OUT |= VERD;
-}
+
 
 void pwmOut(PWM_PD pwm_pin, int upto)
 {
