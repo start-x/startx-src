@@ -3,17 +3,14 @@ PROJ=bikex
 
 # Where's my src and build folder
 # xml hash eval file_handler
-MODULES				= bikex.a device.a ovr.a unity.a
+MODULES				= bikex.a device.a unity.a
 BUILD_DIR			= build
-
-# OVR library
-OVRLIB=ovr/sdk/lib/linux/Release/x86_64/libovr.a
 
 # Include module headers
 MODULES_INC			= $(patsubst %.a, -I%, $(MODULES))
 
-#Include ovr sdk
-INCDIR = -Iovr/sdk/src
+#Include dir
+INCDIR = 
 
 # Build file
 BUILD = $(BUILD_DIR)/$(PROJ)
@@ -23,12 +20,12 @@ MAIN=main.cpp
 
 # Compiler
 CC=g++
-CFLAGS=-lGL -ludev -lXrandr -lX11 -lpthread  
+CFLAGS=  
 CFLAGSDEBUG=-g
 
 # Targets $(call FILTER_OUT,lex, $(FILES))
-compile: $(MODULES)
-	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) $(OVRLIB) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS)
+compile: $(BUILD_DIR) $(MODULES)
+	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS)
 
 $(MODULES):
 	# Set flag to compile submodules with mock_flag
@@ -39,11 +36,13 @@ else
 endif
 
 debug: $(MODULES)
-	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) $(OVRLIB) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS) $(CFLAGSDEBUG)
+	$(CC) -o $(BUILD) $(MAIN) $(patsubst %, $(BUILD_DIR)/%, $(MODULES)) -I$(BUILD_DIR) $(INCDIR) $(MODULES_INC) $(CFLAGS) $(CFLAGSDEBUG)
 
 mock: compile
-	
 
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+	
 clean:	
 	rm -f $(BUILD_DIR)/*
 	rm -f $(patsubst %, $(BUILD_DIR)/%, $(MODULES))

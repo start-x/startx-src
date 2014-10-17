@@ -24,7 +24,6 @@ Bikex::Bikex()
 	std::cout << "Creating Bikex" << std::endl;
 
 	this->unity = new Unity();
-	this->ovr = new Ovr();
 	this->battery = new Battery();
 	this->_break = new Break();
 	this->direction = new Direction();
@@ -52,7 +51,6 @@ Bikex::~Bikex()
 {
 	std::cout << "Termination Bikex" << std::endl;
 	delete unity;
-	delete ovr;
 	delete battery;
 	delete _break;
 	delete direction;
@@ -66,10 +64,6 @@ Bikex::~Bikex()
 void Bikex::init()
 {
 	std::cout << "Initiating Bikex" << std::endl;
-
-	// Ovr initialization
-	ovr->init();
-	ovr->startSensor();
 
 	// Unity initialization
 	unity->init();
@@ -153,10 +147,6 @@ int Bikex::readDevices()
 	oximetry->getData(this->currHearBeat);
 	battery->getData(this->currBattery);
 
-	// Read from Ovr
-	double garbage;
-	ovr->getXYZW(&this->currRotation.x, &this->currRotation.y, &this->currRotation.z, &garbage);
-
 	return 0;
 }
 
@@ -168,7 +158,7 @@ void Bikex::play()
     int diff = 0, total = 0, average = 0, i = 0;
     struct timeval before , after;
 
-    for (i=0; i<SAMPLES_FPS; i++)
+    for(i = 0; i < SAMPLES_FPS; i++)
         samples[i] = 30;
     
 	while(1)
@@ -211,10 +201,4 @@ void Bikex::play()
         if(diff < average)
             usleep((average - diff)*1000);
 	}
-}
-
-float Bikex::calcFPS(int dt)
-{
-	std::cout << "Calculating FPS" << std::endl;
-	return 1.0;
 }
