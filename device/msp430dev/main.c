@@ -7,10 +7,10 @@
 int main()
 {
 	/* Counting parameters */
-	volatile int counter = 0, endcount = 1000, fat = 1;
+	volatile int counter = 0, endcount = 1000;
 	char ch;	
 	
-	PWM_PD pwm0;
+	
 	
 	desabWDT();
 	/* botao(); */
@@ -31,7 +31,7 @@ int main()
 	
 	TCount[1] = 0;
 	
-	
+	fat = 1;
 	
 	//P1OUT ^= VERM;
 	/* Defined in Wrap.h */
@@ -43,7 +43,7 @@ int main()
 	{
 		//P1OUT ^= VERM;
 		//ligled(VERM);
-		pwmOut(pwm0, fat);
+		
 		//desled(VERM);
 		cmd = getchar();
 		switch(cmd)
