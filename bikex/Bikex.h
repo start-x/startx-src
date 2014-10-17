@@ -7,7 +7,6 @@
 #include <Direction.h>
 #include <Break.h>
 #include <Unity.h>
-#include <Ovr.h>
 
 #define MAX_DT 100 // 100 == (1/10) * 1000
 #define MIN_DT 33 // 33 == (1/30) * 1000
@@ -83,11 +82,6 @@ public:
 	Unity * unity;
 
 	/**
-	 *	Our own reference to Ovr
-	 */
-	Ovr * ovr;
-
-	/**
 	 *	Our own reference to Battery
 	 */
 	Battery * battery;
@@ -158,16 +152,6 @@ public:
 	 *	Method that is going to be executed 30 times a second
 	 */
 	void play();
-
-	/**
-	 *	Calculate how long to sleep before building next frame
-	 *	it should return time in u_seconds to wait for the next frame to be built
-	 */
-	float calcFPS(int dt);
-
-	/**
-	 *	Writes 
-	 */
 };
 
 #endif

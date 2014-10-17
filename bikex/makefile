@@ -10,9 +10,9 @@ CC=g++
 CFLAGS=
 
 # Include dir
-INCDIR=-I. -I../ovr/sdk/src
+INCDIR=-I.
 
-MODULES = device.a ovr.a unity.a
+MODULES = device.a unity.a
 MODULES_INC = $(patsubst %.a, -I../%, $(MODULES))
 
 # Obj dir
