@@ -20,7 +20,7 @@ int main()
 	hled(VERM|VERD);
 	//ligled(VERM);
 	
-	setPWMpin(&pwm0, VERM, 0, 600);
+	setPWMpin(&pwm0, VERD, 0, 600);
 	setMultitimes();
 	
 	//TLimit[0] = 5000;
@@ -31,7 +31,11 @@ int main()
 	
 	TCount[1] = 0;
 	
+<<<<<<< HEAD
 	fat = 1;
+=======
+	set_diginput();
+>>>>>>> cc74678dc9965719486786cbc2244dfe9c8330f4
 	
 	//P1OUT ^= VERM;
 	/* Defined in Wrap.h */

@@ -27,6 +27,13 @@ class bike-x::os::debian {
     ensure  => present,
   }
 
+  pip::install { 'mock':
+    package => 'mock',
+    version => '1.0.1',
+    python_version => '',
+    ensure  => present,
+  }
+
   file { "90-oculus.rules":
     ensure  => present, 
     path    => "/lib/udev/rules.d/90-oculus.rules",

@@ -195,13 +195,18 @@ __interrupt void teste_timer1(void)
 			TCount[count]++;
 	}
 	
-	if(TCount[1] <= TLimit[1]/2)
+	/*if(TCount[1] <= TLimit[1]/2)
 			ligled(VERD);
 		else
+<<<<<<< HEAD
 			desled(VERD);
 #ifdef ATIVA_PWM
 	pwmOut(pwm0, fat);
 #endif
+=======
+			desled(VERD);*/
+	
+>>>>>>> cc74678dc9965719486786cbc2244dfe9c8330f4
 	//P1OUT ^= VERD;
 	CCR0 = T_100US;
 	CCTL0 &= ~CCIFG;
@@ -223,3 +228,28 @@ void pwmOut(PWM_PD pwm_pin, int upto)
 }
 
 
+void set_diginput()
+{
+	P1DIR &= ~BIT5;
+	P1OUT |= BIT5;
+	P1REN |= BIT5;
+	P1IES |= BIT5;	
+	P1IE |= BIT5;
+}
+       
+ #pragma vector=PORT1_VECTOR     // Começa aqui a rotina de interrupção na Porta 1 (Com o LPM4 todos os clocks estão desligados)    
+         __interrupt void Port_1_ISR(void)
+{           
+           // while(1)                                      // Loop Infinito
+              //{
+               //if ((P1IN & BIT5)==0)                 // Se  botão S1 está em 0
+    
+                P1OUT ^= BIT0;	                     //Acende Led 1 (Vermelho)
+         //            else 
+     // {
+                 //P1OUT &= ~BIT0;                  //Apaga Led 1 (Vermelho)
+                 P1IFG &= ~BIT5;                   // Reseta a flag(0)
+       //         }
+                //}
+LPM0_EXIT;
+}
