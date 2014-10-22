@@ -24,6 +24,7 @@
 // defines timer
 #define T_100US 100 /* 100us period*/
 #define NUM_COUNT 10	
+#define MAX_INT 10
 
 //=======
 #include <stdio.h>
@@ -39,6 +40,17 @@ typedef struct pwd_pd
 	unsigned char pin;
 	int ntimer;
 } PWM_PD;
+
+typedef struct tac_cnt
+{
+	unsigned char contL, contM;
+} TAC_CNT;
+
+/* Global variable test to tacometer */
+TAC_CNT GTacom;
+PWM_PD pwm0;
+int fat;
+unsigned char velocidade;
 
 /* Desabilita WDT */
 extern
@@ -100,6 +112,10 @@ void setDigitalOut1(unsigned char pin);
 void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period);
 
 void pwmOut(PWM_PD pwm_pin, int upto);
+
+void contTacom();
+
+void calc_vel();
 
 #endif
 
