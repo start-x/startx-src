@@ -179,7 +179,7 @@ void setPWMpin(PWM_PD *pwm_pin, unsigned char pin, int ntimer, int period)
 	TLimit[ntimer] = period;
 	//P1OUT |= VERD;
 	
-#define ATIVA_PWM
+	#define ATIVA_PWM
 }
 
 #ifdef ATIVAR_TIMER
@@ -199,14 +199,16 @@ __interrupt void teste_timer1(void)
 			ligled(VERD);
 		else
 <<<<<<< HEAD
-			desled(VERD);
+			desled(VERD);*/
 #ifdef ATIVA_PWM
 	pwmOut(pwm0, fat);
 #endif
-=======
+
+	//contTacom();
+/*=======
 			desled(VERD);*/
 	
->>>>>>> cc74678dc9965719486786cbc2244dfe9c8330f4
+// >>>>>>> cc74678dc9965719486786cbc2244dfe9c8330f4
 	//P1OUT ^= VERD;
 	CCR0 = T_100US;
 	CCTL0 &= ~CCIFG;
@@ -230,11 +232,11 @@ void pwmOut(PWM_PD pwm_pin, int upto)
 
 void set_diginput()
 {
-	P1DIR &= ~BIT5;
-	P1OUT |= BIT5;
-	P1REN |= BIT5;
-	P1IES |= BIT5;	
-	P1IE |= BIT5;
+	P1DIR &= ~BIT3;
+	P1OUT |= BIT3;
+	P1REN |= BIT3;
+	P1IES |= BIT3;	
+	P1IE |= BIT3;
 }
        
  #pragma vector=PORT1_VECTOR     // Começa aqui a rotina de interrupção na Porta 1 (Com o LPM4 todos os clocks estão desligados)    
@@ -244,12 +246,39 @@ void set_diginput()
               //{
                //if ((P1IN & BIT5)==0)                 // Se  botão S1 está em 0
     
-                P1OUT ^= BIT0;	                     //Acende Led 1 (Vermelho)
+                P1OUT ^= BIT0;
+                
+                calc_vel();
+                GTacom.contL++;
+               	//GTacom.contL = 0;
+		//GTacom.contM = 0;	                     //Acende Led 1 (Vermelho)
          //            else 
      // {
                  //P1OUT &= ~BIT0;                  //Apaga Led 1 (Vermelho)
-                 P1IFG &= ~BIT5;                   // Reseta a flag(0)
+                 P1IFG &= ~BIT3;                   // Reseta a flag(0)
        //         }
                 //}
 LPM0_EXIT;
+}
+
+void contTacom()
+{
+	GTacom.contL++;
+	if(GTacom.contL= MAX_INT)
+	{
+		GTacom.contL = 0;
+		GTacom.contM++;
+	}
+	
+	if(GTacom.contM= MAX_INT)
+	{
+		GTacom.contM = 0;
+	}	
+}
+
+void calc_vel()
+{
+	velocidade = '0'+GTacom.contL;//+(char) 10*((int) (GTacom.contL+MAX_INT*GTacom.contM)/(MAX_INT + MAX_INT*MAX_INT));
+	//if(GTacom.contL= MAX_INT)
+	//	GTacom.contL = 0;
 }
