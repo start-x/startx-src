@@ -20,22 +20,26 @@ int main()
 	hled(VERM|VERD);
 	//ligled(VERM);
 	
+	GTacom.contL = 0;
+	GTacom.contM = 0;
+	velocidade = '0';
+	
 	setPWMpin(&pwm0, VERD, 0, 600);
 	setMultitimes();
 	
 	//TLimit[0] = 5000;
 	
-	TCount[0] = 0;
+	TCount[0] = '0';
 	
 	TLimit[1] = 4000;
 	
 	TCount[1] = 0;
 	
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	fat = 1;
-=======
+//=======
 	set_diginput();
->>>>>>> cc74678dc9965719486786cbc2244dfe9c8330f4
+//>>>>>>> cc74678dc9965719486786cbc2244dfe9c8330f4
 	
 	//P1OUT ^= VERM;
 	/* Defined in Wrap.h */
@@ -82,7 +86,9 @@ int main()
 					position of the servo motor
 				*/
 				break;
+			case 'b':
 			case DIRECTION_MSP:
+				putchar(velocidade);
 				//printf("[%d]\n", adc_read(0));
 				break;
 			case VELOCITY_MSP:
