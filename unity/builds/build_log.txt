@@ -10,4 +10,5 @@ Write here all the builds that there were made
   - build2 - Official environment for the project, without ovr. Unity Free
   - build3 - Official environment with OVR. OVR SDK 2.5
   - build4 - Build with ovr sdk and new things on environment, like tunnel, bridge.
-  - build4 - same environment as build4, but with new scripts for rotation.
+  - build5 - same environment as build4, but with new scripts for rotation.
+  - build6 - Now it reads files unity_rotation.txt and unity_speed.txt. NOTE: IT ONLY READS SPEED.TXT WHEN USER PRESS CTRL+C
