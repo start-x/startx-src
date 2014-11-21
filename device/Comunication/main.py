@@ -31,8 +31,9 @@ def write_file(signum, frame):
     """Requisited new data from sensor"""
     f = open(PASSIVE_FILE,'w')
     print "Requisited new data from sensor"
-    #f.write(msp430.read_data()) 
+    f.write(msp430.read_data()) 
     f.write(msp430['passives'])
+    print msp430['passives']
     f.close()
     try:
         # Without a real pid, could be dangerous
@@ -43,7 +44,7 @@ def write_file(signum, frame):
 
 def read_file(signum, frame):
     """ read file and send to mcu """
-    print "BikeX requested new data"
+    print "BikeX send new data"
     f = open(ACTIVE_FILE,'a+r')
     data = f.readline() 
     print data,
