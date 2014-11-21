@@ -149,7 +149,7 @@ void Unity::setPlayerPosition(double speed)
 		// TODO: how to come back to the beginning of the output file?
 		// this->positionFile.seekg(0);
 
-		this->positionFile << speed;
+		this->positionFile << '\r' << speed;
 
 		// Make sure to write new data
 		this->positionFile.flush();
@@ -166,7 +166,7 @@ void Unity::setPlayerRotation(double rotation)
 		// TODO: how to come back to the beginning of the output file?
 		//this->rotationFile.seekg(0);
     
-		this->rotationFile << rotation;
+		this->rotationFile << '\r'  << rotation;
 
 		// Make sure to write new data
 		this->rotationFile.flush();
