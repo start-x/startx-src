@@ -36,7 +36,7 @@ class MSP(Miniterm):
     alive = False
     modules={}
 
-    def __init__(self, tty, baud=9600):
+    def __init__(self, tty, baud=9600, parity="O", timeout=5):
         if tty is not []:
             try:
                 super(MSP, self).__init__(tty, baud, 'N',

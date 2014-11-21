@@ -31,7 +31,7 @@ def randomstring():
                           
 def available_ports():               
     # looking for available ports
-    PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*')
+    PORTS_AVAILABLE = glob('/dev/ttyUSB*') + glob('/dev/ttyACM*') + glob('/dev/ttyMOCK*')
     try:                                               
         for port, desc, hwid in sorted(comports()):    
             if port not in port:                

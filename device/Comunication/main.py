@@ -31,7 +31,6 @@ def write_file(signum, frame):
     """Requisited new data from sensor"""
     f = open(PASSIVE_FILE,'w')
     print "Requisited new data from sensor"
-    f.write(msp430.read_data()) 
     f.write(msp430['passives'])
     print msp430['passives']
     f.close()

@@ -69,9 +69,14 @@ class Passive(Device):
 
     def read_data(self, command):
         """ Send some data to device """
-        self.serial.write(str(command))
-        self.data = self.serial.readline()
-        self.data = self.data.split('\n')[0]
+        #self.serial.write(str(command))
+        self.data = ''
+        for x in xrange(0,10):
+            self.serial.write('a'+ str(x))
+            data = self.serial.readline()
+            print data,x
+            data = self.data.split('\n')[0]
+            self.data = self.data + ' ' + data
         return self.data
 
     def write_data(self, command, data):
@@ -117,6 +122,8 @@ class Passives(Passive):
         self.arg = arg
         
     def read_data(self):
+        print "data lida"
+        #return super(Passives, self).read_data(self.arg)
         return super(Passives, self).read_data(self.arg)
 
 if __name__ == '__main__':
