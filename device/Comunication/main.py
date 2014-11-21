@@ -53,7 +53,12 @@ def main():
     pid_bikex = sys.argv[1:2]
     print "Father: %s" % pid_bikex
     print "Mine: %d " % getpid()
-    print SIG1,SIG2,SIG3
+    print """Signals:
+    %i -> write on file
+    %i -> read the file
+    %i -> close aplication
+    """ % (SIG1,SIG2,SIG3)
+    
     msp430.curb = sensor.Break(msp430.serial,0)
     msp430.passives = sensor.Passives(msp430.serial,0)
 
