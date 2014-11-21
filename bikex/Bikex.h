@@ -12,7 +12,10 @@
 #define MIN_DT 33 // 33 == (1/30) * 1000
 #define SAMPLES_FPS 128
 #define POTENTIOMETER_RANGE 1024
-#define MAX_ANGLE 60
+#define MAX_ANGLE 60.0
+#define NUM_OBSTRUCTIONS 4
+#define CIRCUMFERENCE 2.0
+
 typedef struct _position
 {
 	double x, y, z;
@@ -47,12 +50,12 @@ public:
 	/**
 	 *	Current battery status
 	 */
-	unsigned char currBattery;
+	double currBattery;
 
 	/**
 	 *	Current player's heart beat rate
 	 */
-	unsigned char currHearBeat;
+	double currHearBeat;
 
 	/**
 	 *	Current player's distance already biked, in meters

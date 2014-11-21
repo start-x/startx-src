@@ -26,7 +26,7 @@ public:
 	static void destroy();
 
 protected:
-	static int buffer[BUFFER_SIZE];
+	static double buffer[BUFFER_SIZE];
 };
 
 #endif

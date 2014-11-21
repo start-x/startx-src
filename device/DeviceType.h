@@ -6,7 +6,7 @@
  */
 typedef enum _deviceType
 {
-	DIRECTION = 0,
+	DIRECTION	= 0,
 	OXIMETRY 	= 1,
 	SPEED 		= 2,
 	BATTERY 	= 3,

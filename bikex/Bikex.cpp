@@ -5,6 +5,16 @@
 #include <Bikex.h>
 
 /**
+ *	degrees of a circumference
+ */
+#define CIRC_ANGLE 360.0
+
+/**
+ *	Constant to transfer meters per second to kilometer per hour
+ */
+#define MPS_TO_KMH 3.6
+
+/**
  *	Get time difference between two timestamps
  */
 static int time_diff(struct timeval x , struct timeval y)
@@ -19,6 +29,9 @@ static int time_diff(struct timeval x , struct timeval y)
     return diff;
 }
 
+/**
+ *	Represents the range of angles according to the range sent by the potenciometer
+ */
 int angles[POTENTIOMETER_RANGE];
 
 Bikex::Bikex()
@@ -103,17 +116,10 @@ void Bikex::printCurrState()
 void Bikex::calculatePlayerPosition()
 {
 	std::cout << "Calculating player position" << std::endl;
-	// TODO: check how the values are gonna come and check the relation between them
-	// TODO: calculate the change of angle
-	this->currAngle = 90;
-
-	// TODO: check the case when the player is in a curve: depends on the angle
-	this->currPosition.x = this->currPosition.x + (this->currSpeed * this->dt);
-
-	// TODO: how are we gonna set the turn ? it also has to come as speed ?
-	this->currPosition.z = this->currPosition.z + (this->currDirection * this->dt);
-
-	// Note, DO NOT set position.y, it'll be totally responsability of the simulation
+	double angle = CIRC_ANGLE / (double)NUM_OBSTRUCTIONS;
+	double distance = (angle * CIRCUMFERENCE) / (double)(90 * 4);
+	this->currSpeed = distance / (this->currSpeed / 100.0);
+	this->currSpeed *= MPS_TO_KMH;
 }
 
 void Bikex::calculatePlayerRotation()
@@ -121,7 +127,7 @@ void Bikex::calculatePlayerRotation()
 	std::cout << "Calculating player rotation" << std::endl;
 	// NOTE: it's probably not like this how we do, again let's check the values
   std::cout << "Before: "<< this->currDirection << std::endl;
-  this->currDirection = angles[this->currDirection];
+  this->currDirection = angles[(int)this->currDirection];
   std::cout << "After: "<< this->currDirection << std::endl;
 }
 
@@ -144,7 +150,7 @@ int Bikex::writeDevices()
 	Active::flush();
 
 	// Now Unity stuff
-	chars_written = sprintf(info, "\rSpeed: %i | Heart: %i | Dist: %i | Batt: %i", 
+	chars_written = sprintf(info, "\rSpeed: %lf | Heart: %lf | Dist: %d | Batt: %lf", 
 		this->currSpeed, this->currHearBeat, this->currDistance, this->currBattery);
 	unity->setInfo(info, chars_written);
 	unity->setPlayerPosition(this->currSpeed);
