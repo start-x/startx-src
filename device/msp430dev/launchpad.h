@@ -24,7 +24,7 @@
 // defines timer
 #define T_100US 100 /* 100us period*/
 #define NUM_COUNT 10	
-#define MAX_INT 10
+#define MAX_INT 100
 
 //=======
 #include <stdio.h>

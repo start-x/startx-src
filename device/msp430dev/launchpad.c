@@ -210,6 +210,15 @@ __interrupt void teste_timer1(void)
 	
 // >>>>>>> cc74678dc9965719486786cbc2244dfe9c8330f4
 	//P1OUT ^= VERD;
+	
+	GTacom.contL++;
+	/*if(GTacom.contL> MAX_INT)
+	{
+		GTacom.contL = 0;
+		}*/
+		
+	 contTacom();
+	
 	CCR0 = T_100US;
 	CCTL0 &= ~CCIFG;
 	LPM0_EXIT;
@@ -249,9 +258,8 @@ void set_diginput()
                 P1OUT ^= BIT0;
                 
                 calc_vel();
-                GTacom.contL++;
-               	//GTacom.contL = 0;
-		//GTacom.contM = 0;	                     //Acende Led 1 (Vermelho)
+               // GTacom.contL++;
+               		                     //Acende Led 1 (Vermelho)
          //            else 
      // {
                  //P1OUT &= ~BIT0;                  //Apaga Led 1 (Vermelho)
@@ -263,22 +271,24 @@ LPM0_EXIT;
 
 void contTacom()
 {
-	GTacom.contL++;
-	if(GTacom.contL= MAX_INT)
+	
+	if(GTacom.contL>= MAX_INT)
 	{
 		GTacom.contL = 0;
 		GTacom.contM++;
 	}
 	
-	if(GTacom.contM= MAX_INT)
+	if(GTacom.contM>= MAX_INT)
 	{
-		GTacom.contM = 0;
+		GTacom.contM = MAX_INT;
+		GTacom.contL = MAX_INT;
 	}	
 }
 
 void calc_vel()
 {
-	velocidade = '0'+GTacom.contL;//+(char) 10*((int) (GTacom.contL+MAX_INT*GTacom.contM)/(MAX_INT + MAX_INT*MAX_INT));
-	//if(GTacom.contL= MAX_INT)
-	//	GTacom.contL = 0;
+	velocidade = '0'+9/((unsigned char) ((int) 9*(GTacom.contL+MAX_INT*GTacom.contM)/(MAX_INT + MAX_INT*MAX_INT)));
+	GTacom.contL = 0;
+	GTacom.contM = 0;
+	
 }

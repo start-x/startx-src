@@ -88,7 +88,8 @@ int main()
 				break;
 			case 'b':
 			case DIRECTION_MSP:
-				putchar(velocidade);
+				while(!(IFG2&UCA0RXIFG));
+					putchar(velocidade);
 				//printf("[%d]\n", adc_read(0));
 				break;
 			case VELOCITY_MSP:
