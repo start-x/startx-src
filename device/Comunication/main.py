@@ -28,9 +28,9 @@ def safe_quit(signum, frame):
     exit()
 
 def write_file(signum, frame):
-    """ was requisited new data from sensor"""
+    """Requisited new data from sensor"""
     f = open(PASSIVE_FILE,'w')
-    print "requisited new data from sensor"
+    print "Requisited new data from sensor"
     #f.write(msp430.read_data()) 
     f.write(msp430['passives'])
     f.close()
@@ -43,6 +43,7 @@ def write_file(signum, frame):
 
 def read_file(signum, frame):
     """ read file and send to mcu """
+    print "BikeX requested new data"
     f = open(ACTIVE_FILE,'a+r')
     data = f.readline() 
     print data,
@@ -54,10 +55,10 @@ def main():
     print "Father: %s" % pid_bikex
     print "Mine: %d " % getpid()
     print """Signals:
-    %i -> write on file
-    %i -> read the file
-    %i -> close aplication
-    """ % (SIG1,SIG2,SIG3)
+    %i - BikeX -> MSP430
+    %i - MSP430 -> BikeX
+    %i - close aplication
+    """ % (SIG3,SIG1,2)
     
     msp430.curb = sensor.Break(msp430.serial,0)
     msp430.passives = sensor.Passives(msp430.serial,0)
