@@ -41,8 +41,8 @@ $(OBJDIR)/%.o: %.cpp $(DEP)
 wrap: Wrap.h
 	swig -python -module startx Wrap.h
 	$(CC) -c -fpic Wrap_wrap.c -I/usr/include/python2.7 -I.
-	$(CC) -shared Wrap_wrap.o -o ../device/scripts/_startx.so
-	mv -v startx.py Wrap_wrap.c Wrap_wrap.o ../device/scripts/
+	$(CC) -shared Wrap_wrap.o -o ../device/Comunication/_startx.so
+	mv -v startx.py Wrap_wrap.c Wrap_wrap.o ../device/Comunication/
 
 clean:
 	rm -f $(OBJDIR)/*.o
