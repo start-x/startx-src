@@ -1,6 +1,6 @@
 #include <Speed.h>
 
-int Speed::getData(unsigned char &data)
+int Speed::getData(double &data)
 {
 	data = Device::buffer[SPEED];
 	return 0;

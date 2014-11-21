@@ -6,7 +6,7 @@
 class Battery : public Passive
 {
 public:
-	int getData(unsigned char &data);
+	int getData(double &data);
 };
 
 #endif

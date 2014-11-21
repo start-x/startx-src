@@ -1,6 +1,6 @@
 #include <Battery.h>
 
-int Battery::getData(unsigned char &data)
+int Battery::getData(double &data)
 {
 	data = buffer[BATTERY];
 	return 0;

@@ -8,7 +8,7 @@
 #define UNITY_INFO_FILE "files/unity_info.txt"
 #define UNITY_ALTITUDE_FILE "files/unity_altitude.txt"
 #define UNITY_ROTATION_FILE "files/unity_rotation.txt"
-#define UNITY_POSITION_FILE "files/unity_position.txt"
+#define UNITY_POSITION_FILE "files/unity_speed.txt"
 
 #define INFO_SIZE 256
 
@@ -53,12 +53,12 @@ public:
 	/**
 	 *	Set ONLY x and z positions, because y value is NOT GONNA BE SET BY US
 	 */
-	void setPlayerPosition(double x, double z);
+	void setPlayerPosition(double speed);
 
 	/**
 	 *	Set x, y and z values for player rotation
 	 */
-	void setPlayerRotation(double x, double y, double z);
+	void setPlayerRotation(double rotation);
 
 	/**
 	 *	Set a text information of the screen

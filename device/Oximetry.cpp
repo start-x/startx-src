@@ -1,6 +1,6 @@
 #include <Oximetry.h>
 
-int Oximetry::getData(unsigned char &data)
+int Oximetry::getData(double &data)
 {
 	data = buffer[OXIMETRY];
 	return 0;

@@ -141,7 +141,7 @@ int Unity::getPlayerAltitude()
 	return returned;
 }
 
-void Unity::setPlayerPosition(double x, double z)
+void Unity::setPlayerPosition(double speed)
 {
 	if(this->positionFile.is_open())
 	{
@@ -149,7 +149,7 @@ void Unity::setPlayerPosition(double x, double z)
 		// TODO: how to come back to the beginning of the output file?
 		// this->positionFile.seekg(0);
 
-		this->positionFile << x << " " << z;
+		this->positionFile << speed;
 
 		// Make sure to write new data
 		this->positionFile.flush();
@@ -158,15 +158,15 @@ void Unity::setPlayerPosition(double x, double z)
 		std::cout << "Failed to write unity position" << std::endl;
 }
 
-void Unity::setPlayerRotation(double x, double y, double z)
+void Unity::setPlayerRotation(double rotation)
 {
 	if(this->rotationFile.is_open())
 	{
 		// Rewinds it, so it will write to the beginning again
 		// TODO: how to come back to the beginning of the output file?
 		//this->rotationFile.seekg(0);
-
-		this->rotationFile << x << " " << y << " " << z;
+    
+		this->rotationFile << rotation;
 
 		// Make sure to write new data
 		this->rotationFile.flush();

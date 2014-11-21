@@ -3700,7 +3700,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "SIG2",SWIG_From_int((int)(31)));
   SWIG_Python_SetConstant(d, "SIG3",SWIG_From_int((int)(14)));
   SWIG_Python_SetConstant(d, "ACTIVE_FILE",SWIG_FromCharPtr("/tmp/bikex_active"));
-  SWIG_Python_SetConstant(d, "PASSIVE_FILE",SWIG_FromCharPtr("/tmp/bikex_passive"));
+  SWIG_Python_SetConstant(d, "PASSIVE_FILE",SWIG_FromCharPtr("files/passive.txt"));
   SWIG_Python_SetConstant(d, "ALL_VALUES",SWIG_From_int((int)(0)));
   SWIG_Python_SetConstant(d, "DIRECTION_MSP",SWIG_From_int((int)(1)));
   SWIG_Python_SetConstant(d, "VELOCITY_MSP",SWIG_From_int((int)(2)));

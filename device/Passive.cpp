@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <stdlib.h>
 #include <Passive.h>
 
@@ -53,13 +54,18 @@ int Passive::flush()
 		mockIndex++; // Skip line break
 
 	#else
-		file.open(PASSIVE_FILENAME, std::ios::in | std::ios::binary | std::ios::ate);
+		file.open(PASSIVE_FILENAME);
 		if(file.is_open())
 		{
-			file.seekg(0, std::ios::beg);
-			// TODO: check how the input is gonna be written by msp430
-			file.read((char *)buffer, BUFFER_SIZE);
-			file.close();
+      int value;
+      std::stringstream ss;
+      ss << file.rdbuf();
+      
+      std::cout << "Valor: " << value << std::endl;
+      ss >> buffer[DIRECTION];
+      ss >> buffer[SPEED];
+      
+      file.close();
 			std::cout << "Passive mockData loaded: " << BUFFER_SIZE << " bytes long" << std::endl;
 		}
 		else

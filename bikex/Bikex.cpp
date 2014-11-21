@@ -19,6 +19,8 @@ static int time_diff(struct timeval x , struct timeval y)
     return diff;
 }
 
+int angles[POTENTIOMETER_RANGE];
+
 Bikex::Bikex()
 {
 	std::cout << "Creating Bikex" << std::endl;
@@ -64,12 +66,23 @@ Bikex::~Bikex()
 void Bikex::init()
 {
 	std::cout << "Initiating Bikex" << std::endl;
-
 	// Unity initialization
 	unity->init();
 
 	// Devices initialization
 	Device::init();
+
+  int jump = (POTENTIOMETER_RANGE/2)/MAX_ANGLE;
+  int tmpAngles = -60;
+
+  for(int i = 0; i < POTENTIOMETER_RANGE; i+=jump)
+  {
+    for(int j = 0; j < jump; j++)
+    {
+      angles[i+j] = tmpAngles;
+    }
+    tmpAngles++;
+  }
 }
 
 void Bikex::printCurrState()
@@ -107,6 +120,9 @@ void Bikex::calculatePlayerRotation()
 {
 	std::cout << "Calculating player rotation" << std::endl;
 	// NOTE: it's probably not like this how we do, again let's check the values
+  std::cout << "Before: "<< this->currDirection << std::endl;
+  this->currDirection = angles[this->currDirection];
+  std::cout << "After: "<< this->currDirection << std::endl;
 }
 
 void Bikex::setBreakIntensity()
@@ -131,8 +147,8 @@ int Bikex::writeDevices()
 	chars_written = sprintf(info, "\rSpeed: %i | Heart: %i | Dist: %i | Batt: %i", 
 		this->currSpeed, this->currHearBeat, this->currDistance, this->currBattery);
 	unity->setInfo(info, chars_written);
-	unity->setPlayerPosition(this->currPosition.x, this->currPosition.z);
-	unity->setPlayerRotation(this->currRotation.x, this->currRotation.x, this->currRotation.z);
+	unity->setPlayerPosition(this->currSpeed);
+	unity->setPlayerRotation(this->currDirection);
 
 	return 0;
 }

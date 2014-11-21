@@ -6,10 +6,10 @@
  */
 typedef enum _deviceType
 {
-	BATTERY 	= 0,
+	DIRECTION = 0,
 	OXIMETRY 	= 1,
 	SPEED 		= 2,
-	DIRECTION 	= 3,
+	BATTERY 	= 3,
 	BREAK 		= 4
 } deviceType;
 

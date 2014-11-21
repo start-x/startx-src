@@ -11,6 +11,8 @@
 #define MAX_DT 100 // 100 == (1/10) * 1000
 #define MIN_DT 33 // 33 == (1/30) * 1000
 #define SAMPLES_FPS 128
+#define POTENTIOMETER_RANGE 1024
+#define MAX_ANGLE 60
 typedef struct _position
 {
 	double x, y, z;
@@ -60,12 +62,12 @@ public:
 	/**
 	 *	Current player's speed (intensity of going forward)
 	 */
-	unsigned char currSpeed;
+	double currSpeed;
 
 	/**
 	 *	Current player's direction, if turning to the right or to the left, to the left
 	 */
-	unsigned char currDirection;
+	double currDirection;
 
 	/**
 	 *	Current player's angle referred to the origin point [0, 0]
