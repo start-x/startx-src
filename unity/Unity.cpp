@@ -36,8 +36,8 @@ Unity::~Unity()
 	if(!this->rotationFile.is_open())
 		this->rotationFile.close();
 
-	if(!this->positionFile.is_open())
-		this->positionFile.close();
+	if(!this->speedFile.is_open())
+		this->speedFile.close();
 
 	cout << "Terminating Unity" << endl;
 }
@@ -79,11 +79,8 @@ void Unity::init()
 	// Now open some useful files
 	this->altitudeFile.open(UNITY_ALTITUDE_FILE, std::ios::in | std::ios::binary | std::ios::ate);
 	this->infoFile.open(UNITY_INFO_FILE);
-	this->rotationFile.open(UNITY_ROTATION_FILE);
-	this->positionFile.open(UNITY_POSITION_FILE);
 
-	if(!this->infoFile.is_open() || !this->altitudeFile.is_open() || 
-	   !this->rotationFile.is_open() || this->positionFile.is_open())
+	if(!this->infoFile.is_open() || !this->altitudeFile.is_open())
 	{
 		cout << "Couldn't open unity communication files";
 	}
@@ -141,18 +138,15 @@ int Unity::getPlayerAltitude()
 	return returned;
 }
 
-void Unity::setPlayerPosition(double speed)
+void Unity::setPlayerSpeed(double speed)
 {
-	if(this->positionFile.is_open())
+	this->speedFile.open(UNITY_POSITION_FILE, std::ofstream::out | std::ofstream::trunc);
+	if(this->speedFile.is_open())
 	{
-		// Rewinds it, so it will write to the beginning again
-		// TODO: how to come back to the beginning of the output file?
-		// this->positionFile.seekg(0);
-
-		this->positionFile << '\r' << speed;
+		this->speedFile << speed;
 
 		// Make sure to write new data
-		this->positionFile.flush();
+		this->speedFile.close();
 	}
 	else
 		std::cout << "Failed to write unity position" << std::endl;
@@ -160,16 +154,13 @@ void Unity::setPlayerPosition(double speed)
 
 void Unity::setPlayerRotation(double rotation)
 {
+	this->rotationFile.open(UNITY_ROTATION_FILE, std::ofstream::out | std::ofstream::trunc);
 	if(this->rotationFile.is_open())
 	{
-		// Rewinds it, so it will write to the beginning again
-		// TODO: how to come back to the beginning of the output file?
-		//this->rotationFile.seekg(0);
-    
-		this->rotationFile << '\r'  << rotation;
+		this->rotationFile << rotation;
 
 		// Make sure to write new data
-		this->rotationFile.flush();
+		this->rotationFile.close();
 	}
 	else
 		std::cout << "Failed to write unity rotation" << std::endl;

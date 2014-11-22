@@ -129,7 +129,7 @@ public:
 	/**
 	 *	Calculate the next x and z values for Player position
 	 */
-	void calculatePlayerPosition();
+	void calculatePlayerSpeed();
 
 	/**
 	 *	Calculate the next x, y and z values for Player rotation

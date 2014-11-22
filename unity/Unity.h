@@ -28,7 +28,7 @@ public:
 	std::ifstream altitudeFile;
 	std::ofstream infoFile;
 	std::ofstream rotationFile;
-	std::ofstream positionFile;
+	std::ofstream speedFile;
 
 	Unity();
 	~Unity();
@@ -53,7 +53,7 @@ public:
 	/**
 	 *	Set ONLY x and z positions, because y value is NOT GONNA BE SET BY US
 	 */
-	void setPlayerPosition(double speed);
+	void setPlayerSpeed(double speed);
 
 	/**
 	 *	Set x, y and z values for player rotation

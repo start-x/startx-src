@@ -113,9 +113,12 @@ void Bikex::printCurrState()
 	std::cout << "currAngle = " << currAngle << std::endl;
 }
 
-void Bikex::calculatePlayerPosition()
+void Bikex::calculatePlayerSpeed()
 {
-	std::cout << "Calculating player position" << std::endl;
+	// TODO: we gotta calculate the speed in relatively to the last speed gave to Unity
+	// that is: if the speed slowed down, we gotta pass it negative!
+	// in Unity, the speed is gonna be incremented with the value we pass below
+	std::cout << "Calculating player speed" << std::endl;
 	double angle = CIRC_ANGLE / (double)NUM_OBSTRUCTIONS;
 	double distance = (angle * CIRCUMFERENCE) / (double)(90 * 4);
 	this->currSpeed = distance / (this->currSpeed / 100.0);
@@ -153,7 +156,7 @@ int Bikex::writeDevices()
 	chars_written = sprintf(info, "\rSpeed: %lf | Heart: %lf | Dist: %d | Batt: %lf", 
 		this->currSpeed, this->currHearBeat, this->currDistance, this->currBattery);
 	unity->setInfo(info, chars_written);
-	unity->setPlayerPosition(this->currSpeed);
+	unity->setPlayerSpeed(this->currSpeed);
 	unity->setPlayerRotation(this->currDirection);
 
 	return 0;
@@ -194,7 +197,7 @@ void Bikex::play()
 		this->readDevices();
 
 		// Calculate and set player's position and rotation based on sensors readings
-		this->calculatePlayerPosition();
+		this->calculatePlayerSpeed();
 		this->calculatePlayerRotation();
 		this->setBreakIntensity();
 
