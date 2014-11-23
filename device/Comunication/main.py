@@ -24,7 +24,7 @@ msp430 = object()
 def safe_quit(signum, frame):
     """ Care for a safe quit """
     print "Exiting"
-    msp430.desable()
+    msp430.disable()
     exit()
 
 def write_file(signum, frame):

@@ -74,8 +74,8 @@ class MSP(Miniterm):
         """ Method to enable the micro """
         self.alive = True
 
-    def desable(self):
-        """ Method to desable the micro """
+    def disable(self):
+        """ Method to disable the micro """
         self.alive = False
         self.serial.close()
 
@@ -147,4 +147,4 @@ if __name__ == '__main__':
 
 
     # closes msp430 dependecies
-    msp430.desable()
+    msp430.disable()
