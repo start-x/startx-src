@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <stdlib.h>
+#include <signal.h>
+#include <stdio.h>
 #include <Passive.h>
 
 static unsigned char * mockData = 0;
@@ -54,6 +56,8 @@ int Passive::flush()
 		mockIndex++; // Skip line break
 
 	#else
+		std::cout << "killando o processo " << Device::pythonPid << std::endl;
+		kill(Device::pythonPid, 30);
 		file.open(PASSIVE_FILENAME);
 		if(file.is_open())
 		{
@@ -61,7 +65,8 @@ int Passive::flush()
 			std::stringstream ss;
 			ss << file.rdbuf();
 			ss >> buffer[DIRECTION];
-			ss >> buffer[SPEED];
+			//ss >> buffer[SPEED];
+			buffer[SPEED] = 30.0;
 			file.close();
 		}
 		else
