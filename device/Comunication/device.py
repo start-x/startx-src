@@ -83,6 +83,8 @@ class Break(Active):
         self.arg = arg
         
     def write_data(self,data):
+        if data == '':
+            data = '0'
         data = int(data)
         if (data >= 0) and (data <= 9):
             super(Break, self).write_data(data)
