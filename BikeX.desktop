@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=BikeX
+Comment=Simulate a bike virtual envioriment
+Icon=/home/luiz/Documents/UnB/PI2/src/startx-src/icone.png
+Terminal=false
+Categories=Game;
+#Exec=device/Comunication/main.py

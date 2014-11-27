@@ -43,8 +43,8 @@ doc/html/*
 #Auto-generated files
 *.txt
 build/bikex
-device/scripts/Wrap_wrap.c
-
+device/Comunication/Wrap_wrap.c
+device/Comunication/startx.py
 
 #puppet modules
 puppet/modules/pip/
