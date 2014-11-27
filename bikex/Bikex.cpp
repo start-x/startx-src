@@ -115,10 +115,7 @@ void Bikex::printCurrState()
 
 void Bikex::calculatePlayerSpeed()
 {
-	// TODO: we gotta calculate the speed in relatively to the last speed gave to Unity
-	// that is: if the speed slowed down, we gotta pass it negative!
-	// in Unity, the speed is gonna be incremented with the value we pass below
-	std::cout << "Calculating player speed" << std::endl;
+	//std::cout << "Calculating player speed" << std::endl;
 	double angle = CIRC_ANGLE / (double)NUM_OBSTRUCTIONS;
 	double distance = (angle * CIRCUMFERENCE) / (double)(90 * 4);
 	this->currSpeed = distance / (this->currSpeed / 100.0);
@@ -127,16 +124,13 @@ void Bikex::calculatePlayerSpeed()
 
 void Bikex::calculatePlayerRotation()
 {
-	std::cout << "Calculating player rotation" << std::endl;
-	// NOTE: it's probably not like this how we do, again let's check the values
-  std::cout << "Before: "<< this->currDirection << std::endl;
-  this->currDirection = angles[(int)this->currDirection];
-  std::cout << "After: "<< this->currDirection << std::endl;
+	//std::cout << "Calculating player rotation" << std::endl;
+	this->currDirection = angles[(int)this->currDirection];
 }
 
 void Bikex::setBreakIntensity()
 {
-	std::cout << "Setting break intensity" << std::endl;
+	//std::cout << "Setting break intensity" << std::endl;
 	// TODO: do some calculations to set right amount of intensity
 	int altitude = unity->getPlayerAltitude();
 	currPosition.y = (unsigned char)altitude;
@@ -145,7 +139,7 @@ void Bikex::setBreakIntensity()
 
 int Bikex::writeDevices()
 {
-	std::cout << "Writting devices" << std::endl;
+	//std::cout << "Writting devices" << std::endl;
 	static char info[256];
 	static int chars_written;
 
@@ -164,7 +158,7 @@ int Bikex::writeDevices()
 
 int Bikex::readDevices()
 {
-	std::cout << "Reading devices" << std::endl;
+	//std::cout << "Reading devices" << std::endl;
 	// Make all comon readings
 	Passive::flush();
 	speed->getData(this->currSpeed);
@@ -188,8 +182,6 @@ void Bikex::play()
     
 	while(1)
 	{
-        printf("\rmedia: %d", average);
-
         // Begin time count
 		gettimeofday(&before , NULL);
 
@@ -203,6 +195,8 @@ void Bikex::play()
 
 		// Before rendering frame, write to all devices
 		this->writeDevices();
+
+		printf("\rSpeed: %.2f km/h, Angle: %.2f °", this->currSpeed, this->currDirection);
 
 		// Finally tells unity it can render the frame
 		// TODO: checks how to make unity wait until next frame rendering
