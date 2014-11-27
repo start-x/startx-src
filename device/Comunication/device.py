@@ -49,9 +49,8 @@ class Active(Device):
         self.data = self.serial.readline()
         self.data = self.data.split('\n')[0]
 
-    def write_data(self, command, data):
+    def write_data(self, data):
         """ Return actual data from device """
-        self.serial.write(str(command))
         self.serial.write(str(data))
 
     def read_data(self, command):
@@ -69,15 +68,9 @@ class Passive(Device):
 
     def read_data(self, command):
         """ Send some data to device """
-        #self.serial.write(str(command))
-        self.data = ''
-        for x in xrange(0,10):
-            self.serial.write('a'+ str(x))
-            data = self.serial.readline()
-            print data,x
-            data = self.data.split('\n')[0]
-            self.data = self.data + ' ' + data
-        return self.data
+        self.serial.write('A')
+        data = self.serial.readline()
+        return data
 
     def write_data(self, command, data):
         return None
@@ -90,9 +83,11 @@ class Break(Active):
         self.arg = arg
         
     def write_data(self,data):
+        if data == '':
+            data = '0'
         data = int(data)
         if (data >= 0) and (data <= 9):
-            super(Break, self).write_data(self.arg,data)
+            super(Break, self).write_data(data)
 
 
 class Direction(Passive):

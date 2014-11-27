@@ -70,6 +70,7 @@ def main():
     signal(SIGABRT, safe_quit)
     while True:
         sleep(0.01)
+        write_file(0, 0)
 
 if __name__ == '__main__':
     # list available ports

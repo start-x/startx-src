@@ -36,6 +36,8 @@ static void initPython()
 	}
 
 	// If we got here, from the line bellow until exit(0) means totaly the child process
+	cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << endl;
+	exit(0);
 	cout << "$ " << PYTHON_PROGRAM << " " << parentPid << endl;
 	char strPid[16]; // Gotta convert pid into a string
 	sprintf(strPid, "%i", parentPid);
