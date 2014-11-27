@@ -8,6 +8,7 @@
 """
 
 from startx import BREAK_MSP, DIRECTION_MSP, VELOCITY_MSP, ALL_VALUES
+from time import sleep
 
 
 class Device(object):
@@ -37,8 +38,11 @@ class Device(object):
 
     def flush(self):
         """ Read data """
-
-        return self.serial.readline()
+        try:
+            return self.serial.readline()
+        except SerialException:
+            sleep(0.01)
+            return self.flush()
 
 
 class Active(Device):
