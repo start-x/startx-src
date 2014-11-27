@@ -34,13 +34,13 @@ class MSP(Miniterm):
     """
     port = 0
     alive = False
-    modules={}
+    modules = {}
 
     def __init__(self, tty, baud=9600, parity="O", timeout=5):
         if tty is not []:
             try:
                 super(MSP, self).__init__(tty, baud, 'N',
-                  False, False)
+                                          False, False)
             except SerialException:
                 print util.ROOT_MESSAGE
                 exit(-1)
@@ -50,25 +50,30 @@ class MSP(Miniterm):
             production environment"""
             self.serial = MagicMock()
             self.serial.readline = util.randomstring
-            # raise Exception  
+            # raise Exception
         self.port = tty
         self.enable()
 
-    def __getitem__(self,key):
+    def __getitem__(self, key):
         """ Return the value of a item """
         try:
-            return getattr(self,key).read_data()
+            return getattr(self, key).read_data()
         except TypeError:
-            return getattr(self,key).read_data('t')
+            return getattr(self, key).read_data('A')
         except IndexError:
-            return getattr(self,key).data
+            return getattr(self, key).data
+        except SerialException:
+            if getattr(self, key).data != '':
+                return getattr(self, key).data
+            else:
+                return self.__getitem__(key)
         except Exception, e:
             raise e
 
-    def __setitem__(self,key,item):
+    def __setitem__(self, key, item):
         """ Set a value of a item """
         # getattr(self,key).write_data('r',str(item))
-        getattr(self,key).write_data(str(item))
+        getattr(self, key).write_data(str(item))
 
     def enable(self):
         """ Method to enable the micro """
@@ -102,7 +107,7 @@ if __name__ == '__main__':
     # for x in xrange(1, 11):
     #     print x, msp430.adc.read_data('t')
 
-    # # define a new reading method
+    # define a new reading method
     # def thridfirst(item):
     #     """ Rewritng method """
     #     data = msp430.serial.readline()
@@ -111,40 +116,39 @@ if __name__ == '__main__':
     # print msp430['adc']
     # msp430.adc.read_data = thridfirst
 
-    # # make 10 reads from adc using the new method
+    # make 10 reads from adc using the new method
     # print '\nProcessed data \n----------'
     # for x in xrange(1, 11):
     #     print x, msp430.adc.flush()
 
-    # # example of using a active sensor
+    # example of using a active sensor
     # print '\nActive sensor\'s data \n----------'
     # for x in xrange(1, 11):
     #     print x, msp430.pwm.write_data('r', 't')
 
     # new microcontroller interface
-    msp430.adc = sensor.Direction(msp430.serial,0)
+    msp430.adc = sensor.Direction(msp430.serial, 0)
     print '\nADC data \n----------'
-    for x in xrange(1,10):
+    for x in xrange(1, 10):
         print msp430['adc']
 
-    msp430.guidao = sensor.Direction(msp430.serial,2)
+    msp430.guidao = sensor.Direction(msp430.serial, 2)
     print '\nGuidão data \n----------'
-    for x in xrange(1,10):
+    for x in xrange(1, 10):
         print msp430['guidao']
 
-    msp430.freio = sensor.Freio(msp430.serial,3)
+    msp430.freio = sensor.Freio(msp430.serial, 3)
     print '\nFreio data \n----------'
-    for x in xrange(1,11):
-        print "Writinh %d..." %x,
-        msp430['freio']=x
+    for x in xrange(1, 11):
+        print "Writinh %d..." % x,
+        msp430['freio'] = x
         print msp430['freio']
 
     # teste number larger than 9
-    msp430.teste = sensor.Direction(msp430.serial,13)
+    msp430.teste = sensor.Direction(msp430.serial, 13)
     print '\nTeste data \n----------'
-    for x in xrange(1,10):
+    for x in xrange(1, 10):
         print msp430['teste']
-
 
     # closes msp430 dependecies
     msp430.disable()

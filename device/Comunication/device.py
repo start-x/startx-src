@@ -9,6 +9,7 @@
 
 from startx import BREAK_MSP, DIRECTION_MSP, VELOCITY_MSP, ALL_VALUES
 
+
 class Device(object):
 
     """docstring for Device"""
@@ -54,7 +55,7 @@ class Active(Device):
         self.serial.write(str(data))
 
     def read_data(self, command):
-        return None #self.serial.readline()
+        return None  # self.serial.readline()
 
 
 class Passive(Device):
@@ -69,20 +70,22 @@ class Passive(Device):
     def read_data(self, command):
         """ Send some data to device """
         self.serial.write('A')
-        data = self.serial.readline()
-        return data
+        self.data = self.serial.readline()
+        return self.data
 
     def write_data(self, command, data):
         return None
 
 
 class Break(Active):
+
     """docstring for Break"""
-    def __init__(self,terminal, arg=BREAK_MSP):
+
+    def __init__(self, terminal, arg=BREAK_MSP):
         super(Break, self).__init__(terminal)
         self.arg = arg
-        
-    def write_data(self,data):
+
+    def write_data(self, data):
         if data == '':
             data = '0'
         data = int(data)
@@ -91,34 +94,40 @@ class Break(Active):
 
 
 class Direction(Passive):
+
     """docstring for Direction"""
-    def __init__(self,terminal, arg=DIRECTION_MSP):
+
+    def __init__(self, terminal, arg=DIRECTION_MSP):
         super(Direction, self).__init__(terminal)
         self.arg = arg
-        
+
     def read_data(self):
         return super(Direction, self).read_data(self.arg)
 
 
 class Velocity(Passive):
+
     """docstring for Velocity"""
-    def __init__(self,terminal, arg=VELOCITY_MSP):
+
+    def __init__(self, terminal, arg=VELOCITY_MSP):
         super(Velocity, self).__init__(terminal)
         self.arg = arg
-        
+
     def read_data(self):
         return super(Velocity, self).read_data(self.arg)
 
 
 class Passives(Passive):
+
     """docstring for Passives"""
-    def __init__(self,terminal, arg=ALL_VALUES):
+
+    def __init__(self, terminal, arg=ALL_VALUES):
         super(Passives, self).__init__(terminal)
         self.arg = arg
-        
+
     def read_data(self):
         print "data lida"
-        #return super(Passives, self).read_data(self.arg)
+        # return super(Passives, self).read_data(self.arg)
         return super(Passives, self).read_data(self.arg)
 
 if __name__ == '__main__':
