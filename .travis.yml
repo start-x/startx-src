@@ -5,8 +5,6 @@ install:
 
 script:
   - make
-  - ./device/Comunication/main.py
-  - ./build/bikex
 
 notifications:
   - email: false
