@@ -93,5 +93,6 @@ if __name__ == '__main__':
             msp430.__getitem__ = MagicMock(return_value='120.2 50\n')
     except Exception, e:
         raise e
+        
     print 'Ready'
     main()
