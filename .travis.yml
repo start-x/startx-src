@@ -1,4 +1,7 @@
 
+language:
+  - C++
+  
 install:
   - sudo apt-get install python2.7 python-serial python2.7-dev doxygen graphviz dots binutils-msp430 gcc-msp430 msp430-libc msp430mcu mspdebug libxext-dev mesa-common-dev freeglut3-dev libxinerama-dev libxrandr-dev libxxf86vm-dev swig
   - sudo pip install pyserial mock
