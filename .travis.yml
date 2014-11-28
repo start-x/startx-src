@@ -7,4 +7,5 @@ script:
   - make
 
 notifications:
-  - email: false
+  email:
+    - ziuloliveira@gmail.com
