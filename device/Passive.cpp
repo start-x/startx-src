@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <stdlib.h>
+#include <signal.h>
+#include <stdio.h>
 #include <Passive.h>
 
 static unsigned char * mockData = 0;
@@ -54,22 +56,21 @@ int Passive::flush()
 		mockIndex++; // Skip line break
 
 	#else
+		std::cout << "killando o processo " << Device::pythonPid << std::endl;
+		kill(Device::pythonPid, 30);
 		file.open(PASSIVE_FILENAME);
 		if(file.is_open())
 		{
-      int value;
-      std::stringstream ss;
-      ss << file.rdbuf();
-      
-      std::cout << "Valor: " << value << std::endl;
-      ss >> buffer[DIRECTION];
-      ss >> buffer[SPEED];
-      
-      file.close();
-			std::cout << "Passive mockData loaded: " << BUFFER_SIZE << " bytes long" << std::endl;
+			int value;
+			std::stringstream ss;
+			ss << file.rdbuf();
+			ss >> buffer[DIRECTION];
+			//ss >> buffer[SPEED];
+			buffer[SPEED] = 30.0;
+			file.close();
 		}
 		else
-			std::cout << "Failed to load passive mockData" << std::endl;
+			std::cout << "****** Failed to load passive file ******" << std::endl;
 		file.close();
 	#endif
 	return 0;

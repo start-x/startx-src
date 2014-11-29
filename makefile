@@ -52,3 +52,9 @@ clean:
 .PHONY: doc
 doc:
 	doxygen Doxyfile.conf -u
+
+run: compile
+	mv BikeX.desktop BikeX.desktop-bak
+	sed -e "s,Icon=.*,Icon=$(PWD)/icone.png,g" BikeX.desktop-bak > BikeX.desktop
+	rm BikeX.desktop-bak
+	sudo ./device/Comunication/main.py && ./build/bikex
