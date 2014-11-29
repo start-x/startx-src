@@ -23,10 +23,10 @@ ROOT_MESSAGE = """
   """    
                          
 
-def randomstring():             
+def randomstring(size=20):             
     """ rewriting method """                          
     chars = string.ascii_uppercase + string.digits
-    return ''.join(random.choice(chars) for _ in range(20))
+    return ''.join(random.choice(chars) for _ in range(size))
 
                           
 def available_ports():               
@@ -38,7 +38,5 @@ def available_ports():
                 PORTS_AVAILABLE.append(port)    
     except Exception as error:    
         raise error                  
-    if len(PORTS_AVAILABLE) == 0:    
-        PORTS_AVAILABLE = None
 
     return PORTS_AVAILABLE

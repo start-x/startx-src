@@ -87,10 +87,11 @@ if __name__ == '__main__':
         # choose a port
         if len(PORTS_AVAILABLE) > 0:
             msp430 = MSP(PORTS_AVAILABLE[0])
-    except TypeError, error:
-        print "None device connected - test mode"
-        msp430 = MagicMock()
-        msp430.__getitem__ = MagicMock(return_value='120.2 50')
-
+        else:
+            print "None device connected - test mode"
+            msp430 = MagicMock()
+            msp430.__getitem__ = MagicMock(return_value='120.2 50\n')
+    except Exception, e:
+        raise e
     print 'Ready'
     main()
