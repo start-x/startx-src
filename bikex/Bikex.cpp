@@ -147,7 +147,7 @@ void Bikex::init()
   {
     for(int j = 0; j < jump; j++)
     {
-      angles[i+j] = (double)tmpAngles + (j/10.0);
+      angles[i+j] = (((double)tmpAngles/10.0) + (j/100.0));
     }
     tmpAngles++;
   }
