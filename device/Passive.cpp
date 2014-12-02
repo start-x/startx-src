@@ -56,7 +56,7 @@ int Passive::flush()
 		mockIndex++; // Skip line break
 
 	#else
-		std::cout << "killando o processo " << Device::pythonPid << std::endl;
+		//std::cout << "killando o processo " << Device::pythonPid << std::endl;
 		kill(Device::pythonPid, 30);
 		file.open(PASSIVE_FILENAME);
 		if(file.is_open())
@@ -72,6 +72,7 @@ int Passive::flush()
 		else
 			std::cout << "****** Failed to load passive file ******" << std::endl;
 		file.close();
+		free(mockData);
 	#endif
 	return 0;
 }
