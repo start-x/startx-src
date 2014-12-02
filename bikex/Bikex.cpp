@@ -196,7 +196,7 @@ void Bikex::play()
 		// Before rendering frame, write to all devices
 		this->writeDevices();
 
-		printf("\rSpeed: %.2f km/h, Angle: %.2f °", this->currSpeed, this->currDirection);
+		printf("\rSpeed: %.2f km/h, Angle: %3.2f °", this->currSpeed, this->currDirection);
 
 		// Finally tells unity it can render the frame
 		// TODO: checks how to make unity wait until next frame rendering
