@@ -1,0 +1,609 @@
+Mono path[0] = '/tmp/0.4.3/linux_x86_64/build_Data/Managed'
+Mono path[1] = '/tmp/0.4.3/linux_x86_64/build_Data/Mono'
+Mono config path = '/tmp/0.4.3/linux_x86_64/build_Data/Mono/etc'
+
+Selecting FBConfig
+GLX_FBCONFIG_ID=80
+GLX_BUFFER_SIZE=32
+GLX_DOUBLEBUFFER=1
+GLX_RED_SIZE=8
+GLX_GREEN_SIZE=8
+GLX_BLUE_SIZE=8
+GLX_ALPHA_SIZE=8
+GLX_DEPTH_SIZE=24
+GLX_STENCIL_SIZE=8
+GLX_SAMPLES_ARB=0
+GLX_SAMPLE_BUFFERS_ARB=0
+GLX_CONFIG_CAVEAT=NONE
+
+Desktop is 1280 x 720 @ 60 Hz
+OpenGL:
+    Version:  OpenGL 2.1 [2.1 Mesa 8.0.5]
+    Renderer: Gallium 0.4 on llvmpipe (LLVM 0x209)
+    Vendor:   VMware, Inc.
+    VRAM:     288 MB
+    Extensions: GL_ARB_multisample GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_copy_texture GL_EXT_polygon_offset GL_EXT_subtexture GL_EXT_texture_object GL_EXT_vertex_array GL_EXT_compiled_vertex_array GL_EXT_texture GL_EXT_texture3D GL_IBM_rasterpos_clip GL_ARB_point_parameters GL_EXT_draw_range_elements GL_EXT_packed_pixels GL_EXT_point_parameters GL_EXT_rescale_normal GL_EXT_separate_specular_color GL_EXT_texture_edge_clamp GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod GL_ARB_multitexture GL_IBM_multimode_draw_arrays GL_IBM_texture_mirrored_repeat GL_ARB_texture_cube_map GL_ARB_texture_env_add GL_ARB_transpose_matrix GL_EXT_blend_func_separate GL_EXT_fog_coord GL_EXT_multi_draw_arrays GL_EXT_secondary_color GL_EXT_texture_env_add GL_EXT_texture_lod_bias GL_INGR_blend_func_separate GL_NV_blend_square GL_NV_light_max_exponent GL_NV_texgen_reflection GL_NV_texture_env_combine4 GL_SUN_multi_draw_arrays GL_ARB_texture_border_clamp GL_ARB_texture_compression GL_EXT_framebuffer_object GL_EXT_texture_env_combine GL_EXT_texture_env_dot3 GL_MESA_window_pos GL_NV_packed_depth_stencil GL_NV_texture_rectangle GL_ARB_depth_texture GL_ARB_occlusion_query GL_ARB_shadow GL_ARB_texture_env_combine GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3 GL_ARB_texture_mirrored_repeat GL_ARB_window_pos GL_EXT_stencil_two_side GL_EXT_texture_cube_map GL_NV_fog_distance GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ARB_draw_buffers GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_shader_objects GL_ARB_vertex_program GL_ARB_vertex_shader GL_ATI_draw_buffers GL_ATI_texture_env_combine3 GL_ATI_texture_float GL_EXT_shadow_funcs GL_EXT_stencil_wrap GL_MESA_pack_invert GL_MESA_ycbcr_texture GL_NV_primitive_restart GL_ARB_fragment_program_shadow GL_ARB_half_float_pixel GL_ARB_occlusion_query2 GL_ARB_point_sprite GL_ARB_shading_language_100 GL_ARB_sync GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object GL_ATI_blend_equation_separate GL_EXT_blend_equation_separate GL_OES_read_format GL_ARB_pixel_buffer_object GL_ARB_texture_compression_rgtc GL_ARB_texture_float GL_ARB_texture_rectangle GL_ATI_texture_compression_3dc GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_texture_compression_rgtc GL_EXT_texture_mirror_clamp GL_EXT_texture_rectangle GL_EXT_texture_sRGB GL_EXT_texture_shared_exponent GL_ARB_framebuffer_object GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_packed_depth_stencil GL_ARB_vertex_array_object GL_ATI_separate_stencil GL_ATI_texture_mirror_once GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_gpu_program_parameters GL_EXT_texture_compression_latc GL_EXT_texture_sRGB_decode GL_OES_EGL_image GL_ARB_copy_buffer GL_ARB_draw_instanced GL_ARB_half_float_vertex GL_ARB_instanced_arrays GL_ARB_map_buffer_range GL_ARB_texture_rg GL_ARB_texture_swizzle GL_ARB_vertex_array_bgra GL_EXT_separate_shader_objects GL_EXT_texture_swizzle GL_EXT_vertex_array_bgra GL_NV_conditional_render GL_AMD_draw_buffers_blend GL_ARB_ES2_compatibility GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex GL_ARB_explicit_attrib_location GL_ARB_fragment_coord_conventions GL_ARB_provoking_vertex GL_ARB_sampler_objects GL_ARB_shader_texture_lod GL_ARB_vertex_type_2_10_10_10_rev GL_EXT_provoking_vertex GL_EXT_texture_snorm GL_MESA_texture_signed_rgba GL_ARB_robustness GL_ARB_texture_storage 
+GLX Extensions: GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_import_context GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_multithread_makecurrent GLX_OML_swap_method GLX_SGI_make_current_read GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_EXT_texture_from_pixmap 
+Setting maxVSyncInterval to 0
+GL: Detected 21 MB VRAM
+Total system RAM: 7988 MiB
+Initialize engine version: 4.5.3f3 (fca41a4fabea)
+AudioManager: Using ALSA: default
+Begin MonoManager ReloadAssembly
+Platform assembly: /tmp/0.4.3/linux_x86_64/build_Data/Managed/UnityEngine.dll (this message is harmless)
+Loading /tmp/0.4.3/linux_x86_64/build_Data/Managed/UnityEngine.dll into Unity Child Domain
+Platform assembly: /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-CSharp.dll (this message is harmless)
+Loading /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-UnityScript.dll (this message is harmless)
+Loading /tmp/0.4.3/linux_x86_64/build_Data/Managed/Assembly-UnityScript.dll into Unity Child Domain
+- Completed reload, in  0.062 seconds
+Default vsync count 0
+requesting resize 1366 x 768
+resizing window to 1366 x 768
+Desktop is 1280 x 720 @ 60 Hz
+Platform assembly: /tmp/0.4.3/linux_x86_64/build_Data/Managed/System.Core.dll (this message is harmless)
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) Ovr.Hmd:ovr_GetVersionString ()
+  at Ovr.Hmd.GetVersionString () [0x00000] in <filename unknown>:0 
+  at OVRManager.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+Platform assembly: /tmp/0.4.3/linux_x86_64/build_Data/Managed/System.dll (this message is harmless)
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRMainMenu.CheckIfRiftPresent () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+DllNotFoundException: ugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/.//tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/./lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+Fallback handler could not load library /tmp/0.4.3/linux_x86_64/build_Data/Mono/x86_64/lib/tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: Exception of type 'System.DllNotFoundException' was thrown.
+  at (wrapper managed-to-native) OVRGamepadController:OVR_GamepadController_GetButton (int)
+  at OVRGamepadController.DefaultReadButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRGamepadController.GPC_GetButton (Button button) [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.ShowLevels () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.UpdateSelectCurrentLevel () [0x00000] in <filename unknown>:0 
+  at OVRMainMenu.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+DllNotFoundException: /tmp/0.4.3/linux_x86_64/build_Data/Plugins/x86_64/libOculusPlugin.so
+  at (wrapper managed-to-native) OVRManager:OVR_GetHMD (intptr&)
+  at OVRManager.get_capiHmd () [0x00000] in <filename unknown>:0 
+  at OVRManager.get_profile () [0x00000] in <filename unknown>:0 
+  at OVRPlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at OVRCameraRig.ConfigureCamera (OVREye eye) [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.UpdateCameras () [0x00000] in <filename unknown>:0 
+  at OVRCameraRig.LateUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: 4294967295)
+
