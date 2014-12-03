@@ -29,10 +29,65 @@ static int time_diff(struct timeval x , struct timeval y)
     return diff;
 }
 
+// /**	
+//  *	Node for cyclic list
+//  */
+// struct _node
+// {
+// 	double value;
+// 	_node * next;
+// } node;
+
+// /**
+//  *	Cyclic list
+//  */
+// class ciclList
+// {
+// public:
+// 	node * head;
+
+// 	ciclList(int numNodes)
+// 	{
+// 		this->head = new node;
+// 		this->head->value = 0.0;
+
+// 		node * prev, curr;
+// 		prev = this->head;
+// 		for(int i = 0; i < numNodes; i++)
+// 		{
+// 			curr = new node;
+// 			curr->value = 0.0;
+// 			prev->next = curr;
+// 			prev = curr;
+// 		}
+// 		curr->next = this->head;
+// 	}
+
+// 	double average()
+// 	{
+// 		node * tmp = this->head->next;
+// 		double total = this->head->value;
+// 		int numNodes = 1;
+
+// 		while(tmp != this->head)
+// 		{
+// 			total += tmp->value;
+// 			numNodes++;
+// 			tmp = tmp->next;
+// 		}
+// 	}
+
+// 	double add(double value)
+// 	{
+// 		this->head->value = value;
+// 		this->head = this->head->next;
+// 	}
+// };
+
 /**
  *	Represents the range of angles according to the range sent by the potenciometer
  */
-int angles[POTENTIOMETER_RANGE];
+double angles[POTENTIOMETER_RANGE];
 
 Bikex::Bikex()
 {
@@ -86,13 +141,13 @@ void Bikex::init()
 	Device::init();
 
   int jump = (POTENTIOMETER_RANGE/2)/MAX_ANGLE;
-  int tmpAngles = -60;
+  int tmpAngles = -MAX_ANGLE;
 
   for(int i = 0; i < POTENTIOMETER_RANGE; i+=jump)
   {
     for(int j = 0; j < jump; j++)
     {
-      angles[i+j] = tmpAngles;
+      angles[i+j] = (((double)tmpAngles/10.0) + (j/100.0));
     }
     tmpAngles++;
   }
@@ -116,16 +171,19 @@ void Bikex::printCurrState()
 void Bikex::calculatePlayerSpeed()
 {
 	//std::cout << "Calculating player speed" << std::endl;
-	double angle = CIRC_ANGLE / (double)NUM_OBSTRUCTIONS;
-	double distance = (angle * CIRCUMFERENCE) / (double)(90 * 4);
-	this->currSpeed = distance / (this->currSpeed / 100.0);
-	this->currSpeed *= MPS_TO_KMH;
+	// double angle = CIRC_ANGLE / (double)NUM_OBSTRUCTIONS;
+	// double distance = (angle * CIRCUMFERENCE) / (double)(90 * 4);
+	// this->currSpeed = distance / (this->currSpeed / 100.0);
+	// this->currSpeed *= MPS_TO_KMH;
+	this->currSpeed *= 1.35;
 }
 
 void Bikex::calculatePlayerRotation()
 {
 	//std::cout << "Calculating player rotation" << std::endl;
-	this->currDirection = angles[(int)this->currDirection];
+	static double previousDirection = 0.0;
+	this->currDirection = ((double)angles[(int)this->currDirection] + previousDirection)/2.0;
+	previousDirection = this->currDirection;
 }
 
 void Bikex::setBreakIntensity()

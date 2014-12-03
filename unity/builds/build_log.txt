@@ -13,3 +13,4 @@ Write here all the builds that there were made
   - build5 - same environment as build4, but with new scripts for rotation.
   - build6 - Now it reads files unity_rotation.txt and unity_speed.txt. NOTE: IT ONLY READS SPEED.TXT WHEN USER PRESS CTRL+C
   - build7 - Now it reads files unity_rotation.txt and unity_speed.txt. It works greatly with rotation and speed values, it's basically finished 
+  - build8 - Reduced map, writes on unity_altitude to make the break works.

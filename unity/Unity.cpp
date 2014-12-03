@@ -78,12 +78,6 @@ void Unity::init()
 
 	// Now open some useful files
 	this->altitudeFile.open(UNITY_ALTITUDE_FILE, std::ios::in | std::ios::binary | std::ios::ate);
-	this->infoFile.open(UNITY_INFO_FILE);
-
-	if(!this->infoFile.is_open() || !this->altitudeFile.is_open())
-	{
-		cout << "Couldn't open unity communication files";
-	}
 }
 
 int Unity::getPlayerAltitude()
@@ -168,6 +162,12 @@ void Unity::setPlayerRotation(double rotation)
 
 void Unity::setInfo(const char * info, int chars_written)
 {
+	this->infoFile.open(UNITY_INFO_FILE, std::ofstream::out | std::ofstream::trunc);
+
+	/**if(!this->infoFile.is_open())
+	{
+		cout << "Couldn't open unity communication files";
+	}**/
 	if(this->infoFile.is_open())
 	{
 		// Rewinds it, so it will write to the beginning again
@@ -177,7 +177,7 @@ void Unity::setInfo(const char * info, int chars_written)
 		this->infoFile << info;
 
 		// Make sure to write new data
-		this->infoFile.flush();
+		this->infoFile.close();
 	}
 	else
 		std::cout << "Failed to write unity information" << std::endl;

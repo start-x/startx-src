@@ -12,7 +12,7 @@
 #define MIN_DT 33 // 33 == (1/30) * 1000
 #define SAMPLES_FPS 128
 #define POTENTIOMETER_RANGE 1024
-#define MAX_ANGLE 60.0
+#define MAX_ANGLE 30.0
 #define NUM_OBSTRUCTIONS 4
 #define CIRCUMFERENCE 2.0
 
