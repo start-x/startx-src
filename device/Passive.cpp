@@ -65,8 +65,8 @@ int Passive::flush()
 			ss << file.rdbuf();
 			ss >> buffer[DIRECTION];
 			ss >> buffer[SPEED];
-			std::cout << "speed = " << buffer[SPEED] << std::endl;
-			//buffer[SPEED] = 30.0;
+			//std::cout << "speed = " << buffer[SPEED] << std::endl;
+			//buffer[SPEED] = 60.0;
 			file.close();
 		}
 		else

@@ -11,6 +11,7 @@
 #define MAX_DT 100 // 100 == (1/10) * 1000
 #define MIN_DT 33 // 33 == (1/30) * 1000
 #define SAMPLES_FPS 128
+#define SAMPLES_AVR_SPEED 256
 #define POTENTIOMETER_RANGE 1024
 #define MAX_ANGLE 30.0
 #define NUM_OBSTRUCTIONS 4
@@ -60,7 +61,17 @@ public:
 	/**
 	 *	Current player's distance already biked, in meters
 	 */
-	int currDistance;
+	double currDistance;
+
+	/**
+	 *	Total time that the player biked
+	 */
+	unsigned long long int totalTime;
+
+	/**
+	 *	Average player's speed , in km/h
+	 */
+	double avrgSpeed;
 
 	/**
 	 *	Current player's speed (intensity of going forward)

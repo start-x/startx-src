@@ -20,16 +20,16 @@
 static int time_diff(struct timeval x , struct timeval y)
 {
     int x_ms , y_ms , diff;
-     
+
     x_ms = x.tv_sec*1000 + x.tv_usec/1000;
     y_ms = y.tv_sec*1000 + y.tv_usec/1000;
-     
+
     diff = y_ms - x_ms;
-     
+
     return diff;
 }
 
-// /**	
+// /**
 //  *	Node for cyclic list
 //  */
 // struct _node
@@ -115,6 +115,8 @@ Bikex::Bikex()
 	currSpeed = 0;
 	currDirection = 0;
 	currAngle = 0;
+	totalTime = 0;
+	avrgSpeed = 0;
 }
 
 Bikex::~Bikex()
@@ -205,8 +207,9 @@ int Bikex::writeDevices()
 	Active::flush();
 
 	// Now Unity stuff
-	chars_written = sprintf(info, "\rSpeed: %lf | Heart: %lf | Dist: %d | Batt: %lf", 
-		this->currSpeed, this->currHearBeat, this->currDistance, this->currBattery);
+	// Change what will be written
+	chars_written = sprintf(info, "\rCurrent Speed: %.2lf | Dist: %.2lf | Average speed: %.2lf | Total Time: %.2lf",
+		this->currSpeed, this->currDistance, this->avrgSpeed, (double)this->totalTime/10000.0);
 	unity->setInfo(info, chars_written);
 	unity->setPlayerSpeed(this->currSpeed);
 	unity->setPlayerRotation(this->currDirection);
@@ -231,19 +234,25 @@ void Bikex::play()
 {
 
 	std::cout << "Playing" << std::endl;
-    int samples[SAMPLES_FPS], i_samples = 0;
+    int samples[SAMPLES_FPS], i_samples = 0, s_samples = 0;
     int diff = 0, total = 0, average = 0, i = 0;
+    double speeds[SAMPLES_AVR_SPEED];
+    int totalSpeeds = 0;
     struct timeval before , after;
+    int partialTime = 0;
 
     for(i = 0; i < SAMPLES_FPS; i++)
         samples[i] = 30;
-    
+
+    for(i = 0; i < SAMPLES_AVR_SPEED; i++)
+        speeds[i] = 0;
+
 	while(1)
 	{
         // Begin time count
 		gettimeofday(&before , NULL);
 
-		// Read all sensors 
+		// Read all sensors
 		this->readDevices();
 
 		// Calculate and set player's position and rotation based on sensors readings
@@ -268,14 +277,31 @@ void Bikex::play()
 
         diff = time_diff(before , after);
         samples[i_samples++] = diff;
-        if(i_samples == SAMPLES_FPS) 
+        if(i_samples == SAMPLES_FPS)
         	i_samples = 0;
 
         average = total/SAMPLES_FPS;
-        if(average < MIN_DT) 
+        if(average < MIN_DT)
         	average = MIN_DT;
 
         if(diff < average)
             usleep((average - diff)*1000);
+
+        // Sample speeds to calculate average speed
+        for(i = totalSpeeds = 0; i < SAMPLES_AVR_SPEED; i++)
+            totalSpeeds += speeds[i];
+
+        speeds[s_samples++] = this->currSpeed;
+        this->avrgSpeed = totalSpeeds/SAMPLES_AVR_SPEED;
+
+        if(s_samples == SAMPLES_AVR_SPEED)
+          s_samples = 0;
+
+        gettimeofday(&after , NULL);
+
+        partialTime = time_diff(before , after) * 10;
+        this->totalTime += partialTime;
+
+        this->currDistance += (this->currSpeed/(double)partialTime)/1000.0;
 	}
 }
