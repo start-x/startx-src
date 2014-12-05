@@ -23,6 +23,7 @@ void setup()
     /*zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz*/    
     /* configurando o servomotor*/
     servoBrk.attach(SERVO_PIN);
+    servoBrk.write(map(0, '0', '9', 0, 90));
     
     /*zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz*/
 
@@ -88,7 +89,7 @@ void loop() // run over and over
        case 'A' :
        
        //Serial.println("mixed = ");
-       Serial.print(Vguidao);
+       Serial.print(1023 - Vguidao);
        Serial.print(' ');
        Serial.println(velocity);
        
@@ -113,14 +114,12 @@ void loop() // run over and over
        break;
        
        default :
-        //Serial.println("mixed = ");
-       //Serial.println(Vguidao);
-       //Serial.println(velocity);
+       
        break;
        
      }
      
-     /* Atualizacao das tretas */
+     /* Atualizacao das variaveis */
      Vpast = Vact;
      TacPast = TacAct;
      delay(1);
@@ -128,34 +127,5 @@ void loop() // run over and over
      
   }
   
-  
-  /*
-  for(;;)
-  {
-    switch(Serial.read())
-    {
-      case 'a':
-        Serial.println("opçao 1");
-      break;
-      
-      case 'b':
-        Serial.println("opçao 2");
-      break;
-      
-      default:
-        break;
-        //Serial.println("opçao 3");
-      
-      
-    }
-
-  }
-*/
-/*
-    while(1)
-    {
-      if(Serial.read()=='a')
-        Serial.println("Hello, world?");
-    }*/
 }
 
